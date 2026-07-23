@@ -249,10 +249,10 @@
 
   <!-- SCRIPT INTEGRASI LANDING PAGE & WEBHOOK VERCEL -->
   <script>
-    // ⚠️ MASUKKAN URL WEBHOOK GOOGLE APPS SCRIPT BARU KAMU DI SINI:
-    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx.../exec";
+    // URL WEBHOOK GOOGLE APPS SCRIPT BARU
+    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxSLo80oTdvYAwU61ZkCusEG24ykTICKtNiFWmwIJNo/exec";
 
-    // Data Properti Lokal (Render Langsung & Cepat di Vercel)
+    // Data Properti Lokal
     const PROPERTY_CONFIG = {
       title: "Rumah Taman Alfa Indah",
       whatsappNumber: "6287832219195", 
@@ -344,7 +344,7 @@
               submitBtn.innerText = "Hubungi Via WhatsApp";
             }
           } catch (err) {
-            console.error(err);
+            console.error("Save Lead Error:", err);
             alert("Koneksi gagal ke server. Coba beberapa saat lagi.");
             submitBtn.disabled = false;
             submitBtn.innerText = "Hubungi Via WhatsApp";
@@ -437,7 +437,9 @@
       try {
         const response = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
           body: JSON.stringify({ action: "askAI", userMessage: message })
         });
         
@@ -447,9 +449,11 @@
         if (resData.success && resData.response) {
           container.innerHTML += `<div style="background: #e9ecef; color: #212529; padding: 10px 14px; border-radius: 12px; margin-bottom: 12px; max-width: 85%;">${formatAiResponse(resData.response)}</div>`;
         } else {
-          container.innerHTML += `<div style="background: #f8d7da; color: #842029; padding: 10px 14px; border-radius: 12px; margin-bottom: 12px; max-width: 85%;">Maaf, Alfin sedang sibuk. Silakan tanyakan kembali.</div>`;
+          console.error("GAS AI Error Response:", resData);
+          container.innerHTML += `<div style="background: #f8d7da; color: #842029; padding: 10px 14px; border-radius: 12px; margin-bottom: 12px; max-width: 85%;">Maaf, Alfin sedang mengalami kendala sistem. Silakan tanyakan kembali.</div>`;
         }
       } catch (err) {
+        console.error("Fetch Chat Error:", err);
         document.getElementById(loadingId)?.remove();
         container.innerHTML += `<div style="background: #f8d7da; color: #842029; padding: 10px 14px; border-radius: 12px; margin-bottom: 12px; max-width: 85%;">Koneksi terputus. Silakan coba lagi.</div>`;
       }
