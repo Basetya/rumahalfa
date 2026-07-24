@@ -139,7 +139,7 @@
     <div class="max-w-5xl mx-auto px-6 relative z-10">
       <div class="text-center mb-16">
         <span class="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
           Simulasi Finansial
         </span>
         <h3 class="font-serif text-4xl text-dark font-bold mb-4">Simulasi KPR Interaktif</h3>
@@ -363,25 +363,24 @@
       gallerySubheadline: "Kabar baiknya, Anda tidak harus merombak semuanya dari nol. Struktur bangunan asli saat ini sudah sangat kokoh. Cukup dengan renovasi ringan seperti perbaikan lantai dan pengecatan ulang, rumah ini sudah siap bertransformasi menjadi hunian yang indah dan nyaman tanpa biaya besar. Jelajahi potensi tata letak ruang bagian dalam rumah melalui galeri foto di bawah ini:",
       facilities: [
         "Zero Anxiety: 100% Bebas Banjir & Diapit 2 Pos Polisi (Aman 24 Jam)",
-        "Komersial: 2 Minimarket & 1 Supermarket Besar di Lingkungan Sekitar",
-        "Kemudahan Belanja: Jalan Kaki ke Pasar Tradisional & Pusat Kuliner",
-        "High Mobility: Hitungan Menit ke Gerbang Tol JORR Joglo & 3 SPBU",
-        "Premium Healthcare: Dekat RS Ibu Anak, Apotik, & Praktik Dokter Spesialis",
-        "Top Tier Education: Akses Mudah ke Highscope, Petra, & SDIT Al Zahra",
-        "Lifestyle & Leisure: Kolam Renang, Fitness, Taman, McD & Coffee Shops"
+        "Komersial Kompleks: HERO Supermarket, McD 24 Jam & Alfamart 24 Jam di Gerbang Utama",
+        "Olahraga & Lifestyle: Kolam Renang & Gym/Fitness Center Resmi di Dalam Kompleks",
+        "Pendidikan Lengkap: HighScope, SIT Citra Az-Zahra, Petra Alpha & Kumon Dalam Kompleks",
+        "High Mobility: 3-5 Menit ke Gerbang Tol JORR Joglo & TransJakarta 8M",
+        "Healthcare & Banking: RSIA Mahati 24 Jam, Klinik, & 6 Bank Major di Jl. Joglo Raya"
       ],
       specs: {
         "Legalitas": "SHM (Sertifikat Hak Milik) - Aman & Valid",
         "Luas Tanah": "102 m² (Dimensi Ideal 6x17)",
-        "Luas Bangunan": "82 m² (2 Lantai Kokoh)",
+        "Luas Bangunan": "82 m² (2 Lantai Kokoh Dinding Bata Merah Pejal)",
         "Kamar Tidur": "3 + 1 (Cocok untuk keluarga berkembang)",
         "Kamar Mandi": "2 + 1",
-        "Extra Space": "Gudang Penyimpanan Terpisah",
-        "Daya Listrik": "2200 VA"
+        "Extra Space": "Gudang Penyimpanan Terpisah & Carport",
+        "Air & Listrik": "Air Jetpump Jernih + PAM Jaya / Listrik 2200 VA"
       },
       gallery: [
         "https://drive.google.com/thumbnail?id=1Iebn9nOu4M87PpJpkcrjTqRbuE_HnnBy",
-        "https://drive.google.com/thumbnail?id=11K0N1w8BY4LcbTJHWCk4e1Bq_clWZBxd", // Foto Baru No 2
+        "https://drive.google.com/thumbnail?id=11K0N1w8BY4LcbTJHWCk4e1Bq_clWZBxd", 
         "https://drive.google.com/thumbnail?id=1sup_MVr3HgJuDwfVDZzM8_ugUgbbvywF",
         "https://drive.google.com/thumbnail?id=1xpScZOjxk0gczViGU0_JmBKqSS0u2FvA",
         "https://drive.google.com/thumbnail?id=12m3nYf9XYrtPpu7f-jcluIjoQ9TpMsET",
@@ -595,7 +594,7 @@
         document.getElementById(loadId)?.remove();
         if (data.success) {
           chatMemory.push({role:"user", content:msg}, {role:"assistant", content:data.response});
-          // Membatasi memori ke 12 pesan terakhir (hemat token tapi tetap ingat nama)
+          // Slice 12 pesan terakhir (Memory Lock & Hemat Token)
           if(chatMemory.length > 12) chatMemory = chatMemory.slice(chatMemory.length - 12);
           box.innerHTML += `<div class="bg-white border text-gray-800 p-3 rounded-xl max-w-[90%] mb-3">${formatAiResponse(data.response)}</div>`;
         } else {
