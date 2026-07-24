@@ -5,15 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rumah Taman Alfa Indah</title>
   
-  <!-- Google Fonts: Playfair Display (Serif) & Inter (Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Tailwind Configuration -->
   <script>
     tailwind.config = {
       theme: {
@@ -23,11 +19,7 @@
             serif: ['Playfair Display', 'serif'],
           },
           colors: {
-            gold: {
-              400: '#d4af37',
-              500: '#c5a880',
-              600: '#b0946d',
-            },
+            gold: { 400: '#d4af37', 500: '#c5a880', 600: '#b0946d' },
             dark: '#111111'
           }
         }
@@ -36,41 +28,19 @@
   </script>
 
   <style>
-    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #f1f1f1; }
     ::-webkit-scrollbar-thumb { background: #c5a880; border-radius: 10px; }
     ::-webkit-scrollbar-thumb:hover { background: #b0946d; }
 
-    /* Glassmorphism Utilities */
-    .glass {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    .glass-dark {
-      background: rgba(17, 17, 17, 0.7);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
+    .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+    .glass-dark { background: rgba(17, 17, 17, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
 
-    /* Animations */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     .animate-fade-up { animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     
-    @keyframes pulse-gold {
-      0% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(197, 168, 128, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0); }
-    }
+    @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(197, 168, 128, 0); } 100% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0); } }
     .btn-alfin-pulse { animation: pulse-gold 2s infinite; }
-
-    /* Image Hover FX */
     .img-hover-zoom { transition: transform 0.7s ease; }
     .overflow-hidden:hover .img-hover-zoom { transform: scale(1.05); }
   </style>
@@ -79,25 +49,14 @@
 
   <!-- HERO SECTION -->
   <section id="hero-section" class="relative h-screen flex items-center justify-center bg-cover bg-center transition-all duration-1000">
-    <!-- Dark Overlay -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80 z-0"></div>
-    
     <div class="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-up">
       <p class="text-gold-500 tracking-[0.2em] text-sm uppercase mb-4 font-semibold">Eksklusif & Terbatas</p>
-      <h1 id="prop-title" class="font-serif text-5xl md:text-7xl text-white font-bold mb-6 leading-tight drop-shadow-lg">
-        Menyiapkan Properti...
-      </h1>
-      <p id="prop-headline" class="text-lg md:text-2xl text-gray-200 mb-8 font-light">
-        Mohon tunggu sebentar
-      </p>
+      <h1 id="prop-title" class="font-serif text-5xl md:text-7xl text-white font-bold mb-6 leading-tight drop-shadow-lg">Menyiapkan Properti...</h1>
+      <p id="prop-headline" class="text-lg md:text-2xl text-gray-200 mb-8 font-light">Mohon tunggu sebentar</p>
       <h2 id="prop-price" class="text-3xl md:text-4xl text-white font-serif mb-10 drop-shadow-md">...</h2>
-      
-      <a href="#lead-form" class="inline-block bg-gold-500 hover:bg-gold-600 text-white font-medium tracking-wide uppercase px-10 py-4 rounded-sm transition-all duration-300 transform hover:-translate-y-1 shadow-xl">
-        Miliki Sekarang
-      </a>
+      <a href="#lead-form" class="inline-block bg-gold-500 hover:bg-gold-600 text-white font-medium tracking-wide uppercase px-10 py-4 rounded-sm transition-all duration-300 transform hover:-translate-y-1 shadow-xl">Miliki Sekarang</a>
     </div>
-
-    <!-- Scroll Indicator -->
     <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/70 animate-bounce">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
     </div>
@@ -108,30 +67,26 @@
     <div class="max-w-3xl mx-auto text-center px-6">
       <span class="text-gold-500 tracking-widest text-xs uppercase font-bold">The Story</span>
       <h2 class="font-serif text-4xl mt-4 mb-8 text-dark">Filosofi Kenyamanan</h2>
-      <p id="prop-story" class="text-gray-600 leading-relaxed text-lg text-justify md:text-center">
-        ...
-      </p>
+      <p id="prop-story" class="text-gray-600 leading-relaxed text-lg text-justify md:text-center">...</p>
     </div>
   </section>
 
-  <!-- VIDEO TOUR SECTION -->
+  <!-- VIDEO TOUR -->
   <section class="py-16 bg-white">
     <div class="max-w-5xl mx-auto px-6">
       <div class="relative w-full overflow-hidden rounded-xl shadow-2xl" style="padding-top: 56.25%;">
-        <iframe id="prop-video" class="absolute top-0 left-0 w-full h-full border-0" src="" title="Property Video" allowfullscreen></iframe>
+        <iframe id="prop-video" class="absolute top-0 left-0 w-full h-full border-0" src="" allowfullscreen></iframe>
       </div>
     </div>
   </section>
 
-  <!-- INSPIRATION / TIMELAPSE SECTION -->
+  <!-- INSPIRATION / TIMELAPSE -->
   <section class="py-24 bg-dark text-white">
     <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
       <div>
         <span class="text-gold-500 tracking-widest text-xs uppercase font-bold">Unleash Your Imagination</span>
-        <h2 id="prop-inspiration-title" class="font-serif text-4xl mt-4 mb-6 leading-tight">Kanvas Kosong Untuk Rumah Impian Anda</h2>
-        <p id="prop-inspiration-story" class="text-gray-400 leading-relaxed text-lg mb-8">
-          ...
-        </p>
+        <h2 id="prop-inspiration-title" class="font-serif text-4xl mt-4 mb-6 leading-tight">...</h2>
+        <p id="prop-inspiration-story" class="text-gray-400 leading-relaxed text-lg mb-8">...</p>
       </div>
       <div class="flex justify-center">
         <div class="relative w-full max-w-[320px] aspect-[9/16] rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(197,168,128,0.2)] border-4 border-gray-800">
@@ -141,45 +96,100 @@
     </div>
   </section>
 
-  <!-- GALLERY SECTION -->
+  <!-- GALLERY -->
   <section class="py-24 bg-[#fafafa]">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center max-w-3xl mx-auto mb-16">
         <h3 class="font-serif text-4xl text-dark mb-4">Galeri Arsitektur</h3>
         <p id="prop-gallery-sub" class="text-gray-500 text-lg">...</p>
       </div>
-      
-      <div id="gallery-container" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[250px]">
-        <!-- Rendered via JS -->
-      </div>
+      <div id="gallery-container" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[250px]"></div>
     </div>
   </section>
 
-  <!-- SPECS & FACILITIES SECTION -->
+  <!-- SPECS & FACILITIES -->
   <section class="py-24 bg-white border-t border-gray-100">
     <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
       <div>
         <h3 class="font-serif text-3xl mb-8">Spesifikasi Bangunan</h3>
-        <div id="spec-container" class="space-y-4">
-          <!-- Rendered via JS -->
-        </div>
+        <div id="spec-container" class="space-y-4"></div>
       </div>
       <div>
         <h3 class="font-serif text-3xl mb-8">Fasilitas Eksklusif</h3>
-        <ul id="facility-container" class="space-y-5">
-          <!-- Rendered via JS -->
-        </ul>
+        <ul id="facility-container" class="space-y-5"></ul>
       </div>
     </div>
   </section>
 
-  <!-- LOCATION MAP SECTION & COMMUTE CALCULATOR -->
-  <section class="py-24 bg-[#fafafa]">
+  <!-- KPR CALCULATOR (NEW) -->
+  <section class="py-24 bg-[#fafafa] border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h3 class="font-serif text-4xl text-dark mb-4">Kalkulator KPR</h3>
+        <p class="text-gray-500 text-lg">Hitung estimasi cicilan rumah impian Anda dengan suku bunga bank devisa nasional saat ini.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-5 gap-8 bg-white p-6 md:p-10 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.05)] border border-gray-100">
+        
+        <!-- Inputs (Kiri) -->
+        <div class="md:col-span-3 space-y-6">
+          <div>
+            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Harga Properti (Rp)</label>
+            <input type="text" id="kpr-harga" value="1.500.000.000" oninput="formatAndCalculate(this)" class="w-full px-5 py-4 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 text-lg font-semibold text-dark">
+          </div>
+          
+          <div>
+            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Uang Muka / DP (Rp)</label>
+            <input type="text" id="kpr-dp" value="300.000.000" oninput="formatAndCalculate(this)" class="w-full px-5 py-4 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 text-lg font-semibold text-dark">
+            <div class="flex gap-2 mt-2">
+              <button onclick="setDP(10)" class="text-xs bg-gray-100 hover:bg-gold-500 hover:text-white px-3 py-1 rounded transition-colors">10%</button>
+              <button onclick="setDP(15)" class="text-xs bg-gray-100 hover:bg-gold-500 hover:text-white px-3 py-1 rounded transition-colors">15%</button>
+              <button onclick="setDP(20)" class="text-xs bg-gray-100 hover:bg-gold-500 hover:text-white px-3 py-1 rounded transition-colors">20%</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Suku Bunga (%)</label>
+              <input type="number" id="kpr-bunga" value="7.00" step="0.1" oninput="calculateKPR()" class="w-full px-5 py-4 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 text-lg font-semibold text-dark">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Tenor (Tahun)</label>
+              <select id="kpr-tenor" onchange="calculateKPR()" class="w-full px-5 py-4 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 text-lg font-semibold text-dark appearance-none">
+                <option value="5">5 Tahun</option>
+                <option value="10">10 Tahun</option>
+                <option value="15" selected>15 Tahun</option>
+                <option value="20">20 Tahun</option>
+                <option value="25">25 Tahun</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result (Kanan) -->
+        <div class="md:col-span-2 bg-dark rounded-2xl p-8 text-white flex flex-col justify-center relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gold-500/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+          <p class="text-gray-400 text-sm mb-1 uppercase tracking-widest font-semibold z-10">Plafon Pinjaman</p>
+          <h4 id="kpr-plafon" class="text-2xl font-serif text-gray-200 mb-8 z-10">Rp 1.200.000.000</h4>
+          
+          <p class="text-gold-500 text-sm mb-2 uppercase tracking-widest font-bold z-10">Cicilan Per Bulan</p>
+          <h4 id="kpr-cicilan" class="text-4xl md:text-5xl font-serif font-bold text-white z-10 leading-tight">Rp 10.785.939</h4>
+          
+          <div class="mt-8 pt-6 border-t border-gray-800 z-10">
+            <p class="text-xs text-gray-500 leading-relaxed">*Estimasi berdasarkan perhitungan suku bunga anuitas tetap (fixed). Syarat dan persetujuan final bergantung pada analisis bank.</p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION MAP & COMMUTE -->
+  <section class="py-24 bg-white">
     <div class="max-w-6xl mx-auto px-6 text-center">
       <h3 class="font-serif text-4xl mb-3">Lokasi Strategis</h3>
       <p id="prop-address" class="text-gray-500 mb-10 text-lg">...</p>
       
-      <!-- Commute Calculator (Premium Glass Widget) -->
       <div class="max-w-3xl mx-auto mb-12 bg-white p-6 md:p-8 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.05)] border border-gray-100 text-left transform hover:-translate-y-1 transition-all duration-300">
         <h4 class="font-serif text-2xl text-dark mb-2 flex items-center gap-2">
           <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
@@ -189,12 +199,9 @@
         
         <div class="flex flex-col md:flex-row gap-3">
           <input type="text" id="dest-input" placeholder="Contoh: SCBD, Bandara Soekarno Hatta, Senayan..." class="flex-1 px-5 py-4 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 focus:bg-white transition-all text-sm">
-          <button onclick="calculateCommute()" id="btn-calc" class="bg-dark hover:bg-black text-white px-8 py-4 rounded-xl font-bold tracking-wide transition-all duration-300 flex justify-center items-center gap-2 shrink-0 shadow-lg">
-            <span>Hitung Jarak</span>
-          </button>
+          <button onclick="calculateCommute()" id="btn-calc" class="bg-dark hover:bg-black text-white px-8 py-4 rounded-xl font-bold tracking-wide transition-all duration-300 flex justify-center items-center gap-2 shrink-0 shadow-lg">Hitung Jarak</button>
         </div>
 
-        <!-- Result Card -->
         <div id="route-result" class="hidden mt-6 bg-[#f8f9fa] p-5 rounded-xl border border-gray-200 animate-fade-up">
           <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div>
@@ -204,45 +211,34 @@
                 <span class="text-lg font-medium text-gray-600 mb-1" id="res-dist">(-- km)</span>
               </div>
             </div>
-            <a href="#" id="res-link" target="_blank" class="bg-gold-500 hover:bg-gold-600 text-white px-6 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 transition-colors">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-              Lihat Rute di Map
-            </a>
+            <a href="#" id="res-link" target="_blank" class="bg-gold-500 hover:bg-gold-600 text-white px-6 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 transition-colors">Lihat Rute di Map</a>
           </div>
         </div>
       </div>
-
       <div class="w-full h-[400px] rounded-xl overflow-hidden shadow-lg border border-gray-200">
-        <iframe id="prop-maps" class="w-full h-full border-0" src="" allowfullscreen="" loading="lazy"></iframe>
+        <iframe id="prop-maps" class="w-full h-full border-0" src="" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
   </section>
 
-  <!-- LEAD FORM SECTION -->
+  <!-- LEAD FORM -->
   <section id="lead-form" class="py-24 bg-dark relative overflow-hidden">
     <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-    
     <div class="max-w-md mx-auto px-6 relative z-10">
       <div class="glass p-8 md:p-10 rounded-2xl shadow-2xl">
         <h3 class="font-serif text-3xl font-bold text-center text-dark mb-2">Berminat Survey?</h3>
-        <p class="text-gray-600 text-center text-sm mb-8">Isi formulir di bawah ini untuk terhubung langsung dengan tim representatif kami.</p>
-        
+        <p class="text-gray-600 text-center text-sm mb-8">Isi formulir di bawah ini untuk terhubung langsung dengan representatif kami.</p>
         <form id="pms-lead-form" class="space-y-5">
           <input type="hidden" id="utm-source" name="source" value="direct">
-          
           <div>
-            <label for="input-name" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nama Lengkap</label>
-            <input type="text" id="input-name" required placeholder="Contoh: Jaya Wijaya" class="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all">
+            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nama Lengkap</label>
+            <input type="text" id="input-name" required placeholder="Contoh: Jaya Wijaya" class="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500">
           </div>
-          
           <div>
-            <label for="input-whatsapp" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nomor WhatsApp</label>
-            <input type="tel" id="input-whatsapp" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all">
+            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nomor WhatsApp</label>
+            <input type="tel" id="input-whatsapp" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500">
           </div>
-          
-          <button type="submit" id="btn-submit" class="w-full bg-gold-500 hover:bg-gold-600 text-white font-bold uppercase tracking-widest py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 mt-4">
-            Hubungi Via WhatsApp
-          </button>
+          <button type="submit" id="btn-submit" class="w-full bg-gold-500 hover:bg-gold-600 text-white font-bold uppercase tracking-widest py-4 rounded-lg shadow-lg transition-all mt-4">Hubungi Via WhatsApp</button>
         </form>
       </div>
     </div>
@@ -252,53 +248,35 @@
     <p>© 2026 <span id="footer-title"></span>. All Rights Reserved.</p>
   </footer>
   
-  <!-- FLOATING WA BUTTON -->
-  <a href="#" id="floating-wa-link" target="_blank" class="fixed bottom-6 left-6 glass hover:bg-[#25d366] hover:text-white text-[#25d366] px-5 py-3 rounded-full flex items-center gap-3 shadow-xl transition-all duration-300 z-50 group border-[#25d366]/30">
+  <!-- WIDGETS -->
+  <a href="#" id="floating-wa-link" target="_blank" class="fixed bottom-6 left-6 glass hover:bg-[#25d366] hover:text-white text-[#25d366] px-5 py-3 rounded-full flex items-center gap-3 shadow-xl transition-all z-50 group border-[#25d366]/30">
     <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     <span class="font-semibold text-sm group-hover:text-white transition-colors">Chat WhatsApp</span>
   </a>
 
-  <!-- AI CHAT BUBBLE -->
-  <div id="ai-chat-bubble" onclick="toggleChatWindow()" class="btn-alfin-pulse fixed bottom-6 right-6 glass-dark text-white px-5 py-3 rounded-full flex items-center gap-3 cursor-pointer shadow-2xl z-[60] hover:bg-dark hover:scale-105 transition-all duration-300">
+  <div id="ai-chat-bubble" onclick="toggleChatWindow()" class="btn-alfin-pulse fixed bottom-6 right-6 glass-dark text-white px-5 py-3 rounded-full flex items-center gap-3 cursor-pointer shadow-2xl z-[60] hover:bg-dark hover:scale-105 transition-all">
     <div class="relative flex h-3 w-3 absolute -top-1 -right-1">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
       <span class="relative inline-flex rounded-full h-3 w-3 bg-gold-500"></span>
     </div>
-    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-      <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-      <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-    </svg>
     <span class="font-medium text-sm tracking-wide">Tanya Alfin</span>
   </div>
 
-  <!-- AI CHAT WINDOW -->
   <div id="ai-chat-window" class="hidden fixed bottom-[90px] right-6 z-[70] w-[380px] max-w-[calc(100vw-3rem)] h-[520px] bg-white rounded-2xl shadow-[0_15px_50px_rgba(0,0,0,0.2)] flex-col overflow-hidden border border-gray-100 origin-bottom-right transition-all">
     <div class="bg-dark text-white p-4 flex justify-between items-center shrink-0">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-full bg-gold-500 flex items-center justify-center font-serif font-bold text-xl">A</div>
-        <div>
-          <strong class="block text-sm font-semibold tracking-wide">Alfin</strong>
-          <div class="flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-            <small class="text-gray-400 text-xs">AI Advisor Online</small>
-          </div>
-        </div>
+        <div><strong class="block text-sm">Alfin</strong><small class="text-gray-400 text-xs">AI Advisor Online</small></div>
       </div>
-      <button onclick="toggleChatWindow()" class="text-gray-400 hover:text-white transition-colors p-2">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-      </button>
+      <button onclick="toggleChatWindow()" class="text-gray-400 hover:text-white p-2">✕</button>
     </div>
-    
     <div id="chat-messages" class="flex-1 p-5 overflow-y-auto bg-[#f8f9fa] text-[0.9rem] leading-relaxed space-y-4">
       <div id="welcome-message" class="bg-white border border-gray-100 text-gray-800 p-4 rounded-2xl rounded-tl-sm shadow-sm max-w-[90%]"></div>
     </div>
-    
     <div class="p-4 bg-white border-t border-gray-100 shrink-0">
-      <div class="flex gap-2 bg-[#f1f3f5] p-1.5 rounded-full border border-gray-200 focus-within:border-gold-500 focus-within:ring-1 focus-within:ring-gold-500 transition-all">
-        <input type="text" id="chat-input" placeholder="Tanyakan seputar tipe, harga..." class="flex-1 bg-transparent px-4 py-2 outline-none text-sm" onkeypress="handleKeyPress(event)">
-        <button onclick="sendChatMessage()" class="bg-dark hover:bg-black text-white px-5 py-2 rounded-full font-medium text-sm transition-colors flex items-center justify-center">
-          <svg class="w-4 h-4 transform rotate-45 -mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-        </button>
+      <div class="flex gap-2 bg-[#f1f3f5] p-1.5 rounded-full border border-gray-200 focus-within:border-gold-500 focus-within:ring-1">
+        <input type="text" id="chat-input" placeholder="Tanyakan ke Alfin..." class="flex-1 bg-transparent px-4 py-2 outline-none text-sm" onkeypress="handleKeyPress(event)">
+        <button onclick="sendChatMessage()" class="bg-dark text-white px-5 py-2 rounded-full text-sm">➤</button>
       </div>
     </div>
   </div>
@@ -316,7 +294,7 @@
       longitude: 106.75111245767246,
       whatsappTemplate: "Halo, saya tertarik dengan Rumah di Taman Alfa Indah (%SOURCE%). Saya terinspirasi dengan konsep renovasi modern minimalisnya. Apakah bisa dijadwalkan survey lokasi minggu ini?",
       headline: "Ketenangan Hidup di Lokasi Emas. Bebas Banjir, Jauh di Bawah Harga Pasar.",
-      story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi: Kalau strategis, pasti mahal. Kalau murah, pasti banjir. \n\nDi Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran yang Anda rasakan setiap musim hujan tiba, karena hunian ini terbukti 100% bebas banjir. Bayangkan kemudahan hidup saat Tol JORR, sekolah anak, hingga pusat perbelanjaan hanya berjarak beberapa menit dari pintu rumah Anda. \n\nDengan harga Rp 1.5 Milyar (di bawah harga pasaran saat ini), ini bukan sekadar tempat tinggal. Ini adalah aset perlindungan keluarga dan investasi cerdas yang sangat langlangka. Kesempatan ini tidak akan bertahan lama.",
+      story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi: Kalau strategis, pasti mahal. Kalau murah, pasti banjir. \n\nDi Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran yang Anda rasakan setiap musim hujan tiba, karena hunian ini terbukti 100% bebas banjir. Bayangkan kemudahan hidup saat Tol JORR, sekolah anak, hingga pusat perbelanjaan hanya berjarak beberapa menit dari pintu rumah Anda. \n\nDengan harga Rp 1.5 Milyar (di bawah harga pasaran saat ini), ini bukan sekadar tempat tinggal. Ini adalah aset perlindungan keluarga dan investasi cerdas yang sangat langka. Kesempatan ini tidak akan bertahan lama.",
       inspirationTitle: "Miliki Kebebasan Mutlak untuk Membangun Rumah Impian Anda",
       inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid (6x17) di Rumah Alfa Indah ini memberikan Anda keleluasaan tanpa batas untuk mendesain ruang hidup Anda sendiri. \n\nTonton video di atas: Lihat bagaimana bangunan ini memiliki potensi luar biasa untuk ditransformasikan menjadi mahakarya arsitektur Modern Minimalis yang megah, bersih, dan berkelas dunia. Anda tidak sedang membeli rumah seken biasa—Anda sedang mengambil alih kendali penuh atas bagaimana masa depan kenyamanan keluarga Anda diwujudkan. Jangan beli selera orang lain, ciptakan kemewahan Anda sendiri di sini.",
       timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?autoplay=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
@@ -363,61 +341,45 @@
     document.addEventListener("DOMContentLoaded", function() {
       renderPropertyData(PROPERTY_CONFIG);
       setDynamicWelcomeMessage();
+      calculateKPR(); // Init KPR Calculation
 
       const form = document.getElementById('pms-lead-form');
       if (form) {
         form.addEventListener('submit', async function(e) {
           e.preventDefault();
-          
           const submitBtn = document.getElementById('btn-submit');
           const originalText = submitBtn.innerText;
           submitBtn.disabled = true;
           submitBtn.innerText = "Memproses...";
-          submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
           
-          const payload = {
-            action: "saveLead",
-            payload: {
-              name: document.getElementById('input-name').value,
-              whatsapp: document.getElementById('input-whatsapp').value,
-              source: document.getElementById('utm-source').value
-            }
-          };
-
           try {
             const response = await fetch(GAS_WEBHOOK_URL, {
               method: 'POST',
               headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-              body: JSON.stringify(payload)
+              body: JSON.stringify({
+                action: "saveLead",
+                payload: {
+                  name: document.getElementById('input-name').value,
+                  whatsapp: document.getElementById('input-whatsapp').value,
+                  source: document.getElementById('utm-source').value
+                }
+              })
             });
-            
             const resData = await response.json();
-            if (resData.success && resData.redirectUrl) {
-              window.location.href = resData.redirectUrl;
-            } else {
-              alert("Gagal menyimpan data: " + (resData.error || "Coba lagi nanti."));
-              resetBtn(submitBtn, originalText);
-            }
+            if (resData.success) window.location.href = resData.redirectUrl;
+            else alert("Gagal: " + resData.error);
           } catch (err) {
-            console.error("Save Lead Error:", err);
-            alert("Koneksi gagal ke server. Coba beberapa saat lagi.");
-            resetBtn(submitBtn, originalText);
+            alert("Koneksi gagal.");
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalText;
           }
         });
       }
     });
 
-    function resetBtn(btn, text) {
-      btn.disabled = false;
-      btn.innerText = text;
-      btn.classList.remove('opacity-75', 'cursor-not-allowed');
-    }
-
     function renderPropertyData(config) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const trafficSource = urlParams.get('src') || 'direct';
-      document.getElementById('utm-source').value = trafficSource;
-
+      document.getElementById('utm-source').value = new URLSearchParams(window.location.search).get('src') || 'direct';
       document.title = config.title;
       document.getElementById('prop-title').innerText = config.title;
       document.getElementById('footer-title').innerText = config.title;
@@ -430,222 +392,144 @@
       document.getElementById('prop-gallery-sub').innerText = config.gallerySubheadline;
       document.getElementById('prop-video').src = config.videoUrl;
       document.getElementById('prop-timelapse-yt').src = config.timelapseUrl;
-      
-      document.getElementById('prop-maps').src = "https://maps.google.com/maps?q=" + config.latitude + "," + config.longitude + "&t=&z=15&ie=UTF-8&iwloc=&output=embed";
-      
-      const hoverMessage = config.whatsappTemplate.replace("%PROPERTY_NAME%", config.title).replace("%SOURCE%", trafficSource);
-      document.getElementById('floating-wa-link').href = "https://wa.me/" + config.whatsappNumber + "?text=" + encodeURIComponent(hoverMessage);
+      document.getElementById('prop-maps').src = `https://maps.google.com/maps?q=${config.latitude},${config.longitude}&t=&z=15&ie=UTF-8&iwloc=&output=embed`;
+      document.getElementById('floating-wa-link').href = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(config.whatsappTemplate.replace("%PROPERTY_NAME%", config.title))}`;
 
-      if (config.gallery && config.gallery.length > 0) {
-        document.getElementById('hero-section').style.backgroundImage = `url('${config.gallery[0]}')`;
-      }
+      if (config.gallery.length > 0) document.getElementById('hero-section').style.backgroundImage = `url('${config.gallery[0]}')`;
       
-      const galleryContainer = document.getElementById('gallery-container');
-      galleryContainer.innerHTML = '';
-      config.gallery.forEach((imgUrl, index) => {
-        const rowSpan = index % 3 === 0 ? 'row-span-2' : 'row-span-1';
-        galleryContainer.innerHTML += `
-          <div class="overflow-hidden rounded-xl shadow-md ${rowSpan}">
-            <img src="${imgUrl}" class="w-full h-full object-cover img-hover-zoom" alt="${config.title} Photo ${index+1}">
-          </div>
-        `;
-      });
+      const gallery = document.getElementById('gallery-container');
+      config.gallery.forEach((url, i) => gallery.innerHTML += `<div class="overflow-hidden rounded-xl shadow-md ${i%3===0?'row-span-2':'row-span-1'}"><img src="${url}" class="w-full h-full object-cover img-hover-zoom"></div>`);
       
-      const specContainer = document.getElementById('spec-container');
-      specContainer.innerHTML = '';
-      for (let key in config.specs) {
-        specContainer.innerHTML += `
-          <div class="flex justify-content-between items-center py-4 border-b border-gray-100 group hover:border-gold-500 transition-colors">
-            <span class="text-gray-500 font-medium group-hover:text-dark transition-colors">${key}</span>
-            <span class="font-bold text-dark text-right flex-1 ml-4">${config.specs[key]}</span>
-          </div>
-        `;
-      }
+      const specs = document.getElementById('spec-container');
+      for (let k in config.specs) specs.innerHTML += `<div class="flex justify-between py-4 border-b"><span class="text-gray-500">${k}</span><span class="font-bold text-dark text-right">${config.specs[k]}</span></div>`;
       
-      const facilityContainer = document.getElementById('facility-container');
-      facilityContainer.innerHTML = '';
-      config.facilities.forEach(fac => {
-        facilityContainer.innerHTML += `
-          <li class="flex items-start gap-4">
-            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-gold-500/10 flex items-center justify-center mt-1">
-              <svg class="w-4 h-4 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-            </div>
-            <span class="text-gray-700 leading-relaxed">${fac}</span>
-          </li>
-        `;
-      });
+      const facs = document.getElementById('facility-container');
+      config.facilities.forEach(f => facs.innerHTML += `<li class="flex items-start gap-4"><div class="text-gold-500">✓</div><span class="text-gray-700">${f}</span></li>`);
     }
 
-    function setDynamicWelcomeMessage() {
-      const hours = new Date().getHours();
-      let greeting = "Selamat malam!";
-      if (hours >= 3 && hours < 5) greeting = "Selamat subuh!";
-      else if (hours >= 5 && hours < 11) greeting = "Selamat pagi!";
-      else if (hours >= 11 && hours < 15) greeting = "Selamat siang!";
-      else if (hours >= 15 && hours < 18) greeting = "Selamat sore!";
+    /* --- KPR LOGIC --- */
+    function formatRupiahStr(angka) {
+      return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+    }
 
-      document.getElementById('welcome-message').innerHTML = `
-        <span class="font-semibold block mb-1">${greeting}</span>
-        Saya Alfin, konsultan properti untuk Rumah Taman Alfa Indah. Boleh tahu Alfin sedang disapa dengan siapa nih? 😊
-      `;
+    function parseRupiah(str) {
+      return parseInt(str.replace(/[^,\d]/g, '')) || 0;
+    }
+
+    function formatAndCalculate(input) {
+      let val = parseRupiah(input.value);
+      input.value = new Intl.NumberFormat('id-ID').format(val);
+      calculateKPR();
+    }
+
+    function setDP(percent) {
+      let harga = parseRupiah(document.getElementById('kpr-harga').value);
+      let dpVal = (harga * percent) / 100;
+      document.getElementById('kpr-dp').value = new Intl.NumberFormat('id-ID').format(dpVal);
+      calculateKPR();
+    }
+
+    function calculateKPR() {
+      let harga = parseRupiah(document.getElementById('kpr-harga').value);
+      let dp = parseRupiah(document.getElementById('kpr-dp').value);
+      let bungaBulan = parseFloat(document.getElementById('kpr-bunga').value) / 100 / 12;
+      let bulan = parseInt(document.getElementById('kpr-tenor').value) * 12;
+      
+      let plafon = harga - dp;
+      if (plafon < 0) plafon = 0;
+      
+      let cicilan = 0;
+      if (plafon > 0 && bungaBulan > 0 && bulan > 0) {
+        cicilan = plafon * (bungaBulan * Math.pow(1 + bungaBulan, bulan)) / (Math.pow(1 + bungaBulan, bulan) - 1);
+      } else if (plafon > 0 && bulan > 0) {
+        cicilan = plafon / bulan;
+      }
+      
+      document.getElementById('kpr-plafon').innerText = formatRupiahStr(plafon);
+      document.getElementById('kpr-cicilan').innerText = formatRupiahStr(Math.round(cicilan));
+    }
+    
+    /* --- COMMUTE LOGIC --- */
+    async function calculateCommute() {
+      const dest = document.getElementById('dest-input').value.trim();
+      if (!dest) return alert("Ketik lokasi tujuan.");
+      const btn = document.getElementById('btn-calc');
+      const origText = btn.innerText;
+      btn.innerText = "Menghitung..."; btn.disabled = true;
+
+      try {
+        const geoRes = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(dest + " Jakarta")}`);
+        const geoData = await geoRes.json();
+        if (!geoData.length) throw new Error("Lokasi tidak ditemukan");
+
+        const destLat = geoData[0].lat, destLon = geoData[0].lon;
+        const propLat = PROPERTY_CONFIG.latitude, propLon = PROPERTY_CONFIG.longitude;
+
+        const routeRes = await fetch(`https://router.project-osrm.org/route/v1/driving/${propLon},${propLat};${destLon},${destLat}?overview=false`);
+        const routeData = await routeRes.json();
+
+        const km = (routeData.routes[0].distance / 1000).toFixed(1);
+        const min = Math.round(routeData.routes[0].duration / 60);
+
+        document.getElementById('res-time').innerText = min < 60 ? `${min} Mnt` : `${Math.floor(min/60)} Jam ${min%60} Mnt`;
+        document.getElementById('res-dist').innerText = `(${km} km)`;
+        document.getElementById('res-link').href = `https://www.google.com/maps/dir/?api=1&origin=${propLat},${propLon}&destination=${destLat},${destLon}`;
+        document.getElementById('route-result').classList.remove('hidden');
+      } catch (err) {
+        alert("Gagal menghitung: " + err.message);
+      } finally {
+        btn.innerText = origText; btn.disabled = false;
+      }
+    }
+
+    /* --- CHAT AI LOGIC --- */
+    function setDynamicWelcomeMessage() {
+      const h = new Date().getHours();
+      let greet = h<5?"Selamat subuh!":h<11?"Selamat pagi!":h<15?"Selamat siang!":h<18?"Selamat sore!":"Selamat malam!";
+      document.getElementById('welcome-message').innerHTML = `<b>${greet}</b><br>Saya Alfin, konsultan properti untuk Rumah Alfa Indah. Sedang disapa dengan siapa nih?`;
     }
 
     function toggleChatWindow() {
-      const win = document.getElementById('ai-chat-window');
-      if (win.classList.contains('hidden')) {
-        win.classList.remove('hidden');
-        win.classList.add('flex');
-        setTimeout(() => {
-          win.style.opacity = '1';
-          win.style.transform = 'scale(1)';
-        }, 10);
-      } else {
-        win.style.opacity = '0';
-        win.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          win.classList.add('hidden');
-          win.classList.remove('flex');
-        }, 200);
-      }
+      const w = document.getElementById('ai-chat-window');
+      w.classList.toggle('hidden'); w.classList.toggle('flex');
     }
 
-    function handleKeyPress(e) {
-      if (e.key === 'Enter') sendChatMessage();
-    }
+    function handleKeyPress(e) { if(e.key === 'Enter') sendChatMessage(); }
 
     async function sendChatMessage() {
       const input = document.getElementById('chat-input');
-      const message = input.value.trim();
-      if (!message) return;
-
-      const container = document.getElementById('chat-messages');
-      container.innerHTML += `
-        <div class="bg-dark text-white p-3.5 rounded-2xl rounded-tr-sm ml-auto max-w-[85%] shadow-sm">
-          ${escapeHtml(message)}
-        </div>
-      `;
-      input.value = '';
-      container.scrollTop = container.scrollHeight;
-
-      const loadingId = 'loading-' + Date.now();
-      container.innerHTML += `
-        <div id="${loadingId}" class="bg-white border border-gray-100 text-gray-400 p-3.5 rounded-2xl rounded-tl-sm max-w-[85%] italic text-sm flex items-center gap-2">
-          <span class="flex gap-1">
-            <span class="w-1.5 h-1.5 bg-gray-300 rounded-full animate-bounce"></span>
-            <span class="w-1.5 h-1.5 bg-gray-300 rounded-full animate-bounce" style="animation-delay: 0.1s"></span>
-            <span class="w-1.5 h-1.5 bg-gray-300 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
-          </span>
-          Alfin mengetik...
-        </div>
-      `;
-      container.scrollTop = container.scrollHeight;
-
-      try {
-        const response = await fetch(GAS_WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ 
-            action: "askAI", 
-            userMessage: message,
-            history: chatMemory
-          })
-        });
-        
-        const resData = await response.json();
-        document.getElementById(loadingId)?.remove();
-        
-        if (resData.success && resData.response) {
-          chatMemory.push({ role: "user", content: message });
-          chatMemory.push({ role: "assistant", content: resData.response });
-          
-          if (chatMemory.length > 6) chatMemory = chatMemory.slice(chatMemory.length - 6);
-
-          container.innerHTML += `
-            <div class="bg-white border border-gray-100 text-gray-800 p-3.5 rounded-2xl rounded-tl-sm max-w-[90%] shadow-sm">
-              ${formatAiResponse(resData.response)}
-            </div>
-          `;
-        } else {
-          container.innerHTML += `<div class="bg-red-50 text-red-600 p-3 rounded-xl text-sm border border-red-100">Sistem sedang sibuk. Mohon ulangi pertanyaan Anda.</div>`;
-        }
-      } catch (err) {
-        document.getElementById(loadingId)?.remove();
-        container.innerHTML += `<div class="bg-red-50 text-red-600 p-3 rounded-xl text-sm border border-red-100">Koneksi terputus. Silakan coba lagi.</div>`;
-      }
-      container.scrollTop = container.scrollHeight;
-    }
-
-    function escapeHtml(text) {
-      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    }
-
-    function formatAiResponse(text) {
-      const urlRegex = /\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g;
-      return text.replace(urlRegex, '<a href="$2" target="_blank" class="text-gold-600 font-semibold underline hover:text-gold-500 transition-colors">$1</a>').replace(/\n/g, '<br>');
-    }
-
-    async function calculateCommute() {
-      const destInput = document.getElementById('dest-input').value.trim();
-      if (!destInput) return alert("Silakan ketik nama lokasi tujuan terlebih dahulu.");
-
-      const btn = document.getElementById('btn-calc');
-      const resultBox = document.getElementById('route-result');
-      const resTime = document.getElementById('res-time');
-      const resDist = document.getElementById('res-dist');
-      const resLink = document.getElementById('res-link');
+      const msg = input.value.trim();
+      if (!msg) return;
+      const box = document.getElementById('chat-messages');
       
-      const originalBtnText = btn.innerHTML;
-      btn.innerHTML = `<svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Menghitung...`;
-      btn.disabled = true;
+      box.innerHTML += `<div class="bg-dark text-white p-3 rounded-xl ml-auto max-w-[85%] mb-3">${escapeHtml(msg)}</div>`;
+      input.value = ''; box.scrollTop = box.scrollHeight;
+      const loadId = 'load-'+Date.now();
+      box.innerHTML += `<div id="${loadId}" class="bg-white border p-3 rounded-xl max-w-[85%] text-gray-400 italic mb-3">Alfin mengetik...</div>`;
+      box.scrollTop = box.scrollHeight;
 
       try {
-        const geoUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(destInput + " Jakarta")}`;
-        const geoRes = await fetch(geoUrl);
-        const geoData = await geoRes.json();
-
-        if (!geoData || geoData.length === 0) {
-          alert("Lokasi tidak ditemukan. Coba gunakan nama gedung, daerah, atau jalan yang lebih spesifik.");
-          btn.innerHTML = originalBtnText;
-          btn.disabled = false;
-          return;
+        const res = await fetch(GAS_WEBHOOK_URL, {
+          method: 'POST', body: JSON.stringify({ action: "askAI", userMessage: msg, history: chatMemory })
+        });
+        const data = await res.json();
+        document.getElementById(loadId)?.remove();
+        if (data.success) {
+          chatMemory.push({role:"user", content:msg}, {role:"assistant", content:data.response});
+          if(chatMemory.length > 6) chatMemory = chatMemory.slice(-6);
+          box.innerHTML += `<div class="bg-white border text-gray-800 p-3 rounded-xl max-w-[90%] mb-3">${formatAiResponse(data.response)}</div>`;
+        } else {
+          box.innerHTML += `<div class="text-red-500 text-sm mb-3">Sistem sibuk, mohon ulangi.</div>`;
         }
-
-        const destLat = geoData[0].lat;
-        const destLon = geoData[0].lon;
-        
-        const propLat = PROPERTY_CONFIG.latitude; 
-        const propLon = PROPERTY_CONFIG.longitude;
-
-        const routeUrl = `https://router.project-osrm.org/route/v1/driving/${propLon},${propLat};${destLon},${destLat}?overview=false`;
-        const routeRes = await fetch(routeUrl);
-        const routeData = await routeRes.json();
-
-        if (routeData.code !== "Ok") {
-          throw new Error("Gagal menghitung rute");
-        }
-
-        const distanceKm = (routeData.routes[0].distance / 1000).toFixed(1);
-        const durationMin = Math.round(routeData.routes[0].duration / 60);
-
-        let timeString = durationMin < 60 ? `${durationMin} Menit` : `${Math.floor(durationMin/60)} Jam ${durationMin%60} Mnt`;
-        
-        resTime.innerText = timeString;
-        resDist.innerText = `(${distanceKm} km)`;
-        
-        const gmapsLink = `https://www.google.com/maps/dir/?api=1&origin=${propLat},${propLon}&destination=${destLat},${destLon}`;
-        resLink.href = gmapsLink;
-
-        resultBox.classList.remove('hidden');
-        resultBox.classList.add('block');
-        
       } catch (err) {
-        console.error("Commute Calc Error:", err);
-        alert("Terjadi kesalahan saat menghitung rute. Silakan coba lagi.");
-      } finally {
-        btn.innerHTML = originalBtnText;
-        btn.disabled = false;
+        document.getElementById(loadId)?.remove();
+        box.innerHTML += `<div class="text-red-500 text-sm mb-3">Koneksi gagal.</div>`;
       }
+      box.scrollTop = box.scrollHeight;
     }
+
+    function escapeHtml(t) { return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+    function formatAiResponse(t) { return t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g, '<a href="$2" target="_blank" class="text-gold-600 font-bold underline">$1</a>').replace(/\n/g, '<br>'); }
   </script>
 </body>
 </html>
