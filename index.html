@@ -28,13 +28,13 @@
   </script>
 
   <style>
-    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #f1f1f1; }
     ::-webkit-scrollbar-thumb { background: #c5a880; border-radius: 10px; }
     ::-webkit-scrollbar-thumb:hover { background: #b0946d; }
 
     .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
-    .glass-dark { background: rgba(17, 17, 17, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    .glass-dark { background: rgba(17, 17, 17, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
 
     .glow-gold { box-shadow: 0 0 35px -5px rgba(197, 168, 128, 0.3); border: 1px solid rgba(197, 168, 128, 0.4); }
     .glow-dark { box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.15); border: 1px solid rgba(0, 0, 0, 0.08); }
@@ -65,10 +65,10 @@
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80 z-0"></div>
     <div class="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-up">
       <p class="text-gold-500 tracking-[0.2em] text-sm uppercase mb-4 font-semibold">Eksklusif & Terbatas</p>
-      <h1 id="prop-title" class="font-serif text-5xl md:text-7xl text-white font-bold mb-6 leading-tight drop-shadow-lg">Menyiapkan Properti...</h1>
-      <p id="prop-headline" class="text-lg md:text-2xl text-gray-200 mb-8 font-light">Mohon tunggu sebentar</p>
-      <h2 id="prop-price" class="text-3xl md:text-4xl text-white font-serif mb-10 drop-shadow-md">...</h2>
-      <a href="#lead-form" class="inline-block bg-gold-500 hover:bg-gold-600 text-white font-medium tracking-wide uppercase px-10 py-4 rounded-sm transition-all duration-300 transform hover:-translate-y-1 shadow-xl">Miliki Sekarang</a>
+      <h1 id="prop-title" class="font-serif text-4xl sm:text-5xl md:text-7xl text-white font-bold mb-6 leading-tight drop-shadow-lg">Menyiapkan Properti...</h1>
+      <p id="prop-headline" class="text-base sm:text-lg md:text-2xl text-gray-200 mb-8 font-light">Mohon tunggu sebentar</p>
+      <h2 id="prop-price" class="text-2xl sm:text-3xl md:text-4xl text-white font-serif mb-10 drop-shadow-md">...</h2>
+      <a href="#lead-form" class="inline-block bg-gold-500 hover:bg-gold-600 text-white font-medium tracking-wide uppercase px-8 py-3.5 sm:px-10 sm:py-4 rounded-sm transition-all duration-300 transform hover:-translate-y-1 shadow-xl text-sm sm:text-base">Miliki Sekarang</a>
     </div>
     <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/70 animate-bounce">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
@@ -76,17 +76,17 @@
   </section>
 
   <!-- STORY SECTION -->
-  <section class="py-24 bg-[#fafafa]">
+  <section class="py-16 sm:py-24 bg-[#fafafa]">
     <div class="max-w-3xl mx-auto text-center px-6">
       <span class="text-gold-500 tracking-widest text-xs uppercase font-bold">The Story</span>
-      <h2 class="font-serif text-4xl mt-4 mb-8 text-dark">Filosofi Kenyamanan</h2>
-      <p id="prop-story" class="text-gray-600 leading-relaxed text-lg text-justify md:text-center whitespace-pre-line">...</p>
+      <h2 class="font-serif text-3xl sm:text-4xl mt-3 mb-8 text-dark">Filosofi Kenyamanan</h2>
+      <p id="prop-story" class="text-gray-600 leading-relaxed text-base sm:text-lg text-justify md:text-center whitespace-pre-line">...</p>
     </div>
   </section>
 
   <!-- VIDEO TOUR -->
-  <section class="py-16 bg-white">
-    <div class="max-w-5xl mx-auto px-6">
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <div class="relative w-full overflow-hidden rounded-xl shadow-2xl" style="padding-top: 56.25%;">
         <iframe id="prop-video" class="absolute top-0 left-0 w-full h-full border-0" src="" allowfullscreen></iframe>
       </div>
@@ -94,59 +94,59 @@
   </section>
 
   <!-- INSPIRATION / TIMELAPSE -->
-  <section class="py-24 bg-dark text-white">
+  <section class="py-16 sm:py-24 bg-dark text-white">
     <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
       <div>
         <span class="text-gold-500 tracking-widest text-xs uppercase font-bold">Unleash Your Imagination</span>
-        <h2 id="prop-inspiration-title" class="font-serif text-4xl mt-4 mb-6 leading-tight">...</h2>
-        <p id="prop-inspiration-story" class="text-gray-400 leading-relaxed text-lg mb-8 whitespace-pre-line">...</p>
+        <h2 id="prop-inspiration-title" class="font-serif text-3xl sm:text-4xl mt-4 mb-6 leading-tight">...</h2>
+        <p id="prop-inspiration-story" class="text-gray-400 leading-relaxed text-base sm:text-lg mb-8 whitespace-pre-line">...</p>
       </div>
       <div class="flex justify-center">
-        <div class="relative w-full max-w-[320px] aspect-[9/16] rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(197,168,128,0.2)] border-4 border-gray-800">
+        <div class="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[9/16] rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(197,168,128,0.2)] border-4 border-gray-800">
           <iframe id="prop-timelapse-yt" class="w-full h-full object-cover" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GALLERY -->
-  <section class="py-24 bg-[#fafafa]">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h3 class="font-serif text-4xl text-dark mb-4">Galeri Arsitektur</h3>
-        <p id="prop-gallery-sub" class="text-gray-500 text-lg">...</p>
+  <!-- GALLERY (DYNAMICAL MASONRY DESIGN DENGAN VARIASI TINGGI 9:16 & 4:3) -->
+  <section class="py-16 sm:py-24 bg-[#fafafa]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <h3 class="font-serif text-3xl sm:text-4xl text-dark mb-4">Galeri Arsitektur</h3>
+        <p id="prop-gallery-sub" class="text-gray-500 text-base sm:text-lg">...</p>
       </div>
-      <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+      <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[250px]"></div>
     </div>
   </section>
 
   <!-- SPECS & FACILITIES -->
-  <section class="py-24 bg-white border-t border-gray-100">
-    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+  <section class="py-16 sm:py-24 bg-white border-t border-gray-100">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 sm:gap-16">
       <div>
-        <h3 class="font-serif text-3xl mb-8">Spesifikasi Bangunan</h3>
+        <h3 class="font-serif text-2xl sm:text-3xl mb-6 sm:mb-8">Spesifikasi Bangunan</h3>
         <div id="spec-container" class="space-y-4"></div>
       </div>
       <div>
-        <h3 class="font-serif text-3xl mb-8">Fasilitas Eksklusif</h3>
-        <ul id="facility-container" class="space-y-5"></ul>
+        <h3 class="font-serif text-2xl sm:text-3xl mb-6 sm:mb-8">Fasilitas Eksklusif</h3>
+        <ul id="facility-container" class="space-y-4 sm:space-y-5"></ul>
       </div>
     </div>
   </section>
 
   <!-- KPR CALCULATOR -->
-  <section class="py-24 bg-[#f8f9fa] border-t border-gray-100 relative overflow-hidden">
-    <div class="max-w-5xl mx-auto px-6 relative z-10">
-      <div class="text-center mb-16">
+  <section class="py-16 sm:py-24 bg-[#f8f9fa] border-t border-gray-100 relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="text-center mb-12 sm:mb-16">
         <span class="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
           Simulasi Finansial
         </span>
-        <h3 class="font-serif text-4xl text-dark font-bold mb-4">Simulasi KPR Interaktif</h3>
-        <p class="text-gray-500 text-lg max-w-2xl mx-auto">Hitung perencanaan cicilan bulanan Anda secara akurat dengan estimasi suku bunga bank devisa nasional.</p>
+        <h3 class="font-serif text-3xl sm:text-4xl text-dark font-bold mb-4">Simulasi KPR Interaktif</h3>
+        <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto">Hitung perencanaan cicilan bulanan Anda secara akurat dengan estimasi suku bunga bank devisa nasional.</p>
       </div>
       
-      <div class="bg-white rounded-3xl p-6 md:p-10 glow-dark relative overflow-hidden border border-gray-100">
+      <div class="bg-white rounded-3xl p-6 sm:p-10 glow-dark relative overflow-hidden border border-gray-100">
         <div class="grid lg:grid-cols-12 gap-8 items-stretch">
           
           <div class="lg:col-span-7 space-y-6">
@@ -157,7 +157,7 @@
               </div>
               <div class="relative">
                 <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-gray-400">Rp</span>
-                <input type="text" id="kpr-harga" value="1.500.000.000" oninput="formatAndCalculate(this)" class="w-full pl-12 pr-4 py-3.5 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-bold text-dark text-lg">
+                <input type="text" id="kpr-harga" value="1.500.000.000" oninput="formatAndCalculate(this)" class="w-full pl-12 pr-4 py-3.5 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-bold text-dark text-base sm:text-lg">
               </div>
             </div>
             
@@ -172,22 +172,22 @@
               </div>
               <div class="relative">
                 <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-gray-400">Rp</span>
-                <input type="text" id="kpr-dp" value="300.000.000" oninput="formatAndCalculate(this)" class="w-full pl-12 pr-4 py-3.5 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-bold text-dark text-lg">
+                <input type="text" id="kpr-dp" value="300.000.000" oninput="formatAndCalculate(this)" class="w-full pl-12 pr-4 py-3.5 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-bold text-dark text-base sm:text-lg">
               </div>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Suku Bunga / Thn (%)</label>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Bunga / Thn (%)</label>
                 <div class="relative">
-                  <input type="number" id="kpr-bunga" value="7.00" step="0.1" oninput="calculateKPR()" class="w-full px-4 py-3.5 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-bold text-dark text-lg">
+                  <input type="number" id="kpr-bunga" value="7.00" step="0.1" oninput="calculateKPR()" class="w-full px-4 py-3.5 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-bold text-dark text-base sm:text-lg">
                   <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</span>
                 </div>
               </div>
 
               <div>
                 <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Tenor Pinjaman</label>
-                <select id="kpr-tenor" onchange="calculateKPR()" class="w-full px-4 py-3.5 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-bold text-dark text-lg appearance-none cursor-pointer">
+                <select id="kpr-tenor" onchange="calculateKPR()" class="w-full px-3 sm:px-4 py-3.5 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-bold text-dark text-base sm:text-lg appearance-none cursor-pointer">
                   <option value="5">5 Tahun</option>
                   <option value="10">10 Tahun</option>
                   <option value="15" selected>15 Tahun</option>
@@ -206,21 +206,21 @@
             </div>
           </div>
 
-          <div class="lg:col-span-5 bg-dark rounded-2xl p-8 text-white flex flex-col justify-between relative overflow-hidden glow-gold">
+          <div class="lg:col-span-5 bg-dark rounded-2xl p-6 sm:p-8 text-white flex flex-col justify-between relative overflow-hidden glow-gold">
             <div class="absolute -top-12 -right-12 w-40 h-40 bg-gold-500/20 rounded-full blur-3xl"></div>
             <div class="relative z-10">
               <span class="text-gold-400 text-xs uppercase tracking-widest font-bold block mb-1">Plafon Pinjaman Bank</span>
-              <h4 id="kpr-plafon" class="text-2xl font-serif text-gray-200 font-semibold mb-8">Rp 1.200.000.000</h4>
+              <h4 id="kpr-plafon" class="text-xl sm:text-2xl font-serif text-gray-200 font-semibold mb-6 sm:mb-8">Rp 1.200.000.000</h4>
 
               <span class="text-gray-400 text-xs uppercase tracking-widest font-bold block mb-2">Estimasi Angsuran / Bulan</span>
-              <h3 id="kpr-cicilan" class="text-4xl md:text-5xl font-serif font-bold text-gold-400 leading-tight">Rp 10.785.939</h3>
+              <h3 id="kpr-cicilan" class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-gold-400 leading-tight">Rp 10.785.939</h3>
             </div>
-            <div class="relative z-10 pt-8 mt-6 border-t border-gray-800 space-y-4">
+            <div class="relative z-10 pt-6 sm:pt-8 mt-6 border-t border-gray-800 space-y-4">
               <div class="flex items-center gap-3 text-xs text-gray-400">
                 <svg class="w-5 h-5 text-gold-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 <span>Suku bunga tetap (fixed) untuk opsi kepemilikan tenang.</span>
               </div>
-              <a href="#lead-form" class="block text-center bg-gold-500 hover:bg-gold-600 text-white font-bold uppercase tracking-wider py-3.5 rounded-xl transition-all shadow-lg text-sm">Konsultasikan KPR Sekarang</a>
+              <a href="#lead-form" class="block text-center bg-gold-500 hover:bg-gold-600 text-white font-bold uppercase tracking-wider py-3.5 rounded-xl transition-all shadow-lg text-xs sm:text-sm">Konsultasikan KPR Sekarang</a>
             </div>
           </div>
         </div>
@@ -229,23 +229,23 @@
   </section>
 
   <!-- LOCATION MAP & COMMUTE CALCULATOR -->
-  <section class="py-24 bg-white relative">
-    <div class="max-w-6xl mx-auto px-6 text-center">
+  <section class="py-16 sm:py-24 bg-white relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
       <span class="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
         Aksesibilitas Prima
       </span>
-      <h3 class="font-serif text-4xl font-bold mb-3">Lokasi Strategis & Rute</h3>
-      <p id="prop-address" class="text-gray-500 mb-12 text-lg">...</p>
+      <h3 class="font-serif text-3xl sm:text-4xl font-bold mb-3">Lokasi Strategis & Rute</h3>
+      <p id="prop-address" class="text-gray-500 mb-10 sm:mb-12 text-base sm:text-lg">...</p>
       
-      <div class="max-w-3xl mx-auto mb-12 bg-gradient-to-b from-white to-[#fdfbf7] p-8 md:p-10 rounded-3xl glow-dark text-left border border-gold-500/20 relative overflow-hidden">
+      <div class="max-w-3xl mx-auto mb-12 bg-gradient-to-b from-white to-[#fdfbf7] p-6 sm:p-10 rounded-3xl glow-dark text-left border border-gold-500/20 relative overflow-hidden">
         <div class="flex items-center justify-between mb-6">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-600">
+            <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-600 shrink-0">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
             </div>
             <div>
-              <h4 class="font-serif text-2xl font-bold text-dark">Kalkulator Jarak Tempuh</h4>
+              <h4 class="font-serif text-xl sm:text-2xl font-bold text-dark">Kalkulator Jarak Tempuh</h4>
               <p class="text-gray-500 text-xs">Cek estimasi waktu tempuh dari rumah ke kantor / destinasi Anda.</p>
             </div>
           </div>
@@ -253,23 +253,23 @@
         </div>
         
         <div class="flex flex-col md:flex-row gap-3">
-          <input type="text" id="dest-input" placeholder="Ketik tujuan: SCBD, Plaza Senayan, Bandara..." class="flex-1 px-5 py-4 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-medium text-sm shadow-sm">
-          <button onclick="calculateCommute()" id="btn-calc" class="bg-dark hover:bg-black text-white px-8 py-4 rounded-xl font-bold tracking-wide transition-all duration-300 flex justify-center items-center gap-2 shrink-0 shadow-lg">
+          <input type="text" id="dest-input" placeholder="Ketik tujuan: SCBD, Plaza Senayan, Bandara..." class="flex-1 px-5 py-3.5 sm:py-4 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-medium text-sm shadow-sm">
+          <button onclick="calculateCommute()" id="btn-calc" class="bg-dark hover:bg-black text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold tracking-wide transition-all duration-300 flex justify-center items-center gap-2 shrink-0 shadow-lg text-sm">
             <span>Hitung Waktu Tempuh</span>
           </button>
         </div>
 
-        <div id="route-result" class="hidden mt-6 bg-white p-6 rounded-2xl border border-gold-500/30 shadow-md animate-fade-up">
-          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div id="route-result" class="hidden mt-6 bg-white p-5 sm:p-6 rounded-2xl border border-gold-500/30 shadow-md animate-fade-up">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6">
             <div>
               <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Estimasi Waktu (Kondisi Padat Normal)</p>
               <div class="flex items-end gap-3 text-dark">
-                <span class="text-4xl font-bold font-serif text-gold-600" id="res-time">--</span>
-                <span class="text-lg font-medium text-gray-500 mb-1" id="res-dist">(-- km)</span>
+                <span class="text-3xl sm:text-4xl font-bold font-serif text-gold-600" id="res-time">--</span>
+                <span class="text-base sm:text-lg font-medium text-gray-500 mb-1" id="res-dist">(-- km)</span>
               </div>
               <p class="text-[10px] text-gray-400 mt-1">*Berdasarkan kecepatan mobil rata-rata (±16 km/jam)</p>
             </div>
-            <a href="#" id="res-link" target="_blank" class="bg-gold-500 hover:bg-gold-600 text-white px-5 py-3 rounded-xl text-[11px] md:text-xs font-bold flex items-center gap-2 transition-all shadow-md text-left max-w-[200px]">
+            <a href="#" id="res-link" target="_blank" class="bg-gold-500 hover:bg-gold-600 text-white px-5 py-3 rounded-xl text-xs font-bold flex items-center gap-2 transition-all shadow-md text-left w-full md:w-auto md:max-w-[200px]">
               <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
               Klik untuk rute, jarak dan waktu tempuh yg akurat
             </a>
@@ -277,68 +277,78 @@
         </div>
       </div>
 
-      <div class="w-full h-[420px] rounded-3xl overflow-hidden shadow-xl border border-gray-200">
+      <div class="w-full h-[350px] sm:h-[420px] rounded-3xl overflow-hidden shadow-xl border border-gray-200">
         <iframe id="prop-maps" class="w-full h-full border-0" src="" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
   </section>
 
   <!-- LEAD FORM SECTION -->
-  <section id="lead-form" class="py-24 bg-dark relative overflow-hidden">
+  <section id="lead-form" class="py-16 sm:py-24 bg-dark relative overflow-hidden">
     <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-    <div class="max-w-md mx-auto px-6 relative z-10">
-      <div class="glass p-8 md:p-10 rounded-2xl shadow-2xl">
-        <h3 class="font-serif text-3xl font-bold text-center text-dark mb-2">Berminat Survey?</h3>
-        <p class="text-gray-600 text-center text-sm mb-8">Isi formulir di bawah ini untuk terhubung langsung dengan representatif kami.</p>
-        <form id="pms-lead-form" class="space-y-5">
+    <div class="max-w-md mx-auto px-4 sm:px-6 relative z-10">
+      <div class="glass p-6 sm:p-10 rounded-2xl shadow-2xl">
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-center text-dark mb-2">Berminat Survey?</h3>
+        <p class="text-gray-600 text-center text-xs sm:text-sm mb-6 sm:mb-8">Isi formulir di bawah ini untuk terhubung langsung dengan representatif kami.</p>
+        <form id="pms-lead-form" class="space-y-4 sm:space-y-5">
           <input type="hidden" id="utm-source" name="source" value="direct">
           <div>
             <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nama Lengkap</label>
-            <input type="text" id="input-name" required placeholder="Contoh: Jaya Wijaya" class="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500">
+            <input type="text" id="input-name" required placeholder="Contoh: Jaya Wijaya" class="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 text-sm">
           </div>
           <div>
             <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nomor WhatsApp</label>
-            <input type="tel" id="input-whatsapp" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500">
+            <input type="tel" id="input-whatsapp" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 text-sm">
           </div>
-          <button type="submit" id="btn-submit" class="w-full bg-gold-500 hover:bg-gold-600 text-white font-bold uppercase tracking-widest py-4 rounded-lg shadow-lg transition-all mt-4">Hubungi Via WhatsApp</button>
+          <button type="submit" id="btn-submit" class="w-full bg-gold-500 hover:bg-gold-600 text-white font-bold uppercase tracking-widest py-3.5 sm:py-4 rounded-lg shadow-lg transition-all mt-4 text-xs sm:text-sm">Hubungi Via WhatsApp</button>
         </form>
       </div>
     </div>
   </section>
 
-  <footer class="py-8 bg-[#0a0a0a] text-gray-500 text-center text-sm">
+  <footer class="py-8 bg-[#0a0a0a] text-gray-500 text-center text-xs sm:text-sm pb-24 sm:pb-8">
     <p>© 2026 <span id="footer-title"></span>. All Rights Reserved.</p>
   </footer>
   
-  <!-- FLOATING WIDGETS -->
-  <a href="#" id="floating-wa-link" target="_blank" class="fixed bottom-6 left-6 glass hover:bg-[#25d366] hover:text-white text-[#25d366] px-5 py-3 rounded-full flex items-center gap-3 shadow-xl transition-all z-50 group border-[#25d366]/30">
-    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    <span class="font-semibold text-sm group-hover:text-white transition-colors">Chat WhatsApp</span>
+  <!-- FLOATING WIDGETS (MOBILE FRIENDLY - DUA POJOK TERPISAH KIRI & KANAN) -->
+  <a href="#" id="floating-wa-link" target="_blank" class="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 glass hover:bg-[#25d366] hover:text-white text-[#25d366] px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-2 sm:gap-3 shadow-2xl transition-all z-[50] group border-[#25d366]/30">
+    <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current shrink-0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    <span class="font-semibold text-xs sm:text-sm group-hover:text-white transition-colors">WhatsApp</span>
   </a>
 
-  <div id="ai-chat-bubble" onclick="toggleChatWindow()" class="btn-alfin-pulse fixed bottom-6 right-6 glass-dark text-white px-5 py-3 rounded-full flex items-center gap-3 cursor-pointer shadow-2xl z-[60] hover:bg-dark hover:scale-105 transition-all">
-    <div class="relative flex h-3 w-3 absolute -top-1 -right-1">
+  <div id="ai-chat-bubble" onclick="toggleChatWindow()" class="btn-alfin-pulse fixed bottom-4 right-4 sm:bottom-6 sm:right-6 glass-dark text-white px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-2 sm:gap-3 cursor-pointer shadow-2xl z-[50] hover:bg-dark hover:scale-105 transition-all">
+    <div class="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-3 w-3 bg-gold-500"></span>
+      <span class="relative inline-flex rounded-full h-full w-full bg-gold-500"></span>
     </div>
-    <span class="font-medium text-sm tracking-wide">Tanya Alfin</span>
+    <span class="font-medium text-xs sm:text-sm tracking-wide">Tanya Alfin</span>
   </div>
 
-  <div id="ai-chat-window" class="hidden fixed bottom-[90px] right-6 z-[70] w-[380px] max-w-[calc(100vw-3rem)] h-[520px] bg-white rounded-2xl shadow-[0_15px_50px_rgba(0,0,0,0.2)] flex-col overflow-hidden border border-gray-100 origin-bottom-right transition-all">
-    <div class="bg-dark text-white p-4 flex justify-between items-center shrink-0">
+  <!-- CHAT WINDOW (100% MOBILE FRIENDLY & RESPONSIVE HEIGHT) -->
+  <div id="ai-chat-window" class="hidden fixed bottom-16 right-3 sm:bottom-[90px] sm:right-6 z-[70] w-[calc(100vw-1.5rem)] sm:w-[380px] h-[75vh] max-h-[580px] bg-white rounded-2xl shadow-[0_15px_50px_rgba(0,0,0,0.3)] flex-col overflow-hidden border border-gray-200 origin-bottom-right transition-all">
+    
+    <!-- Chat Header -->
+    <div class="bg-dark text-white p-3.5 sm:p-4 flex justify-between items-center shrink-0">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-gold-500 flex items-center justify-center font-serif font-bold text-xl">A</div>
-        <div><strong class="block text-sm">Alfin</strong><small class="text-gray-400 text-xs">AI Advisor Online</small></div>
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gold-500 flex items-center justify-center font-serif font-bold text-lg sm:text-xl">A</div>
+        <div>
+          <strong class="block text-xs sm:text-sm">Alfin</strong>
+          <small class="text-gray-400 text-[10px] sm:text-xs">AI Advisor Online</small>
+        </div>
       </div>
-      <button onclick="toggleChatWindow()" class="text-gray-400 hover:text-white p-2">✕</button>
+      <button onclick="toggleChatWindow()" class="text-gray-400 hover:text-white p-2 text-lg">✕</button>
     </div>
-    <div id="chat-messages" class="flex-1 p-5 overflow-y-auto bg-[#f8f9fa] text-[0.9rem] leading-relaxed space-y-4">
-      <div id="welcome-message" class="bg-white border border-gray-100 text-gray-800 p-4 rounded-2xl rounded-tl-sm shadow-sm max-w-[90%]"></div>
+
+    <!-- Chat Messages Scroll Area -->
+    <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-[#f8f9fa] text-xs sm:text-sm leading-relaxed space-y-3 sm:space-y-4">
+      <div id="welcome-message" class="bg-white border border-gray-100 text-gray-800 p-3.5 rounded-2xl rounded-tl-sm shadow-sm max-w-[90%]"></div>
     </div>
-    <div class="p-4 bg-white border-t border-gray-100 shrink-0">
-      <div class="flex gap-2 bg-[#f1f3f5] p-1.5 rounded-full border border-gray-200 focus-within:border-gold-500 focus-within:ring-1">
-        <input type="text" id="chat-input" placeholder="Tanyakan ke Alfin..." class="flex-1 bg-transparent px-4 py-2 outline-none text-sm" onkeypress="handleKeyPress(event)">
-        <button onclick="sendChatMessage()" class="bg-dark text-white px-5 py-2 rounded-full text-sm">➤</button>
+
+    <!-- Chat Input Fixed Bottom Bar -->
+    <div class="p-3 sm:p-4 bg-white border-t border-gray-100 shrink-0">
+      <div class="flex items-center gap-2 bg-[#f1f3f5] p-1.5 rounded-full border border-gray-200 focus-within:border-gold-500 focus-within:ring-1">
+        <input type="text" id="chat-input" placeholder="Tanyakan ke Alfin..." class="flex-1 bg-transparent px-3 py-1.5 text-xs sm:text-sm outline-none text-dark" onkeypress="handleKeyPress(event)">
+        <button onclick="sendChatMessage()" class="bg-dark text-white px-4 py-2 rounded-full text-xs sm:text-sm font-bold shrink-0 hover:bg-black transition-colors">➤</button>
       </div>
     </div>
   </div>
@@ -459,16 +469,18 @@
 
       if (config.gallery.length > 0) document.getElementById('hero-section').style.backgroundImage = `url('${config.gallery[0]}')`;
       
+      // MASONRY GALERI ASIMETRIS (SETIAP FOTO KE-3 MENGGUNAKAN ROW-SPAN-2 UNTUK POLA DINESIS TINGGI)
       const gallery = document.getElementById('gallery-container');
-      config.gallery.forEach((url) => {
-        gallery.innerHTML += `<div class="overflow-hidden rounded-xl shadow-md h-[260px] bg-gray-100"><img src="${url}" class="w-full h-full object-cover img-hover-zoom" loading="lazy"></div>`;
+      config.gallery.forEach((url, i) => {
+        const isTall = (i % 3 === 0);
+        gallery.innerHTML += `<div class="overflow-hidden rounded-xl shadow-md ${isTall ? 'row-span-2' : 'row-span-1'}"><img src="${url}" class="w-full h-full object-cover img-hover-zoom" loading="lazy"></div>`;
       });
       
       const specs = document.getElementById('spec-container');
-      for (let k in config.specs) specs.innerHTML += `<div class="flex justify-between py-4 border-b"><span class="text-gray-500">${k}</span><span class="font-bold text-dark text-right">${config.specs[k]}</span></div>`;
+      for (let k in config.specs) specs.innerHTML += `<div class="flex justify-between py-4 border-b text-sm sm:text-base"><span class="text-gray-500">${k}</span><span class="font-bold text-dark text-right">${config.specs[k]}</span></div>`;
       
       const facs = document.getElementById('facility-container');
-      config.facilities.forEach(f => facs.innerHTML += `<li class="flex items-start gap-4"><div class="text-gold-500">✓</div><span class="text-gray-700">${f}</span></li>`);
+      config.facilities.forEach(f => facs.innerHTML += `<li class="flex items-start gap-3 sm:gap-4 text-sm sm:text-base"><div class="text-gold-500 font-bold">✓</div><span class="text-gray-700">${f}</span></li>`);
     }
 
     /* --- KPR LOGIC --- */
@@ -594,7 +606,7 @@
         document.getElementById(loadId)?.remove();
         if (data.success) {
           chatMemory.push({role:"user", content:msg}, {role:"assistant", content:data.response});
-          // Slice 12 pesan terakhir (Memory Lock & Hemat Token)
+          // Slice 12 pesan terakhir
           if(chatMemory.length > 12) chatMemory = chatMemory.slice(chatMemory.length - 12);
           box.innerHTML += `<div class="bg-white border text-gray-800 p-3 rounded-xl max-w-[90%] mb-3">${formatAiResponse(data.response)}</div>`;
         } else {
