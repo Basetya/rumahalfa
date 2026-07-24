@@ -262,12 +262,12 @@
         <div id="route-result" class="hidden mt-6 bg-white p-6 rounded-2xl border border-gold-500/30 shadow-md animate-fade-up">
           <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Estimasi Waktu (Jam Sibuk / Macet)</p>
+              <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Estimasi Waktu (Kondisi Padat Normal)</p>
               <div class="flex items-end gap-3 text-dark">
                 <span class="text-4xl font-bold font-serif text-gold-600" id="res-time">--</span>
                 <span class="text-lg font-medium text-gray-500 mb-1" id="res-dist">(-- km)</span>
               </div>
-              <p class="text-[10px] text-gray-400 mt-1">*Berdasarkan kepadatan lalu lintas mobil rata-rata (±8 km/jam)</p>
+              <p class="text-[10px] text-gray-400 mt-1">*Berdasarkan kecepatan mobil rata-rata (±16 km/jam)</p>
             </div>
             <a href="#" id="res-link" target="_blank" class="bg-gold-500 hover:bg-gold-600 text-white px-5 py-3 rounded-xl text-[11px] md:text-xs font-bold flex items-center gap-2 transition-all shadow-md text-left max-w-[200px]">
               <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -521,7 +521,7 @@
       document.getElementById('kpr-cicilan').innerText = formatRupiahStr(Math.round(cicilan));
     }
     
-    /* --- COMMUTE LOGIC DENGAN ALGORITMA MACET JAKARTA (8 KM/JAM) --- */
+    /* --- COMMUTE LOGIC DENGAN ALGORITMA PADAT NORMAL (16 KM/JAM) --- */
     async function calculateCommute() {
       const dest = document.getElementById('dest-input').value.trim();
       if (!dest) return alert("Ketik lokasi tujuan Anda.");
@@ -544,8 +544,8 @@
         const distanceKm = routeData.routes[0].distance / 1000;
         const km = distanceKm.toFixed(1);
 
-        // 2. Algoritma Kemacetan Jakarta (Jam Padat): Asumsi kecepatan rata-rata mobil 8 km/jam
-        const min = Math.round((distanceKm / 8) * 60);
+        // 2. Algoritma Kemacetan Jakarta (Padat Normal): Asumsi kecepatan rata-rata mobil 16 km/jam
+        const min = Math.round((distanceKm / 16) * 60);
 
         document.getElementById('res-time').innerText = min < 60 ? `${min} Mnt` : `${Math.floor(min/60)} Jam ${min%60} Mnt`;
         document.getElementById('res-dist').innerText = `(${km} km)`;
