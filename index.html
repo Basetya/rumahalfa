@@ -109,7 +109,7 @@
     </div>
   </section>
 
-  <!-- GALLERY (DYNAMICAL MASONRY DESIGN DENGAN VARIASI TINGGI 9:16 & 4:3) -->
+  <!-- GALLERY (MASONRY DESIGN 9:16 & 4:3) -->
   <section class="py-16 sm:py-24 bg-[#fafafa]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
@@ -310,7 +310,7 @@
     <p>© 2026 <span id="footer-title"></span>. All Rights Reserved.</p>
   </footer>
   
-  <!-- FLOATING WIDGETS (MOBILE FRIENDLY - DUA POJOK TERPISAH KIRI & KANAN) -->
+  <!-- FLOATING WIDGETS (MOBILE FRIENDLY - DUA POJOK TERPISAH) -->
   <a href="#" id="floating-wa-link" target="_blank" class="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 glass hover:bg-[#25d366] hover:text-white text-[#25d366] px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-2 sm:gap-3 shadow-2xl transition-all z-[50] group border-[#25d366]/30">
     <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current shrink-0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     <span class="font-semibold text-xs sm:text-sm group-hover:text-white transition-colors">WhatsApp</span>
@@ -324,10 +324,9 @@
     <span class="font-medium text-xs sm:text-sm tracking-wide">Tanya Alfin</span>
   </div>
 
-  <!-- CHAT WINDOW (100% MOBILE FRIENDLY & RESPONSIVE HEIGHT) -->
+  <!-- CHAT WINDOW (RESPONSIVE HEIGHT & MOBILE FRIENDLY) -->
   <div id="ai-chat-window" class="hidden fixed bottom-16 right-3 sm:bottom-[90px] sm:right-6 z-[70] w-[calc(100vw-1.5rem)] sm:w-[380px] h-[75vh] max-h-[580px] bg-white rounded-2xl shadow-[0_15px_50px_rgba(0,0,0,0.3)] flex-col overflow-hidden border border-gray-200 origin-bottom-right transition-all">
     
-    <!-- Chat Header -->
     <div class="bg-dark text-white p-3.5 sm:p-4 flex justify-between items-center shrink-0">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gold-500 flex items-center justify-center font-serif font-bold text-lg sm:text-xl">A</div>
@@ -339,12 +338,10 @@
       <button onclick="toggleChatWindow()" class="text-gray-400 hover:text-white p-2 text-lg">✕</button>
     </div>
 
-    <!-- Chat Messages Scroll Area -->
     <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-[#f8f9fa] text-xs sm:text-sm leading-relaxed space-y-3 sm:space-y-4">
       <div id="welcome-message" class="bg-white border border-gray-100 text-gray-800 p-3.5 rounded-2xl rounded-tl-sm shadow-sm max-w-[90%]"></div>
     </div>
 
-    <!-- Chat Input Fixed Bottom Bar -->
     <div class="p-3 sm:p-4 bg-white border-t border-gray-100 shrink-0">
       <div class="flex items-center gap-2 bg-[#f1f3f5] p-1.5 rounded-full border border-gray-200 focus-within:border-gold-500 focus-within:ring-1">
         <input type="text" id="chat-input" placeholder="Tanyakan ke Alfin..." class="flex-1 bg-transparent px-3 py-1.5 text-xs sm:text-sm outline-none text-dark" onkeypress="handleKeyPress(event)">
@@ -354,9 +351,10 @@
   </div>
 
   <script>
-    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzBDISCF-skf18OR2AwePSfPEqpVg1F3Prb_e5iEfz3Rxm6XBgDCT7_UCN5bC8XChiBEQ/exec";
+    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwaFo0vzNWxS2Jxe2vGXRVTp64IJk2muDFZjyVeIosam2XRjrOEtZwVSoykDuRLZmding/exec";
 
-    const PROPERTY_CONFIG = {
+    // DEFAULT FALLBACK CONFIG
+    let PROPERTY_CONFIG = {
       title: "Rumah Taman Alfa Indah",
       whatsappNumber: "6287832219195", 
       price: "Rp 1.5 Milyar (Nego)", 
@@ -366,9 +364,9 @@
       longitude: 106.75084911701877,
       whatsappTemplate: "Halo, saya tertarik dengan Rumah di Taman Alfa Indah (%SOURCE%). Saya terinspirasi dengan konsep renovasi modern minimalisnya. Apakah bisa dijadwalkan survey lokasi minggu ini?",
       headline: "Ketenangan Hidup di Lokasi Emas. Bebas Banjir, Jauh di Bawah Harga Pasar.",
-      story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi: Kalau strategis, pasti mahal. Kalau murah, mungkin banjir.\n\nDi Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran yang Anda rasakan setiap musim hujan tiba, karena rumah ini terbukti 100% bebas banjir, bahkan saat bajir besar melanda Jakarta. Bayangkan kemudahan hidup saat Tol JORR, sekolah anak, hingga pusat perbelanjaan hanya berjarak beberapa menit dari pintu rumah Anda.\n\nDengan harga Rp 1.5 Milyar (di bawah harga pasaran saat ini), ini bukan sekadar tempat tinggal. Ini adalah aset perlindungan keluarga dan investasi cerdas yang sangat langka. Kesempatan ini tidak akan bertahan lama.",
+      story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi: Kalau strategis, pasti mahal. Kalau murah, mungkin banjir.\n\nDi Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran yang Anda rasakan setiap musim hujan tiba, karena rumah ini terbukti 100% bebas banjir, bahkan saat banjir besar melanda Jakarta. Bayangkan kemudahan hidup saat Tol JORR, sekolah anak, hingga pusat perbelanjaan hanya berjarak beberapa menit dari pintu rumah Anda.\n\nDengan harga Rp 1.5 Milyar (di bawah harga pasaran saat ini), ini bukan sekadar tempat tinggal. Ini adalah aset perlindungan keluarga dan investasi cerdas yang sangat langka. Kesempatan ini tidak akan bertahan lama.",
       inspirationTitle: "Miliki Kebebasan Mutlak untuk Membangun Rumah Impian Anda",
-      inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid (6x17) di Rumah Alfa Indah ini memberikan Anda keleluasaan untuk mendesain ruang hidup Anda sendiri seusai impian anda.\n\nTonton video ini : Lihat bagaimana bangunan ini memiliki potensi luar biasa untuk ditransformasikan menjadi karya arsitektur Modern Minimalis yang megah, bersih, dan berkelas dunia. Anda tidak sedang membeli rumah seken biasa—Anda sedang mengambil alih kendali penuh atas bagaimana masa depan kenyamanan keluarga Anda diwujudkan. Jangan beli selera orang lain, ciptakan kemewahan Anda sendiri di sini.",
+      inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid (6x17) di Rumah Alfa Indah ini memberikan Anda keleluasaan untuk mendesain ruang hidup Anda sendiri sesuai impian Anda.\n\nTonton video ini : Lihat bagaimana bangunan ini memiliki potensi luar biasa untuk ditransformasikan menjadi karya arsitektur Modern Minimalis yang megah, bersih, dan berkelas dunia. Anda tidak sedang membeli rumah seken biasa—Anda sedang mengambil alih kendali penuh atas bagaimana masa depan kenyamanan keluarga Anda diwujudkan. Jangan beli selera orang lain, ciptakan kemewahan Anda sendiri di sini.",
       timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?autoplay=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
       gallerySubheadline: "Kabar baiknya, Anda tidak harus merombak semuanya dari nol. Struktur bangunan asli saat ini sudah sangat kokoh. Cukup dengan renovasi ringan seperti perbaikan lantai dan pengecatan ulang, rumah ini sudah siap bertransformasi menjadi hunian yang indah dan nyaman tanpa biaya besar. Jelajahi potensi tata letak ruang bagian dalam rumah melalui galeri foto di bawah ini:",
       facilities: [
@@ -410,11 +408,29 @@
 
     let chatMemory = [];
 
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", async function() {
+      // 1. DYNAMIC SAAS ENGINE: MENGAMBIL CONFIG DARI GOOGLE SHEETS
+      try {
+        const saasRes = await fetch(GAS_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: "getSaasConfig" })
+        });
+        const saasData = await saasRes.json();
+        if (saasData.success && saasData.config) {
+          // Timpa PROPERTY_CONFIG lokal dengan data dari Google Sheets secara otomatis
+          Object.assign(PROPERTY_CONFIG, saasData.config);
+        }
+      } catch (err) {
+        console.log("Menggunakan fallback konfigurasi lokal.");
+      }
+
+      // 2. RENDER TAMPILAN WEBSITE
       renderPropertyData(PROPERTY_CONFIG);
       setDynamicWelcomeMessage();
       calculateKPR();
 
+      // 3. HANDLER LEAD FORM
       const form = document.getElementById('pms-lead-form');
       if (form) {
         form.addEventListener('submit', async function(e) {
@@ -469,17 +485,20 @@
 
       if (config.gallery.length > 0) document.getElementById('hero-section').style.backgroundImage = `url('${config.gallery[0]}')`;
       
-      // MASONRY GALERI ASIMETRIS (SETIAP FOTO KE-3 MENGGUNAKAN ROW-SPAN-2 UNTUK POLA DINESIS TINGGI)
+      // MASONRY GALERI ASIMETRIS (SETIAP FOTO KE-3 MENGGUNAKAN ROW-SPAN-2 UNTUK POLA VARIASI TINGGI 9:16)
       const gallery = document.getElementById('gallery-container');
+      gallery.innerHTML = ''; // Clear container
       config.gallery.forEach((url, i) => {
         const isTall = (i % 3 === 0);
         gallery.innerHTML += `<div class="overflow-hidden rounded-xl shadow-md ${isTall ? 'row-span-2' : 'row-span-1'}"><img src="${url}" class="w-full h-full object-cover img-hover-zoom" loading="lazy"></div>`;
       });
       
       const specs = document.getElementById('spec-container');
+      specs.innerHTML = '';
       for (let k in config.specs) specs.innerHTML += `<div class="flex justify-between py-4 border-b text-sm sm:text-base"><span class="text-gray-500">${k}</span><span class="font-bold text-dark text-right">${config.specs[k]}</span></div>`;
       
       const facs = document.getElementById('facility-container');
+      facs.innerHTML = '';
       config.facilities.forEach(f => facs.innerHTML += `<li class="flex items-start gap-3 sm:gap-4 text-sm sm:text-base"><div class="text-gold-500 font-bold">✓</div><span class="text-gray-700">${f}</span></li>`);
     }
 
@@ -576,7 +595,7 @@
     function setDynamicWelcomeMessage() {
       const h = new Date().getHours();
       let greet = h<5?"Selamat subuh!":h<11?"Selamat pagi!":h<15?"Selamat siang!":h<18?"Selamat sore!":"Selamat malam!";
-      document.getElementById('welcome-message').innerHTML = `<b>${greet}</b><br>Saya Alfin, konsultan properti untuk Rumah Alfa Indah. Sedang disapa dengan siapa nih?`;
+      document.getElementById('welcome-message').innerHTML = `<b>${greet} Kak!</b><br>Saya Alfin, advisor untuk Rumah Alfa Indah. Ada yang ingin ditanyakan seputar rumah ini atau fasilitas lingkungan sekitar?`;
     }
 
     function toggleChatWindow() {
