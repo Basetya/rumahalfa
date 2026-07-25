@@ -39,15 +39,15 @@
   <!-- CATEGORY FILTER BUTTONS -->
   <section class="py-6 bg-[#fafafa] sticky top-[57px] z-40 border-b border-gray-200/80 backdrop-blur-md bg-white/80">
     <div class="max-w-6xl mx-auto px-4 flex justify-center gap-2 overflow-x-auto no-scrollbar py-1" id="category-tabs">
-      <button onclick="filterCategory('Semua')" class="cat-btn active bg-dark text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Semua Foto</button>
-      <button onclick="filterCategory('Interior')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gold-500 hover:text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Interior</button>
-      <button onclick="filterCategory('Eksterior')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gold-500 hover:text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Eksterior</button>
-      <button onclick="filterCategory('Fasilitas/Office')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gold-500 hover:text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Fasilitas / Office</button>
-      <button onclick="filterCategory('Lingkungan')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gold-500 hover:text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Lingkungan</button>
+      <button type="button" onclick="filterCategory('Semua')" class="cat-btn active bg-dark text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Semua Foto</button>
+      <button type="button" onclick="filterCategory('Interior')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gold-500 hover:text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Interior</button>
+      <button type="button" onclick="filterCategory('Eksterior')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gold-500 hover:text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Eksterior</button>
+      <button type="button" onclick="filterCategory('Fasilitas/Office')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gold-500 hover:text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Fasilitas / Office</button>
+      <button type="button" onclick="filterCategory('Lingkungan')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gold-500 hover:text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Lingkungan</button>
     </div>
   </section>
 
-  <!-- PORTRAIT 9:16 UNIFORM GALLERY GRID -->
+  <!-- PORTRAIT UNIFORM GALLERY GRID -->
   <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-10 w-full">
     <div id="full-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <!-- Photos dynamically rendered -->
@@ -107,19 +107,14 @@
         return;
       }
 
-      filtered.forEach((item) => {
+      filtered.forEach((item, i) => {
         const url = (typeof item === 'object') ? item.url : item;
         const cat = (typeof item === 'object') ? item.category : "Interior";
 
         grid.innerHTML += `
-          <div class="overflow-hidden rounded-2xl shadow-lg relative group aspect-[9/16] bg-gray-100 border border-gray-200">
-            <img src="${url}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-              <span class="bg-gold-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                ${cat}
-              </span>
-            </div>
-            <div class="absolute bottom-3 left-3 bg-dark/80 backdrop-blur-md text-gold-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider group-hover:opacity-0 transition-opacity">
+          <div class="overflow-hidden rounded-2xl shadow-lg relative group w-full h-96 min-h-[380px] bg-gray-200 border border-gray-200">
+            <img src="${url}" alt="Foto Galeri ${i + 1}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x600?text=Foto+Properti';">
+            <div class="absolute bottom-3 left-3 bg-dark/80 backdrop-blur-md text-gold-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
               ${cat}
             </div>
           </div>

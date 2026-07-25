@@ -109,7 +109,7 @@
     </div>
   </section>
 
-  <!-- GALLERY SECTION (PORTRAIT 9:16 UNIFORM) -->
+  <!-- GALLERY SECTION (PORTRAIT UNIFORM FIXED HEIGHT) -->
   <section class="py-16 sm:py-24 bg-[#fafafa]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
@@ -143,7 +143,7 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
       <div class="text-center mb-12 sm:mb-16">
         <span class="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
           Simulasi Finansial
         </span>
         <h3 class="font-serif text-3xl sm:text-4xl text-dark font-bold mb-4">Simulasi KPR Interaktif</h3>
@@ -480,6 +480,7 @@
         document.getElementById('hero-section').style.backgroundImage = `url('${firstImg}')`;
       }
       
+      // RENDER GALERI PORTRAIT STABIL FIXED HEIGHT
       const gallery = document.getElementById('gallery-container');
       const btnWrapper = document.getElementById('sub-gallery-btn-wrapper');
       gallery.innerHTML = '';
@@ -492,7 +493,11 @@
 
       photosToDisplay.forEach((item, i) => {
         const url = (typeof item === 'object') ? item.url : item;
-        gallery.innerHTML += `<div class="overflow-hidden rounded-2xl shadow-md aspect-[9/16] bg-gray-100"><img src="${url}" alt="Foto Galeri ${i + 1}" title="Foto Galeri ${i + 1}" class="w-full h-full object-cover img-hover-zoom" loading="lazy"></div>`;
+        gallery.innerHTML += `
+          <div class="overflow-hidden rounded-2xl shadow-md w-full h-80 min-h-[320px] bg-gray-200 relative group">
+            <img src="${url}" alt="Foto Galeri ${i + 1}" title="Foto Galeri ${i + 1}" class="w-full h-full object-cover img-hover-zoom" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x600?text=Foto+Properti';">
+          </div>
+        `;
       });
 
       if (useSubPage && config.gallery.length > 6) {
