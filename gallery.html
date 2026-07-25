@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeri Foto & Kategori</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+          colors: { gold: { 500: '#c5a880', 600: '#b0946d' }, dark: '#111111' }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#fafafa] text-dark antialiased font-sans min-h-screen flex flex-col">
+
+  <!-- NAVBAR BACK -->
+  <nav class="bg-dark text-white py-4 px-6 sticky top-0 z-50 flex justify-between items-center shadow-lg">
+    <a href="index.html" class="text-xs sm:text-sm font-bold text-gold-500 hover:text-white flex items-center gap-2 transition-colors">
+      <span>← Kembali ke Utamapage</span>
+    </a>
+    <span id="nav-title" class="text-xs font-serif text-gray-400 hidden sm:inline">Galeri Properti</span>
+  </nav>
+
+  <!-- HEADER DESKRIPSI FREELY EDITED BY USER -->
+  <header class="py-12 sm:py-16 bg-white border-b border-gray-200 text-center px-4">
+    <div class="max-w-3xl mx-auto">
+      <span class="text-gold-500 tracking-widest text-xs uppercase font-bold">Exclusive Visuals</span>
+      <h1 id="gal-page-title" class="font-serif text-3xl sm:text-5xl font-bold mt-2 mb-4 text-dark">Galeri Foto Ruangan</h1>
+      <p id="gal-page-desc" class="text-gray-500 text-sm sm:text-base leading-relaxed">Jelajahi setiap sudut keindahan arsitektur dan fasilitas properti secara lengkap di bawah ini.</p>
+    </div>
+  </header>
+
+  <!-- CATEGORY FILTER BUTTONS -->
+  <section class="py-6 bg-[#fafafa] sticky top-[57px] z-40 border-b border-gray-200/80 backdrop-blur-md bg-white/80">
+    <div class="max-w-6xl mx-auto px-4 flex justify-center gap-2 overflow-x-auto no-scrollbar py-1" id="category-tabs">
+      <button onclick="filterCategory('Semua')" class="cat-btn active bg-dark text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Semua Foto</button>
+      <button onclick="filterCategory('Interior')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gold-500 hover:text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Interior</button>
+      <button onclick="filterCategory('Eksterior')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gold-500 hover:text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Eksterior</button>
+      <button onclick="filterCategory('Fasilitas/Office')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gold-500 hover:text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Fasilitas / Office</button>
+      <button onclick="filterCategory('Lingkungan')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gold-500 hover:text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all">Lingkungan</button>
+    </div>
+  </section>
+
+  <!-- MASONRY GALLERY GRID -->
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-10 w-full">
+    <div id="full-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[260px]">
+      <!-- Photos dynamically rendered -->
+    </div>
+  </main>
+
+  <footer class="py-6 bg-dark text-gray-500 text-center text-xs border-t border-gray-800">
+    <p>© 2026 Properti Gallery. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwaFo0vzNWxS2Jxe2vGXRVTp64IJk2muDFZjyVeIosam2XRjrOEtZwVSoykDuRLZmding/exec";
+    let allGalleryData = [];
+
+    document.addEventListener("DOMContentLoaded", async function() {
+      try {
+        const res = await fetch(GAS_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: "getSaasConfig" })
+        });
+        const data = await res.json();
+
+        if (data.success && data.config) {
+          const cfg = data.config;
+          document.getElementById('nav-title').innerText = cfg.title;
+          if (cfg.galleryPageTitle) document.getElementById('gal-page-title').innerText = cfg.galleryPageTitle;
+          if (cfg.galleryPageDesc) document.getElementById('gal-page-desc').innerText = cfg.galleryPageDesc;
+
+          allGalleryData = cfg.gallery || [];
+          renderGallery("Semua");
+        }
+      } catch (err) { alert("Gagal memuat galeri."); }
+    });
+
+    function filterCategory(catName) {
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if (btn.innerText.includes(catName) || (catName === 'Semua' && btn.innerText.includes('Semua'))) {
+          btn.className = "cat-btn bg-dark text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all shadow-md";
+        } else {
+          btn.className = "cat-btn bg-gray-100 text-gray-600 hover:bg-gold-500 hover:text-white px-5 py-2 rounded-full text-xs font-bold shrink-0 transition-all";
+        }
+      });
+      renderGallery(catName);
+    }
+
+    function renderGallery(filterCat) {
+      const grid = document.getElementById('full-gallery-grid');
+      grid.innerHTML = '';
+
+      const filtered = (filterCat === "Semua") 
+        ? allGalleryData 
+        : allGalleryData.filter(item => (typeof item === 'object' && item.category === filterCat));
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-full py-16 text-center text-gray-400 font-medium">Belum ada foto untuk kategori ${filterCat}.</div>`;
+        return;
+      }
+
+      filtered.forEach((item, i) => {
+        const url = (typeof item === 'object') ? item.url : item;
+        const cat = (typeof item === 'object') ? item.category : "Interior";
+        const isTall = (i % 3 === 0);
+
+        grid.innerHTML += `
+          <div class="overflow-hidden rounded-2xl shadow-md relative group ${isTall ? 'row-span-2' : 'row-span-1'}">
+            <img src="${url}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+            <div class="absolute bottom-3 left-3 bg-dark/80 backdrop-blur-md text-gold-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+              ${cat}
+            </div>
+          </div>
+        `;
+      });
+    }
+  </script>
+</body>
+</html>
