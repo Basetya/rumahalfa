@@ -143,7 +143,7 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
       <div class="text-center mb-12 sm:mb-16">
         <span class="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
           Simulasi Finansial
         </span>
         <h3 class="font-serif text-3xl sm:text-4xl text-dark font-bold mb-4">Simulasi KPR Interaktif</h3>
@@ -274,7 +274,7 @@
               <p class="text-[10px] text-gray-400 mt-1">*Berdasarkan kecepatan mobil rata-rata (±16 km/jam)</p>
             </div>
             <a href="#" id="res-link" target="_blank" class="bg-gold-500 hover:bg-gold-600 text-white px-5 py-3 rounded-xl text-xs font-bold flex items-center gap-2 transition-all shadow-md text-left w-full md:w-auto md:max-w-[200px]">
-              <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5-2.5 2.5z"/></svg>
               Klik untuk rute, jarak dan waktu tempuh yg akurat
             </a>
           </div>
@@ -355,7 +355,8 @@
   </div>
 
   <script>
-    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwaFo0vzNWxS2Jxe2vGXRVTp64IJk2muDFZjyVeIosam2XRjrOEtZwVSoykDuRLZmding/exec";
+    // WEB APP WEBHOOK BACKEND RESMI
+    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbw6sH-yvB5sokc8GWXXOj_526OfqA5F_nSu2DriT4yPvJIaDhghViAVELVJHiuoNozaJA/exec";
 
     let PROPERTY_CONFIG = {
       title: "Rumah Taman Alfa Indah",
@@ -398,7 +399,15 @@
         "https://drive.google.com/thumbnail?id=12m3nYf9XYrtPpu7f-jcluIjoQ9TpMsET",
         "https://drive.google.com/thumbnail?id=1Oh8OCplEMrmjP25Nz25NpTI-1K0BPQth",
         "https://drive.google.com/thumbnail?id=1RS6nmGZ57N-FRvs9omL9RhOUvxwaxl2b",
-        "https://drive.google.com/thumbnail?id=1eazuJSSHyfmQhL1_yqBwqsT0VlGOWGLG"
+        "https://drive.google.com/thumbnail?id=1eazuJSSHyfmQhL1_yqBwqsT0VlGOWGLG",
+        "https://drive.google.com/thumbnail?id=1_GXAF05eMradLCVdOxvxBBLE9Pj0rQOL",
+        "https://drive.google.com/thumbnail?id=112QUaOY2kVZmWirvW2yiiZnwqsL-Ahe_",
+        "https://drive.google.com/thumbnail?id=18Duqgid5a8gvtFVGvPXFxWSEb0oMshpZ",
+        "https://drive.google.com/thumbnail?id=19N0ssPMsy8D3vtS6upFtEKdRctFT_ePT",
+        "https://drive.google.com/thumbnail?id=13Dx2w9Uu9Il4sNFWupGqXOSiQ-UUzEoB",
+        "https://drive.google.com/thumbnail?id=1xbxNPufN-j4gdxjxTP4pPdazvaH1wiaO",
+        "https://drive.google.com/thumbnail?id=1WkU6JAImB8CJmNMOsHvqEIwD89IBNixD",
+        "https://drive.google.com/thumbnail?id=1R2ZFei25je8DoTWvEG4Y4rR2iNTgCLsW"
       ]
     };
 
@@ -460,27 +469,43 @@
 
     function renderPropertyData(config) {
       document.getElementById('utm-source').value = new URLSearchParams(window.location.search).get('src') || 'direct';
-      document.title = config.title;
-      document.getElementById('prop-title').innerText = config.title;
-      document.getElementById('footer-title').innerText = config.title;
-      document.getElementById('prop-headline').innerText = config.headline;
-      document.getElementById('prop-price').innerText = config.price;
-      document.getElementById('prop-story').innerText = config.story;
-      document.getElementById('prop-address').innerText = config.address;
-      document.getElementById('prop-inspiration-title').innerText = config.inspirationTitle;
-      document.getElementById('prop-inspiration-story').innerText = config.inspirationStory;
-      document.getElementById('prop-gallery-sub').innerText = config.gallerySubheadline;
-      document.getElementById('prop-video').src = config.videoUrl;
-      document.getElementById('prop-timelapse-yt').src = config.timelapseUrl;
-      document.getElementById('prop-maps').src = `https://maps.google.com/maps?q=${config.latitude},${config.longitude}&t=&z=15&ie=UTF-8&iwloc=&output=embed`;
-      document.getElementById('floating-wa-link').href = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(config.whatsappTemplate.replace("%PROPERTY_NAME%", config.title))}`;
+      document.title = config.title || 'Landing Page Properti';
+      document.getElementById('prop-title').innerText = config.title || '';
+      document.getElementById('footer-title').innerText = config.title || '';
+      document.getElementById('prop-headline').innerText = config.headline || '';
+      document.getElementById('prop-price').innerText = config.price || '';
+      document.getElementById('prop-story').innerText = config.story || '';
+      document.getElementById('prop-address').innerText = config.address || '';
+      document.getElementById('prop-inspiration-title').innerText = config.inspirationTitle || '';
+      document.getElementById('prop-inspiration-story').innerText = config.inspirationStory || '';
+      document.getElementById('prop-gallery-sub').innerText = config.gallerySubheadline || '';
+      
+      // AUTO HIDE SECTION JIKA VIDEO DIKOSONGKAN
+      const videoIframe = document.getElementById('prop-video');
+      if (config.videoUrl && config.videoUrl.trim().length > 5) {
+        videoIframe.src = config.videoUrl;
+        videoIframe.closest('section').style.display = 'block';
+      } else {
+        videoIframe.closest('section').style.display = 'none';
+      }
+
+      const timelapseIframe = document.getElementById('prop-timelapse-yt');
+      if (config.timelapseUrl && config.timelapseUrl.trim().length > 5) {
+        timelapseIframe.src = config.timelapseUrl;
+        timelapseIframe.closest('section').style.display = 'block';
+      } else {
+        timelapseIframe.closest('section').style.display = 'none';
+      }
+
+      document.getElementById('prop-maps').src = `https://maps.google.com/maps?q=${config.latitude || -6.2244},${config.longitude || 106.7508}&t=&z=15&ie=UTF-8&iwloc=&output=embed`;
+      document.getElementById('floating-wa-link').href = `https://wa.me/${config.whatsappNumber || '6287832219195'}?text=${encodeURIComponent((config.whatsappTemplate || 'Halo').replace("%PROPERTY_NAME%", config.title))}`;
 
       if (config.gallery && config.gallery.length > 0) {
         const firstImg = (typeof config.gallery[0] === 'object') ? config.gallery[0].url : config.gallery[0];
         document.getElementById('hero-section').style.backgroundImage = `url('${firstImg}')`;
       }
       
-      // RENDER GALERI DENGAN DUA MODE STRICT:
+      // RENDER GALERI MEMANJANG TANPA BATAS (INFINITE 9:16 PORTRAIT)
       const gallery = document.getElementById('gallery-container');
       const btnWrapper = document.getElementById('sub-gallery-btn-wrapper');
       gallery.innerHTML = '';
@@ -488,25 +513,23 @@
 
       gallery.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6";
 
-      // HANYA AKTIFKAN SUBPAGE JIKA USER EKSPLISIT MEMILIH MODE "ON" / "true" DI ADMIN
       const isSubPageActive = (config.useSubGalleryPage === "true" || config.useSubGalleryPage === true);
       const totalPhotos = config.gallery ? config.gallery.length : 0;
       
-      // Default (OFF): Tampilkan SEMUA foto langsung di Landing Page
-      // Hanya jika Mode ON: Tampilkan 6 foto teaser + Tombol Ke Sub-Page
-      const photosToDisplay = isSubPageActive ? config.gallery.slice(0, 6) : config.gallery;
+      const photosToDisplay = isSubPageActive ? config.gallery.slice(0, 6) : (config.gallery || []);
 
       photosToDisplay.forEach((item, i) => {
         const url = (typeof item === 'object') ? item.url : item;
-        gallery.innerHTML += `
-          <div class="overflow-hidden rounded-2xl shadow-lg aspect-[9/16] bg-gray-200 relative group border border-gray-200">
-            <img src="${url}" alt="Foto Galeri ${i + 1}" title="Foto Galeri ${i + 1}" class="w-full h-full object-cover img-hover-zoom" loading="lazy">
-          </div>
-        `;
+        if (url) {
+          gallery.innerHTML += `
+            <div class="overflow-hidden rounded-2xl shadow-lg aspect-[9/16] bg-gray-200 relative group border border-gray-200">
+              <img src="${url}" alt="Foto Galeri ${i + 1}" title="Foto Galeri ${i + 1}" class="w-full h-full object-cover img-hover-zoom" loading="lazy">
+            </div>
+          `;
+        }
       });
 
-      // Tombol HANYA MUNCUL jika Mode Subpage ON dari Admin
-      if (isSubPageActive) {
+      if (isSubPageActive && totalPhotos > 6) {
         btnWrapper.innerHTML = `
           <div class="text-center mt-12">
             <a href="gallery.html" class="inline-flex items-center gap-3 bg-dark hover:bg-black text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-xs sm:text-sm shadow-xl transition-all border border-gold-500/30 hover:scale-105">
@@ -518,12 +541,16 @@
       }
 
       const specs = document.getElementById('spec-container');
-      specs.innerHTML = '';
-      for (let k in config.specs) specs.innerHTML += `<div class="flex justify-between py-4 border-b text-sm sm:text-base"><span class="text-gray-500">${k}</span><span class="font-bold text-dark text-right">${config.specs[k]}</span></div>`;
+      if (specs) {
+        specs.innerHTML = '';
+        for (let k in config.specs) specs.innerHTML += `<div class="flex justify-between py-4 border-b text-sm sm:text-base"><span class="text-gray-500">${k}</span><span class="font-bold text-dark text-right">${config.specs[k]}</span></div>`;
+      }
       
       const facs = document.getElementById('facility-container');
-      facs.innerHTML = '';
-      config.facilities.forEach(f => facs.innerHTML += `<li class="flex items-start gap-3 sm:gap-4 text-sm sm:text-base"><div class="text-gold-500 font-bold">✓</div><span class="text-gray-700">${f}</span></li>`);
+      if (facs && config.facilities) {
+        facs.innerHTML = '';
+        config.facilities.forEach(f => facs.innerHTML += `<li class="flex items-start gap-3 sm:gap-4 text-sm sm:text-base"><div class="text-gold-500 font-bold">✓</div><span class="text-gray-700">${f}</span></li>`);
+      }
     }
 
     function formatRupiahStr(angka) {

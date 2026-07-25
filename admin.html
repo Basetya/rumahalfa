@@ -8,23 +8,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style> body { font-family: 'Inter', sans-serif; background-color: #f4f6f8; } </style>
 </head>
-<body class="p-4 sm:p-8 pb-32 antialiased">
+<body class="p-4 sm:p-8 pb-36 antialiased">
 
   <div class="max-w-3xl mx-auto">
     
-    <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg mb-6 flex justify-between items-center">
+    <!-- HEADER & UNDO BUTTON -->
+    <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
       <div>
         <h1 class="text-xl font-bold">⚙️ Dashboard Pengaturan Properti</h1>
         <p class="text-xs text-slate-400 mt-1">Ubah landing page, galeri foto, & AI Chatbot</p>
       </div>
-      <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase border border-emerald-500/30">SaaS Active</span>
+      <div class="flex gap-2 w-full sm:w-auto">
+        <button type="button" onclick="undoConfig()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 w-full sm:w-auto justify-center">
+          <span>↩️ UNDO VERSI SEBELUMNYA</span>
+        </button>
+      </div>
     </div>
 
     <form id="admin-form" class="space-y-6">
 
       <!-- INFORMASI UTAMA -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2"><span>🏡</span> Informasi Utama Properti</h2>
+        <div class="flex justify-between items-center border-b pb-3">
+          <h2 class="text-base font-bold text-slate-800 flex items-center gap-2"><span>🏡</span> Informasi Utama Properti</h2>
+          <button type="button" onclick="resetSection(['cfg-title','cfg-price','cfg-address','cfg-headline','cfg-story'])" class="text-xs text-red-500 hover:bg-red-50 px-3 py-1.5 rounded-lg font-bold border border-red-200">
+            🗑️ Kosongkan Teks Utama
+          </button>
+        </div>
+
         <div>
           <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Judul Properti</label>
           <input type="text" id="cfg-title" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500">
@@ -55,14 +66,20 @@
 
       <!-- VIDEO & MAPS -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2"><span>🎬</span> Video Tour & Peta</h2>
+        <div class="flex justify-between items-center border-b pb-3">
+          <h2 class="text-base font-bold text-slate-800 flex items-center gap-2"><span>🎬</span> Video Tour & Peta</h2>
+          <button type="button" onclick="resetSection(['cfg-videoUrl','cfg-timelapseUrl'])" class="text-xs text-red-500 hover:bg-red-50 px-3 py-1.5 rounded-lg font-bold border border-red-200">
+            🗑️ Kosongkan Video
+          </button>
+        </div>
+
         <div>
-          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Link Embed YouTube Main Video</label>
-          <input type="text" id="cfg-videoUrl" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Link Embed YouTube Main Video (Kosongkan jika ingin disembunyikan)</label>
+          <input type="text" id="cfg-videoUrl" placeholder="https://www.youtube.com/embed/..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Link Embed YouTube Shorts / Timelapse</label>
-          <input type="text" id="cfg-timelapseUrl" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Link Embed YouTube Shorts / Timelapse (Kosongkan jika ingin disembunyikan)</label>
+          <input type="text" id="cfg-timelapseUrl" placeholder="https://www.youtube.com/embed/..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div>
@@ -81,9 +98,9 @@
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-amber-200 pb-3">
           <div>
             <h2 class="text-base font-bold text-amber-900 flex items-center gap-2"><span>🖼️</span> Mode Halaman Galeri Khusus</h2>
-            <p class="text-xs text-amber-700 mt-0.5">Aktifkan jika foto Anda banyak agar Landing Page utama tetap ringan.</p>
+            <p class="text-xs text-amber-700 mt-0.5">Default OFF (semua foto tampil di landing page). Set ON jika foto sangat banyak.</p>
           </div>
-          <select id="cfg-useSubGalleryPage" class="bg-amber-500 text-slate-900 font-bold px-4 py-2.5 rounded-xl text-xs outline-none border border-amber-600 shadow-md">
+          <select id="cfg-useSubGalleryPage" title="Mode Galeri" aria-label="Mode Galeri" class="bg-amber-500 text-slate-900 font-bold px-4 py-2.5 rounded-xl text-xs outline-none border border-amber-600 shadow-md">
             <option value="false">OFF (Semua Foto di Landing Page)</option>
             <option value="true">ON (Gunakan Sub-Page Gallery.html)</option>
           </select>
@@ -91,24 +108,29 @@
 
         <div>
           <label class="block text-xs font-bold text-amber-900 uppercase mb-1">Judul Halaman Galeri Khusus</label>
-          <input type="text" id="cfg-galleryPageTitle" placeholder="Contoh: Galeri Eksklusif & Kategori Ruangan" class="w-full px-4 py-3 bg-white border border-amber-200 rounded-xl text-sm outline-none">
+          <input type="text" id="cfg-galleryPageTitle" class="w-full px-4 py-3 bg-white border border-amber-200 rounded-xl text-sm outline-none">
         </div>
         <div>
           <label class="block text-xs font-bold text-amber-900 uppercase mb-1">Deskripsi Halaman Galeri Khusus</label>
-          <textarea id="cfg-galleryPageDesc" rows="2" placeholder="Contoh: Jelajahi seluruh sudut ruangan, fasilitas office building, interior, dan eksterior secara lengkap di sini." class="w-full px-4 py-3 bg-white border border-amber-200 rounded-xl text-sm outline-none"></textarea>
+          <textarea id="cfg-galleryPageDesc" rows="2" class="w-full px-4 py-3 bg-white border border-amber-200 rounded-xl text-sm outline-none"></textarea>
         </div>
       </div>
 
       <!-- DAFTAR FOTO GALERI UNLIMITED -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-        <div class="flex justify-between items-center border-b pb-3">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b pb-3">
           <div>
             <h2 class="text-base font-bold text-slate-800">📸 Daftar Foto & Kategori (Portrait 9:16)</h2>
             <p class="text-xs text-slate-400">Tambah foto tanpa batas. Bebas pilih kategori.</p>
           </div>
-          <button type="button" onclick="addGalleryRow()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-1">
-            <span>+ Tambah Foto</span>
-          </button>
+          <div class="flex gap-2">
+            <button type="button" onclick="clearAllPhotos()" class="text-xs text-red-500 hover:bg-red-50 px-3 py-2 rounded-xl font-bold border border-red-200">
+              🗑️ Hapus Semua Foto
+            </button>
+            <button type="button" onclick="addGalleryRow()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow-md transition-all flex items-center gap-1">
+              <span>+ Tambah Foto</span>
+            </button>
+          </div>
         </div>
 
         <div id="gallery-dynamic-list" class="space-y-3"></div>
@@ -150,7 +172,8 @@
   </div>
 
   <script>
-    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwaFo0vzNWxS2Jxe2vGXRVTp64IJk2muDFZjyVeIosam2XRjrOEtZwVSoykDuRLZmding/exec";
+    // WEB APP WEBHOOK BACKEND RESMI (TERBARU)
+    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbw6sH-yvB5sokc8GWXXOj_526OfqA5F_nSu2DriT4yPvJIaDhghViAVELVJHiuoNozaJA/exec";
 
     let galleryCounter = 0;
 
@@ -162,10 +185,10 @@
       const rowHtml = `
         <div id="${rowId}" class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row gap-2 items-center">
           <div class="flex-1 w-full">
-            <input type="text" class="gal-url-input w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none" placeholder="Link Google Drive Foto..." title="Link Google Drive Foto ${galleryCounter}" aria-label="Link Google Drive Foto ${galleryCounter}" value="${url}">
+            <input type="text" class="gal-url-input w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none" placeholder="Link Google Drive Foto..." title="Link Foto ${galleryCounter}" aria-label="Link Foto ${galleryCounter}" value="${url}">
           </div>
           <div class="w-full sm:w-44">
-            <select class="gal-cat-input w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none font-bold text-slate-700" title="Kategori Foto ${galleryCounter}" aria-label="Kategori Foto ${galleryCounter}">
+            <select class="gal-cat-input w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none font-bold text-slate-700" title="Kategori ${galleryCounter}" aria-label="Kategori ${galleryCounter}">
               <option value="Interior" ${category === "Interior" ? "selected" : ""}>Interior</option>
               <option value="Eksterior" ${category === "Eksterior" ? "selected" : ""}>Eksterior</option>
               <option value="Fasilitas/Office" ${category === "Fasilitas/Office" ? "selected" : ""}>Fasilitas/Office</option>
@@ -178,7 +201,21 @@
       container.insertAdjacentHTML('beforeend', rowHtml);
     }
 
-    document.addEventListener("DOMContentLoaded", async function() {
+    function resetSection(elementIds) {
+      if (confirm("Apakah Anda yakin ingin mengosongkan bagian ini?")) {
+        elementIds.forEach(id => {
+          if (document.getElementById(id)) document.getElementById(id).value = "";
+        });
+      }
+    }
+
+    function clearAllPhotos() {
+      if (confirm("Apakah Anda yakin ingin menghapus seluruh daftar foto?")) {
+        document.getElementById('gallery-dynamic-list').innerHTML = "";
+      }
+    }
+
+    async function loadData() {
       try {
         const res = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
@@ -197,17 +234,36 @@
             }
           });
 
+          document.getElementById('gallery-dynamic-list').innerHTML = "";
           if (cfg.gallery && cfg.gallery.length > 0) {
             cfg.gallery.forEach(item => {
               if (typeof item === 'object') addGalleryRow(item.url, item.category);
               else addGalleryRow(item, "Interior");
             });
-          } else {
-            addGalleryRow(); addGalleryRow(); addGalleryRow();
           }
         }
       } catch (err) { alert("Gagal memuat konfigurasi server."); }
-    });
+    }
+
+    async function undoConfig() {
+      if (!confirm("Apakah Anda yakin ingin mengembalikan seluruh data ke versi sebelum simpan terakhir?")) return;
+      try {
+        const res = await fetch(GAS_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: "undoAdminConfig" })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert("🎉 BERHASIL UNDO! Mengembalikan data versi sebelumnya...");
+          loadData();
+        } else {
+          alert("Gagal Undo: " + data.error);
+        }
+      } catch(err) { alert("Kesalahan koneksi saat Undo."); }
+    }
+
+    document.addEventListener("DOMContentLoaded", loadData);
 
     document.getElementById('admin-form').addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -217,9 +273,11 @@
 
       const galleryList = [];
       document.querySelectorAll('#gallery-dynamic-list > div').forEach(row => {
-        const url = row.querySelector('.gal-url-input').value.trim();
-        const cat = row.querySelector('.gal-cat-input').value;
-        if (url) galleryList.push({ url: url, category: cat });
+        const urlInput = row.querySelector('.gal-url-input');
+        const catInput = row.querySelector('.gal-cat-input');
+        if (urlInput && urlInput.value.trim()) {
+          galleryList.push({ url: urlInput.value.trim(), category: catInput ? catInput.value : "Interior" });
+        }
       });
 
       const payload = {
