@@ -6,135 +6,142 @@
   <title>Admin Dashboard - SaaS Properti</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; background-color: #f4f6f8; }
-  </style>
+  <style> body { font-family: 'Inter', sans-serif; background-color: #f4f6f8; } </style>
 </head>
-<body class="p-4 sm:p-8 pb-28 antialiased">
+<body class="p-4 sm:p-8 pb-32 antialiased">
 
-  <div class="max-w-2xl mx-auto">
+  <div class="max-w-3xl mx-auto">
     
-    <!-- HEADER -->
     <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg mb-6 flex justify-between items-center">
       <div>
-        <h1 class="text-xl font-bold">⚙️ Dashboard Pengaturan</h1>
-        <p class="text-xs text-slate-400 mt-1">Ubah landing page & AI Chatbot dengan mudah</p>
+        <h1 class="text-xl font-bold">⚙️ Dashboard Pengaturan Properti</h1>
+        <p class="text-xs text-slate-400 mt-1">Ubah landing page, galeri foto, & AI Chatbot</p>
       </div>
       <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase border border-emerald-500/30">SaaS Active</span>
     </div>
 
     <form id="admin-form" class="space-y-6">
 
-      <!-- TAB 1: INFORMASI PROPERTI UTAMA -->
+      <!-- INFORMASI UTAMA -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2">
-          <span>🏡</span> Informasi Utama Properti
-        </h2>
-
+        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2"><span>🏡</span> Informasi Utama Properti</h2>
         <div>
           <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Judul Properti</label>
-          <input type="text" id="cfg-title" placeholder="Contoh: Rumah Taman Alfa Indah" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+          <input type="text" id="cfg-title" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500">
         </div>
-
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Harga Penawaran</label>
-            <input type="text" id="cfg-price" placeholder="Contoh: Rp 1.5 Milyar (Nego)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+            <input type="text" id="cfg-price" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nomor WhatsApp (Aktif)</label>
-            <input type="text" id="cfg-whatsappNumber" placeholder="Contoh: 6287832219195" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nomor WhatsApp Owner</label>
+            <input type="text" id="cfg-whatsappNumber" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500">
           </div>
         </div>
-
         <div>
           <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Alamat Lengkap</label>
-          <input type="text" id="cfg-address" placeholder="Contoh: Taman Alfa Indah Blok H, Jakarta Selatan" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+          <input type="text" id="cfg-address" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500">
         </div>
-
         <div>
-          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Headline Utama (Text Besar)</label>
-          <textarea id="cfg-headline" rows="2" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Headline Utama</label>
+          <textarea id="cfg-headline" rows="2" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500"></textarea>
         </div>
-
         <div>
-          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Cerita & Deskripsi Properti (The Story)</label>
-          <textarea id="cfg-story" rows="5" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Cerita Deskripsi (The Story)</label>
+          <textarea id="cfg-story" rows="4" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500"></textarea>
         </div>
       </div>
 
-      <!-- TAB 2: LINK MEDIA (FOTO & VIDEO) -->
+      <!-- VIDEO & MAPS -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2">
-          <span>🎬</span> Link Video Tour & Peta
-        </h2>
-
+        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2"><span>🎬</span> Video Tour & Peta</h2>
         <div>
-          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Link Embed YouTube Video Main Tour</label>
-          <input type="text" id="cfg-videoUrl" placeholder="https://www.youtube.com/embed/..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Link Embed YouTube Main Video</label>
+          <input type="text" id="cfg-videoUrl" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
         </div>
-
         <div>
-          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Link Embed YouTube Shorts / Timelapse (9:16)</label>
-          <input type="text" id="cfg-timelapseUrl" placeholder="https://www.youtube.com/embed/..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Link Embed YouTube Shorts / Timelapse</label>
+          <input type="text" id="cfg-timelapseUrl" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
         </div>
-
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Latitude Peta</label>
-            <input type="text" id="cfg-latitude" placeholder="-6.224486" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none">
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Latitude</label>
+            <input type="text" id="cfg-latitude" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Longitude Peta</label>
-            <input type="text" id="cfg-longitude" placeholder="106.750849" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none">
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Longitude</label>
+            <input type="text" id="cfg-longitude" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
           </div>
         </div>
       </div>
 
-      <!-- TAB 3: OTAR / PENGATURAN CHATBOT AI -->
-      <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2">
-          <span>🤖</span> Pengaturan Asisten AI (Chatbot)
-        </h2>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- SAKELAR SUB-PAGE GALERI -->
+      <div class="bg-amber-50 p-5 sm:p-7 rounded-2xl border-2 border-amber-300 space-y-4 shadow-sm">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-amber-200 pb-3">
           <div>
-            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Asisten AI</label>
-            <input type="text" id="cfg-bot_name" placeholder="Contoh: Alfin" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+            <h2 class="text-base font-bold text-amber-900 flex items-center gap-2"><span>🖼️</span> Mode Halaman Galeri Khusus</h2>
+            <p class="text-xs text-amber-700 mt-0.5">Aktifkan jika foto Anda banyak agar Landing Page utama tetap ringan.</p>
+          </div>
+          <select id="cfg-useSubGalleryPage" class="bg-amber-500 text-slate-900 font-bold px-4 py-2.5 rounded-xl text-xs outline-none border border-amber-600 shadow-md">
+            <option value="false">OFF (Semua Foto di Landing Page)</option>
+            <option value="true">ON (Gunakan Sub-Page Gallery.html)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-amber-900 uppercase mb-1">Judul Halaman Galeri Khusus</label>
+          <input type="text" id="cfg-galleryPageTitle" placeholder="Contoh: Galeri Eksklusif & Kategori Ruangan" class="w-full px-4 py-3 bg-white border border-amber-200 rounded-xl text-sm outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-amber-900 uppercase mb-1">Deskripsi Halaman Galeri Khusus</label>
+          <textarea id="cfg-galleryPageDesc" rows="2" placeholder="Contoh: Jelajahi seluruh sudut ruangan, fasilitas office building, interior, dan eksterior secara lengkap di sini." class="w-full px-4 py-3 bg-white border border-amber-200 rounded-xl text-sm outline-none"></textarea>
+        </div>
+      </div>
+
+      <!-- DAFTAR FOTO GALERI UNLIMITED -->
+      <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+        <div class="flex justify-between items-center border-b pb-3">
+          <div>
+            <h2 class="text-base font-bold text-slate-800">📸 Daftar Foto & Kategori (Portrait 9:16)</h2>
+            <p class="text-xs text-slate-400">Tambah foto tanpa batas. Bebas pilih kategori.</p>
+          </div>
+          <button type="button" onclick="addGalleryRow()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-1">
+            <span>+ Tambah Foto</span>
+          </button>
+        </div>
+
+        <div id="gallery-dynamic-list" class="space-y-3"></div>
+      </div>
+
+      <!-- CHATBOT AI -->
+      <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2"><span>🤖</span> Pengaturan Asisten AI (Chatbot)</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Bot</label>
+            <input type="text" id="cfg-bot_name" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Sapaan Utama</label>
-            <input type="text" id="cfg-salutation" placeholder="Contoh: Kak" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+            <input type="text" id="cfg-salutation" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
           </div>
         </div>
-
         <div>
-          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Knowledge Base (Pengetahuan Lingkungan & Fasilitas)</label>
-          <p class="text-[11px] text-slate-400 mb-2">Masukkan poin-poin penting seputar rumah, sekolah sekitar, RS, tol, dan keunggulan properti.</p>
-          <textarea id="cfg-knowledge_base" rows="7" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Knowledge Base (Catatan Pintar)</label>
+          <textarea id="cfg-knowledge_base" rows="6" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none"></textarea>
         </div>
-
         <div>
-          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Aturan Larangan Khusus (Custom Rules)</label>
-          <textarea id="cfg-custom_rules" rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Aturan Larangan Khusus</label>
+          <textarea id="cfg-custom_rules" rows="2" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none"></textarea>
         </div>
       </div>
 
-      <!-- TAB 4: GALERI FOTO (LINK DRIVE THUMBNAIL) -->
-      <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2">
-          <span>🖼️</span> Galeri Foto Properti (Link Google Drive)
-        </h2>
-        <div id="gallery-inputs" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <!-- Dynamically generated 1-16 inputs -->
-        </div>
-      </div>
-
-      <!-- FLOATING SUBMIT BUTTON -->
+      <!-- SUBMIT BUTTON -->
       <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-md border-t border-slate-200 z-50">
-        <div class="max-w-2xl mx-auto">
-          <button type="submit" id="btn-save" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 rounded-xl shadow-xl transition-all uppercase tracking-wider text-sm flex justify-center items-center gap-2">
-            <span>💾 SIMPAN & TERBITKAN LANDING PAGE</span>
+        <div class="max-w-3xl mx-auto">
+          <button type="submit" id="btn-save" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 rounded-xl shadow-xl transition-all uppercase tracking-wider text-sm">
+            💾 SIMPAN & TERBITKAN LANDING PAGE
           </button>
         </div>
       </div>
@@ -145,18 +152,32 @@
   <script>
     const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwaFo0vzNWxS2Jxe2vGXRVTp64IJk2muDFZjyVeIosam2XRjrOEtZwVSoykDuRLZmding/exec";
 
-    // Generate 16 Gallery Inputs
-    const galleryBox = document.getElementById('gallery-inputs');
-    for (let i = 1; i <= 16; i++) {
-      galleryBox.innerHTML += `
-        <div>
-          <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Foto Galeri ${i}</label>
-          <input type="text" id="cfg-gallery_${i}" placeholder="https://drive.google.com/..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs outline-none">
+    let galleryCounter = 0;
+
+    function addGalleryRow(url = "", category = "Interior") {
+      galleryCounter++;
+      const container = document.getElementById('gallery-dynamic-list');
+      const rowId = `gal-row-${galleryCounter}`;
+      
+      const rowHtml = `
+        <div id="${rowId}" class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row gap-2 items-center">
+          <div class="flex-1 w-full">
+            <input type="text" class="gal-url-input w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none" placeholder="Link Google Drive Foto..." title="Link Google Drive Foto ${galleryCounter}" aria-label="Link Google Drive Foto ${galleryCounter}" value="${url}">
+          </div>
+          <div class="w-full sm:w-44">
+            <select class="gal-cat-input w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none font-bold text-slate-700" title="Kategori Foto ${galleryCounter}" aria-label="Kategori Foto ${galleryCounter}">
+              <option value="Interior" ${category === "Interior" ? "selected" : ""}>Interior</option>
+              <option value="Eksterior" ${category === "Eksterior" ? "selected" : ""}>Eksterior</option>
+              <option value="Fasilitas/Office" ${category === "Fasilitas/Office" ? "selected" : ""}>Fasilitas/Office</option>
+              <option value="Lingkungan" ${category === "Lingkungan" ? "selected" : ""}>Lingkungan</option>
+            </select>
+          </div>
+          <button type="button" onclick="document.getElementById('${rowId}').remove()" class="text-red-500 hover:bg-red-50 px-3 py-2 rounded-lg text-xs font-bold w-full sm:w-auto text-center shrink-0">✕ Hapus</button>
         </div>
       `;
+      container.insertAdjacentHTML('beforeend', rowHtml);
     }
 
-    // Load Data Terkini dari Google Sheets saat Halaman Dibuka
     document.addEventListener("DOMContentLoaded", async function() {
       try {
         const res = await fetch(GAS_WEBHOOK_URL, {
@@ -168,35 +189,38 @@
         
         if (data.success && data.config) {
           const cfg = data.config;
+          const textFields = ["title", "price", "whatsappNumber", "address", "headline", "story", "videoUrl", "timelapseUrl", "latitude", "longitude", "bot_name", "salutation", "knowledge_base", "custom_rules", "useSubGalleryPage", "galleryPageTitle", "galleryPageDesc"];
           
-          // Populate Form Fields
-          const textFields = ["title", "price", "whatsappNumber", "address", "headline", "story", "videoUrl", "timelapseUrl", "latitude", "longitude", "bot_name", "salutation", "knowledge_base", "custom_rules"];
           textFields.forEach(f => {
-            if (document.getElementById('cfg-' + f) && cfg[f]) {
+            if (document.getElementById('cfg-' + f) && cfg[f] !== undefined) {
               document.getElementById('cfg-' + f).value = cfg[f];
             }
           });
 
-          // Populate Gallery Fields
           if (cfg.gallery && cfg.gallery.length > 0) {
-            cfg.gallery.forEach((url, idx) => {
-              const el = document.getElementById(`cfg-gallery_${idx + 1}`);
-              if (el) el.value = url;
+            cfg.gallery.forEach(item => {
+              if (typeof item === 'object') addGalleryRow(item.url, item.category);
+              else addGalleryRow(item, "Interior");
             });
+          } else {
+            addGalleryRow(); addGalleryRow(); addGalleryRow();
           }
         }
-      } catch (err) {
-        alert("Gagal memuat konfigurasi terkini dari server.");
-      }
+      } catch (err) { alert("Gagal memuat konfigurasi server."); }
     });
 
-    // Handle Submit Form
     document.getElementById('admin-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       const btn = document.getElementById('btn-save');
       const origText = btn.innerText;
-      btn.disabled = true;
-      btn.innerText = "⏳ MEMPROSES & MENYIMPAN...";
+      btn.disabled = true; btn.innerText = "⏳ MEMPROSES & MENYIMPAN...";
+
+      const galleryList = [];
+      document.querySelectorAll('#gallery-dynamic-list > div').forEach(row => {
+        const url = row.querySelector('.gal-url-input').value.trim();
+        const cat = row.querySelector('.gal-cat-input').value;
+        if (url) galleryList.push({ url: url, category: cat });
+      });
 
       const payload = {
         title: document.getElementById('cfg-title').value,
@@ -209,17 +233,15 @@
         timelapseUrl: document.getElementById('cfg-timelapseUrl').value,
         latitude: document.getElementById('cfg-latitude').value,
         longitude: document.getElementById('cfg-longitude').value,
+        useSubGalleryPage: document.getElementById('cfg-useSubGalleryPage').value,
+        galleryPageTitle: document.getElementById('cfg-galleryPageTitle').value,
+        galleryPageDesc: document.getElementById('cfg-galleryPageDesc').value,
         bot_name: document.getElementById('cfg-bot_name').value,
         salutation: document.getElementById('cfg-salutation').value,
         knowledge_base: document.getElementById('cfg-knowledge_base').value,
         custom_rules: document.getElementById('cfg-custom_rules').value,
-        gallery: []
+        gallery: galleryList
       };
-
-      for (let i = 1; i <= 16; i++) {
-        const val = document.getElementById(`cfg-gallery_${i}`).value.trim();
-        if (val) payload.gallery.push(val);
-      }
 
       try {
         const res = await fetch(GAS_WEBHOOK_URL, {
@@ -228,18 +250,10 @@
           body: JSON.stringify({ action: "saveAdminConfig", payload: payload })
         });
         const data = await res.json();
-
-        if (data.success) {
-          alert("🎉 BERHASIL! Landing page & AI Chatbot sudah ter-update secara instan!");
-        } else {
-          alert("Gagal menyimpan: " + data.error);
-        }
-      } catch (err) {
-        alert("Terjadi kesalahan koneksi saat menyimpan.");
-      } finally {
-        btn.disabled = false;
-        btn.innerText = origText;
-      }
+        if (data.success) alert("🎉 BERHASIL! Landing page & Galeri sudah ter-update secara instan!");
+        else alert("Gagal menyimpan: " + data.error);
+      } catch (err) { alert("Kesalahan koneksi."); } 
+      finally { btn.disabled = false; btn.innerText = origText; }
     });
   </script>
 </body>
