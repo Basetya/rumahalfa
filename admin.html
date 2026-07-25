@@ -16,7 +16,7 @@
     <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
       <div>
         <h1 class="text-xl font-bold">⚙️ Dashboard Pengaturan Properti</h1>
-        <p class="text-xs text-slate-400 mt-1">Ubah landing page, galeri foto, & AI Chatbot</p>
+        <p class="text-xs text-slate-400 mt-1">Ubah landing page, galeri foto, spesifikasi, & AI Chatbot</p>
       </div>
       <div class="flex gap-2 w-full sm:w-auto">
         <button type="button" onclick="undoConfig()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 w-full sm:w-auto justify-center">
@@ -64,6 +64,24 @@
         </div>
       </div>
 
+      <!-- INSPIRASI & TIMELAPSE -->
+      <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+        <div class="flex justify-between items-center border-b pb-3">
+          <h2 class="text-base font-bold text-slate-800 flex items-center gap-2"><span>💡</span> Teks Inspirasi & Video Timelapse</h2>
+          <button type="button" onclick="resetSection(['cfg-inspirationTitle','cfg-inspirationStory'])" class="text-xs text-red-500 hover:bg-red-50 px-3 py-1.5 rounded-lg font-bold border border-red-200">
+            🗑️ Kosongkan Teks
+          </button>
+        </div>
+        <div>
+          <label for="cfg-inspirationTitle" class="block text-xs font-bold text-slate-600 uppercase mb-1">Judul Inspirasi Renovasi</label>
+          <input type="text" id="cfg-inspirationTitle" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500">
+        </div>
+        <div>
+          <label for="cfg-inspirationStory" class="block text-xs font-bold text-slate-600 uppercase mb-1">Cerita Inspirasi Renovasi</label>
+          <textarea id="cfg-inspirationStory" rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+        </div>
+      </div>
+
       <!-- VIDEO & MAPS -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
         <div class="flex justify-between items-center border-b pb-3">
@@ -91,6 +109,65 @@
             <input type="text" id="cfg-longitude" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
           </div>
         </div>
+      </div>
+
+      <!-- TEKS SECTION GALERI -->
+      <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2"><span>📝</span> Teks Header Galeri</h2>
+        <div>
+          <label for="cfg-galleryTitle" class="block text-xs font-bold text-slate-600 uppercase mb-1">Judul Section Galeri</label>
+          <input type="text" id="cfg-galleryTitle" placeholder="Contoh: Galeri Arsitektur" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
+        </div>
+        <div>
+          <label for="cfg-gallerySubheadline" class="block text-xs font-bold text-slate-600 uppercase mb-1">Sub-Deskripsi Galeri (Teks Di Atas Foto)</label>
+          <textarea id="cfg-gallerySubheadline" rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none"></textarea>
+        </div>
+      </div>
+
+      <!-- SPESIFIKASI BANGUNAN -->
+      <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2"><span>🏗️</span> Spesifikasi Bangunan</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="spec-Legalitas" class="block text-xs font-bold text-slate-600 uppercase mb-1">Legalitas</label>
+            <input type="text" id="spec-Legalitas" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
+          </div>
+          <div>
+            <label for="spec-Luas Tanah" class="block text-xs font-bold text-slate-600 uppercase mb-1">Luas Tanah</label>
+            <input type="text" id="spec-Luas Tanah" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
+          </div>
+          <div>
+            <label for="spec-Luas Bangunan" class="block text-xs font-bold text-slate-600 uppercase mb-1">Luas Bangunan</label>
+            <input type="text" id="spec-Luas Bangunan" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
+          </div>
+          <div>
+            <label for="spec-Kamar Tidur" class="block text-xs font-bold text-slate-600 uppercase mb-1">Kamar Tidur</label>
+            <input type="text" id="spec-Kamar Tidur" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
+          </div>
+          <div>
+            <label for="spec-Kamar Mandi" class="block text-xs font-bold text-slate-600 uppercase mb-1">Kamar Mandi</label>
+            <input type="text" id="spec-Kamar Mandi" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
+          </div>
+          <div>
+            <label for="spec-Extra Space" class="block text-xs font-bold text-slate-600 uppercase mb-1">Extra Space</label>
+            <input type="text" id="spec-Extra Space" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
+          </div>
+          <div class="sm:col-span-2">
+            <label for="spec-Air & Listrik" class="block text-xs font-bold text-slate-600 uppercase mb-1">Air & Listrik</label>
+            <input type="text" id="spec-Air & Listrik" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
+          </div>
+        </div>
+      </div>
+
+      <!-- FASILITAS EKSKLUSIF (DYNAMIC LIST) -->
+      <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+        <div class="flex justify-between items-center border-b pb-3">
+          <h2 class="text-base font-bold text-slate-800 flex items-center gap-2"><span>✨</span> Fasilitas Eksklusif & Lingkungan</h2>
+          <button type="button" onclick="addFacilityRow()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-3.5 py-2 rounded-xl shadow-md transition-all">
+            + Tambah Fasilitas
+          </button>
+        </div>
+        <div id="facility-dynamic-list" class="space-y-3"></div>
       </div>
 
       <!-- SAKELAR SUB-PAGE GALERI -->
@@ -133,11 +210,9 @@
           </div>
         </div>
 
-        <!-- INPUT HIDDEN UNTUK KAMERA HP & GALERI -->
         <input type="file" id="camera-input" accept="image/*" capture="environment" class="hidden" onchange="handleFileSelect(event)">
         <input type="file" id="gallery-input" multiple accept="image/*" class="hidden" onchange="handleFileSelect(event)">
 
-        <!-- TOMBOL RAKSASA MOBILE FRIENDLY -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <button type="button" onclick="document.getElementById('camera-input').click()" class="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white p-4 rounded-2xl shadow-lg flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-95 border border-emerald-400">
             <span class="text-2xl">📷</span>
@@ -156,15 +231,12 @@
           </button>
         </div>
 
-        <!-- AREA DROPZONE LAPTOP/DESKTOP -->
         <div id="dropzone" onclick="document.getElementById('gallery-input').click()" class="hidden sm:block border-2 border-dashed border-amber-300 bg-amber-50/40 p-4 rounded-xl text-center cursor-pointer hover:bg-amber-100/50 transition-all">
           <p class="text-xs font-bold text-slate-700">Atau Seret (Drag & Drop) File Foto Langsung ke Sini</p>
         </div>
 
-        <!-- INDIKATOR LOADING UPLOAD -->
         <p id="upload-status" class="text-xs font-bold text-emerald-600 text-center bg-emerald-50 p-3 rounded-xl border border-emerald-200 hidden animate-pulse">⏳ Mengunggah foto ke Google Drive...</p>
 
-        <!-- DAFTAR FOTO TER-UPLOAD -->
         <div id="gallery-dynamic-list" class="space-y-3 pt-2"></div>
       </div>
 
@@ -204,10 +276,51 @@
   </div>
 
   <script>
-    // WEB APP WEBHOOK BACKEND TERBARU (100% VALID)
     const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwbtqI258xNMlwe94LXbF-jXkH7zDSnsd1e5-nUUE5TJKzxReFghyOVyYVwEVQ8FPQ7xw/exec";
 
     let galleryCounter = 0;
+    let facilityCounter = 0;
+
+    const DEFAULT_CONFIG = {
+      title: "Rumah Taman Alfa Indah",
+      price: "Rp 1.5 Milyar (Nego)",
+      whatsappNumber: "6287832219195",
+      address: "Taman Alfa Indah Blok H, Jakarta Selatan",
+      headline: "Ketenangan Hidup di Lokasi Emas. Bebas Banjir, Jauh di Bawah Harga Pasar.",
+      story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi: Kalau strategis, pasti mahal. Kalau murah, mungkin banjir.\n\nDi Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran yang Anda rasakan setiap musim hujan tiba, karena rumah ini terbukti 100% bebas banjir, bahkan saat banjir besar melanda Jakarta. Bayangkan kemudahan hidup saat Tol JORR, sekolah anak, hingga pusat perbelanjaan hanya berjarak beberapa menit dari pintu rumah Anda.\n\nDengan harga Rp 1.5 Milyar (di bawah harga pasaran saat ini), ini bukan sekadar tempat tinggal. Ini adalah aset perlindungan keluarga dan investasi cerdas yang sangat langka. Kesempatan ini tidak akan bertahan lama.",
+      inspirationTitle: "Miliki Kebebasan Mutlak untuk Membangun Rumah Impian Anda",
+      inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid (6x17) di Rumah Alfa Indah ini memberikan Anda keleluasaan untuk mendesain ruang hidup Anda sendiri sesuai impian Anda.\n\nTonton video ini : Lihat bagaimana bangunan ini memiliki potensi luar biasa untuk ditransformasikan menjadi karya arsitektur Modern Minimalis yang megah, bersih, dan berkelas dunia. Anda tidak sedang membeli rumah seken biasa—Anda sedang mengambil alih kendali penuh atas bagaimana masa depan kenyamanan keluarga Anda diwujudkan. Jangan beli selera orang lain, ciptakan kemewahan Anda sendiri di sini.",
+      galleryTitle: "Galeri Arsitektur",
+      gallerySubheadline: "Kabar baiknya, Anda tidak harus merombak semuanya dari nol. Struktur bangunan asli saat ini sudah sangat kokoh. Cukup dengan renovasi ringan seperti perbaikan lantai dan pengecatan ulang, rumah ini sudah siap bertransformasi menjadi hunian yang indah dan nyaman tanpa biaya besar. Jelajahi potensi tata letak ruang bagian dalam rumah melalui galeri foto di bawah ini:",
+      videoUrl: "https://www.youtube.com/embed/4sB6KoX98m0?cc_load_policy=0",
+      timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?autoplay=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
+      latitude: "-6.224486290732541",
+      longitude: "106.75084911701877",
+      bot_name: "Alfin",
+      salutation: "Kak",
+      knowledge_base: "Rumah di Taman Alfa Indah Blok H, Jakarta Selatan. Bebas banjir 100%, SHM, LT 102m2, LB 82m2. Harga 1.5 Milyar nego.",
+      custom_rules: "DILARANG KERAS MENGGUNAKAN KATA: 'kamu', 'Anda', 'Bapak', 'Ibu'.",
+      useSubGalleryPage: "false",
+      galleryPageTitle: "Galeri Foto Ruangan",
+      galleryPageDesc: "Jelajahi setiap sudut keindahan arsitektur dan fasilitas properti secara lengkap di bawah ini.",
+      facilities: [
+        "Zero Anxiety: 100% Bebas Banjir & Diapit 2 Pos Polisi (Aman 24 Jam)",
+        "Komersial Kompleks: HERO Supermarket, McD 24 Jam & Alfamart 24 Jam di Gerbang Utama",
+        "Olahraga & Lifestyle: Kolam Renang & Gym/Fitness Center Resmi di Dalam Kompleks",
+        "Pendidikan Lengkap: HighScope, SIT Citra Az-Zahra, Petra Alpha & Kumon Dalam Kompleks",
+        "High Mobility: 3-5 Menit ke Gerbang Tol JORR Joglo & TransJakarta 8M",
+        "Healthcare & Banking: RSIA Mahati 24 Jam, Klinik, & 6 Bank Major di Jl. Joglo Raya"
+      ],
+      specs: {
+        "Legalitas": "SHM (Sertifikat Hak Milik) - Aman & Valid",
+        "Luas Tanah": "102 m² (Dimensi Ideal 6x17)",
+        "Luas Bangunan": "82 m² (2 Lantai Kokoh Dinding Bata Merah Pejal)",
+        "Kamar Tidur": "3 + 1 (Cocok untuk keluarga berkembang)",
+        "Kamar Mandi": "2 + 1",
+        "Extra Space": "Gudang Penyimpanan Terpisah & Carport",
+        "Air & Listrik": "Air Jetpump Jernih + PAM Jaya / Listrik 2200 VA"
+      }
+    };
 
     function addGalleryRow(url = "", category = "Interior") {
       galleryCounter++;
@@ -234,26 +347,32 @@
       container.insertAdjacentHTML('beforeend', rowHtml);
     }
 
-    /* --- DRAG & DROP DESKTOP EVENTS --- */
+    function addFacilityRow(text = "") {
+      facilityCounter++;
+      const container = document.getElementById('facility-dynamic-list');
+      const rowId = `fac-row-${facilityCounter}`;
+      const rowHtml = `
+        <div id="${rowId}" class="flex gap-2 items-center">
+          <input type="text" class="fac-input flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none" placeholder="Contoh: Bebas Banjir 100%" value="${text}">
+          <button type="button" onclick="document.getElementById('${rowId}').remove()" class="text-red-500 hover:bg-red-50 px-3 py-2 rounded-lg text-xs font-bold">✕</button>
+        </div>
+      `;
+      container.insertAdjacentHTML('beforeend', rowHtml);
+    }
+
     const dropzone = document.getElementById('dropzone');
     if (dropzone) {
       ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         dropzone.addEventListener(eventName, preventDefaults, false);
       });
-
       ['dragenter', 'dragover'].forEach(eventName => dropzone.addEventListener(eventName, () => dropzone.classList.add('bg-amber-200/80'), false));
       ['dragleave', 'drop'].forEach(eventName => dropzone.addEventListener(eventName, () => dropzone.classList.remove('bg-amber-200/80'), false));
-
       dropzone.addEventListener('drop', (e) => uploadFiles(e.dataTransfer.files), false);
     }
 
     function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+    function handleFileSelect(e) { uploadFiles(e.target.files); }
 
-    function handleFileSelect(e) {
-      uploadFiles(e.target.files);
-    }
-
-    /* --- FUNGSI UPLOAD FOTO DARI HP/DESKTOP --- */
     async function uploadFiles(files) {
       if (!files || files.length === 0) return;
       const statusEl = document.getElementById('upload-status');
@@ -278,20 +397,16 @@
             })
           });
           const data = await res.json();
-
           if (data.success && data.fileUrl) {
             addGalleryRow(data.fileUrl, "Interior");
           } else {
             alert("Gagal mengunggah " + file.name + ": " + data.error);
           }
-        } catch (err) {
-          alert("Gagal koneksi upload: " + err.message);
-        }
+        } catch (err) { alert("Gagal koneksi upload: " + err.message); }
       }
 
-      statusEl.innerText = "✅ Foto berhasil diunggah ke Google Drive!";
-      setTimeout(() => statusEl.classList.add('hidden'), 4000);
-      
+      statusEl.innerText = "✅ Foto berhasil diunggah! Klik SIMPAN DI BAWAH untuk menerbitkan.";
+      setTimeout(() => statusEl.classList.add('hidden'), 5000);
       document.getElementById('camera-input').value = "";
       document.getElementById('gallery-input').value = "";
     }
@@ -320,6 +435,7 @@
     }
 
     async function loadData() {
+      let cfg = DEFAULT_CONFIG;
       try {
         const res = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
@@ -327,26 +443,41 @@
           body: JSON.stringify({ action: "getSaasConfig" })
         });
         const data = await res.json();
-        
         if (data.success && data.config) {
-          const cfg = data.config;
-          const textFields = ["title", "price", "whatsappNumber", "address", "headline", "story", "videoUrl", "timelapseUrl", "latitude", "longitude", "bot_name", "salutation", "knowledge_base", "custom_rules", "useSubGalleryPage", "galleryPageTitle", "galleryPageDesc"];
-          
-          textFields.forEach(f => {
-            if (document.getElementById('cfg-' + f) && cfg[f] !== undefined) {
-              document.getElementById('cfg-' + f).value = cfg[f];
-            }
-          });
-
-          document.getElementById('gallery-dynamic-list').innerHTML = "";
-          if (cfg.gallery && cfg.gallery.length > 0) {
-            cfg.gallery.forEach(item => {
-              if (typeof item === 'object') addGalleryRow(item.url, item.category);
-              else addGalleryRow(item, "Interior");
-            });
-          }
+          cfg = Object.assign({}, DEFAULT_CONFIG, data.config);
         }
-      } catch (err) { alert("Gagal memuat konfigurasi server."); }
+      } catch (err) { 
+        console.log("Memakai data default lokal."); 
+      }
+
+      // Populate text inputs
+      const textFields = ["title", "price", "whatsappNumber", "address", "headline", "story", "inspirationTitle", "inspirationStory", "galleryTitle", "gallerySubheadline", "videoUrl", "timelapseUrl", "latitude", "longitude", "bot_name", "salutation", "knowledge_base", "custom_rules", "useSubGalleryPage", "galleryPageTitle", "galleryPageDesc"];
+      
+      textFields.forEach(f => {
+        const el = document.getElementById('cfg-' + f);
+        if (el) el.value = (cfg[f] !== undefined && cfg[f] !== "") ? cfg[f] : (DEFAULT_CONFIG[f] || "");
+      });
+
+      // Populate specs
+      const specsData = cfg.specs || DEFAULT_CONFIG.specs;
+      for (let k in DEFAULT_CONFIG.specs) {
+        const el = document.getElementById('spec-' + k);
+        if (el) el.value = specsData[k] || DEFAULT_CONFIG.specs[k];
+      }
+
+      // Populate facilities
+      document.getElementById('facility-dynamic-list').innerHTML = "";
+      const facsData = (cfg.facilities && cfg.facilities.length > 0) ? cfg.facilities : DEFAULT_CONFIG.facilities;
+      facsData.forEach(fac => addFacilityRow(fac));
+
+      // Populate gallery
+      document.getElementById('gallery-dynamic-list').innerHTML = "";
+      if (cfg.gallery && cfg.gallery.length > 0) {
+        cfg.gallery.forEach(item => {
+          if (typeof item === 'object') addGalleryRow(item.url, item.category);
+          else addGalleryRow(item, "Interior");
+        });
+      }
     }
 
     async function undoConfig() {
@@ -384,6 +515,17 @@
         }
       });
 
+      const specsObj = {};
+      document.querySelectorAll('.spec-input').forEach(input => {
+        const key = input.id.replace('spec-', '');
+        specsObj[key] = input.value.trim();
+      });
+
+      const facList = [];
+      document.querySelectorAll('.fac-input').forEach(input => {
+        if (input.value.trim()) facList.push(input.value.trim());
+      });
+
       const payload = {
         title: document.getElementById('cfg-title').value,
         price: document.getElementById('cfg-price').value,
@@ -391,6 +533,10 @@
         address: document.getElementById('cfg-address').value,
         headline: document.getElementById('cfg-headline').value,
         story: document.getElementById('cfg-story').value,
+        inspirationTitle: document.getElementById('cfg-inspirationTitle').value,
+        inspirationStory: document.getElementById('cfg-inspirationStory').value,
+        galleryTitle: document.getElementById('cfg-galleryTitle').value,
+        gallerySubheadline: document.getElementById('cfg-gallerySubheadline').value,
         videoUrl: document.getElementById('cfg-videoUrl').value,
         timelapseUrl: document.getElementById('cfg-timelapseUrl').value,
         latitude: document.getElementById('cfg-latitude').value,
@@ -402,7 +548,9 @@
         salutation: document.getElementById('cfg-salutation').value,
         knowledge_base: document.getElementById('cfg-knowledge_base').value,
         custom_rules: document.getElementById('cfg-custom_rules').value,
-        gallery: galleryList
+        gallery: galleryList,
+        specs: specsObj,
+        facilities: facList
       };
 
       try {
