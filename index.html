@@ -45,7 +45,7 @@
     @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(197, 168, 128, 0); } 100% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0); } }
     .btn-alfin-pulse { animation: pulse-gold 2s infinite; }
     .img-hover-zoom { transition: transform 0.7s ease; }
-    .overflow-hidden:hover .img-hover-zoom { transform: scale(1.05); }
+    .overflow-hidden:hover .img-hover-zoom { transform: scale(1.03); }
 
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -109,7 +109,7 @@
     </div>
   </section>
 
-  <!-- GALLERY SECTION -->
+  <!-- GALLERY SECTION (FLEXIBLE MASONRY GRID - NO CROP, 100% UTUH) -->
   <section class="py-16 sm:py-24 bg-[#fafafa]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
@@ -118,7 +118,7 @@
       </div>
       
       <div id="gallery-container-wrapper">
-        <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+        <div id="gallery-container" class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6"></div>
         <div id="sub-gallery-btn-wrapper"></div>
       </div>
     </div>
@@ -143,7 +143,7 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
       <div class="text-center mb-12 sm:mb-16">
         <span class="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
           Simulasi Finansial
         </span>
         <h3 class="font-serif text-3xl sm:text-4xl text-dark font-bold mb-4">Simulasi KPR Interaktif</h3>
@@ -274,7 +274,7 @@
               <p class="text-[10px] text-gray-400 mt-1">*Berdasarkan kecepatan mobil rata-rata (±16 km/jam)</p>
             </div>
             <a href="#" id="res-link" target="_blank" class="bg-gold-500 hover:bg-gold-600 text-white px-5 py-3 rounded-xl text-xs font-bold flex items-center gap-2 transition-all shadow-md text-left w-full md:w-auto md:max-w-[200px]">
-              <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5-2.5 2.5z"/></svg>
+              <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
               Klik untuk rute, jarak dan waktu tempuh yg akurat
             </a>
           </div>
@@ -355,7 +355,6 @@
   </div>
 
   <script>
-    // WEB APP WEBHOOK BACKEND TERBARU (100% VALID)
     const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwbtqI258xNMlwe94LXbF-jXkH7zDSnsd1e5-nUUE5TJKzxReFghyOVyYVwEVQ8FPQ7xw/exec";
 
     let PROPERTY_CONFIG = {
@@ -391,24 +390,7 @@
         "Extra Space": "Gudang Penyimpanan Terpisah & Carport",
         "Air & Listrik": "Air Jetpump Jernih + PAM Jaya / Listrik 2200 VA"
       },
-      gallery: [
-        "https://drive.google.com/thumbnail?id=1Iebn9nOu4M87PpJpkcrjTqRbuE_HnnBy",
-        "https://drive.google.com/thumbnail?id=11K0N1w8BY4LcbTJHWCk4e1Bq_clWZBxd", 
-        "https://drive.google.com/thumbnail?id=1sup_MVr3HgJuDwfVDZzM8_ugUgbbvywF",
-        "https://drive.google.com/thumbnail?id=1xpScZOjxk0gczViGU0_JmBKqSS0u2FvA",
-        "https://drive.google.com/thumbnail?id=12m3nYf9XYrtPpu7f-jcluIjoQ9TpMsET",
-        "https://drive.google.com/thumbnail?id=1Oh8OCplEMrmjP25Nz25NpTI-1K0BPQth",
-        "https://drive.google.com/thumbnail?id=1RS6nmGZ57N-FRvs9omL9RhOUvxwaxl2b",
-        "https://drive.google.com/thumbnail?id=1eazuJSSHyfmQhL1_yqBwqsT0VlGOWGLG",
-        "https://drive.google.com/thumbnail?id=1_GXAF05eMradLCVdOxvxBBLE9Pj0rQOL",
-        "https://drive.google.com/thumbnail?id=112QUaOY2kVZmWirvW2yiiZnwqsL-Ahe_",
-        "https://drive.google.com/thumbnail?id=18Duqgid5a8gvtFVGvPXFxWSEb0oMshpZ",
-        "https://drive.google.com/thumbnail?id=19N0ssPMsy8D3vtS6upFtEKdRctFT_ePT",
-        "https://drive.google.com/thumbnail?id=13Dx2w9Uu9Il4sNFWupGqXOSiQ-UUzEoB",
-        "https://drive.google.com/thumbnail?id=1xbxNPufN-j4gdxjxTP4pPdazvaH1wiaO",
-        "https://drive.google.com/thumbnail?id=1WkU6JAImB8CJmNMOsHvqEIwD89IBNixD",
-        "https://drive.google.com/thumbnail?id=1R2ZFei25je8DoTWvEG4Y4rR2iNTgCLsW"
-      ]
+      gallery: []
     };
 
     let chatMemory = [];
@@ -505,13 +487,13 @@
         document.getElementById('hero-section').style.backgroundImage = `url('${firstImg}')`;
       }
       
-      // RENDER GALERI MEMANJANG TANPA BATAS (INFINITE 9:16 PORTRAIT)
+      // RENDER MASONRY GALERI (FOTO TAMPIL 100% UTUH BEBAS CROP)
       const gallery = document.getElementById('gallery-container');
       const btnWrapper = document.getElementById('sub-gallery-btn-wrapper');
       gallery.innerHTML = '';
       btnWrapper.innerHTML = '';
 
-      gallery.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6";
+      gallery.className = "columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6";
 
       const isSubPageActive = (config.useSubGalleryPage === "true" || config.useSubGalleryPage === true);
       const totalPhotos = config.gallery ? config.gallery.length : 0;
@@ -522,8 +504,8 @@
         const url = (typeof item === 'object') ? item.url : item;
         if (url) {
           gallery.innerHTML += `
-            <div class="overflow-hidden rounded-2xl shadow-lg aspect-[9/16] bg-gray-200 relative group border border-gray-200">
-              <img src="${url}" alt="Foto Galeri ${i + 1}" title="Foto Galeri ${i + 1}" class="w-full h-full object-cover img-hover-zoom" loading="lazy">
+            <div class="break-inside-avoid overflow-hidden rounded-2xl shadow-lg bg-gray-100 relative group border border-gray-200">
+              <img src="${url}" alt="Foto Galeri ${i + 1}" title="Foto Galeri ${i + 1}" class="w-full h-auto block img-hover-zoom" loading="lazy">
             </div>
           `;
         }
