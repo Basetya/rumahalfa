@@ -109,11 +109,11 @@
     </div>
   </section>
 
-  <!-- GALLERY SECTION (FRAME FIXED 9:16 - NO CROP CONTAIN) -->
+  <!-- GALLERY SECTION -->
   <section class="py-16 sm:py-24 bg-[#fafafa]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-        <h3 class="font-serif text-3xl sm:text-4xl text-dark mb-4">Galeri Arsitektur</h3>
+        <h3 id="prop-gallery-title" class="font-serif text-3xl sm:text-4xl text-dark mb-4">Galeri Arsitektur</h3>
         <p id="prop-gallery-sub" class="text-gray-500 text-base sm:text-lg">...</p>
       </div>
       
@@ -143,7 +143,7 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
       <div class="text-center mb-12 sm:mb-16">
         <span class="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
           Simulasi Finansial
         </span>
         <h3 class="font-serif text-3xl sm:text-4xl text-dark font-bold mb-4">Simulasi KPR Interaktif</h3>
@@ -371,6 +371,7 @@
       inspirationTitle: "Miliki Kebebasan Mutlak untuk Membangun Rumah Impian Anda",
       inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid (6x17) di Rumah Alfa Indah ini memberikan Anda keleluasaan untuk mendesain ruang hidup Anda sendiri sesuai impian Anda.\n\nTonton video ini : Lihat bagaimana bangunan ini memiliki potensi luar biasa untuk ditransformasikan menjadi karya arsitektur Modern Minimalis yang megah, bersih, dan berkelas dunia. Anda tidak sedang membeli rumah seken biasa—Anda sedang mengambil alih kendali penuh atas bagaimana masa depan kenyamanan keluarga Anda diwujudkan. Jangan beli selera orang lain, ciptakan kemewahan Anda sendiri di sini.",
       timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?autoplay=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
+      galleryTitle: "Galeri Arsitektur",
       gallerySubheadline: "Kabar baiknya, Anda tidak harus merombak semuanya dari nol. Struktur bangunan asli saat ini sudah sangat kokoh. Cukup dengan renovasi ringan seperti perbaikan lantai dan pengecatan ulang, rumah ini sudah siap bertransformasi menjadi hunian yang indah dan nyaman tanpa biaya besar. Jelajahi potensi tata letak ruang bagian dalam rumah melalui galeri foto di bawah ini:",
       useSubGalleryPage: "false",
       facilities: [
@@ -460,9 +461,9 @@
       document.getElementById('prop-address').innerText = config.address || '';
       document.getElementById('prop-inspiration-title').innerText = config.inspirationTitle || '';
       document.getElementById('prop-inspiration-story').innerText = config.inspirationStory || '';
+      document.getElementById('prop-gallery-title').innerText = config.galleryTitle || 'Galeri Arsitektur';
       document.getElementById('prop-gallery-sub').innerText = config.gallerySubheadline || '';
       
-      // AUTO HIDE SECTION JIKA VIDEO DIKOSONGKAN
       const videoIframe = document.getElementById('prop-video');
       if (config.videoUrl && config.videoUrl.trim().length > 5) {
         videoIframe.src = config.videoUrl;
@@ -487,7 +488,6 @@
         document.getElementById('hero-section').style.backgroundImage = `url('${firstImg}')`;
       }
       
-      // RENDER GALERI FRAME FIXED 9:16 - NO CROP CONTAIN (FOTO UTUH TANPA TERPOTONG)
       const gallery = document.getElementById('gallery-container');
       const btnWrapper = document.getElementById('sub-gallery-btn-wrapper');
       gallery.innerHTML = '';
