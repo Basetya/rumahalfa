@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - SaaS Properti</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f4f6f8; }
+  </style>
+</head>
+<body class="p-4 sm:p-8 pb-28 antialiased">
+
+  <div class="max-w-2xl mx-auto">
+    
+    <!-- HEADER -->
+    <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg mb-6 flex justify-between items-center">
+      <div>
+        <h1 class="text-xl font-bold">⚙️ Dashboard Pengaturan</h1>
+        <p class="text-xs text-slate-400 mt-1">Ubah landing page & AI Chatbot dengan mudah</p>
+      </div>
+      <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase border border-emerald-500/30">SaaS Active</span>
+    </div>
+
+    <form id="admin-form" class="space-y-6">
+
+      <!-- TAB 1: INFORMASI PROPERTI UTAMA -->
+      <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2">
+          <span>🏡</span> Informasi Utama Properti
+        </h2>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Judul Properti</label>
+          <input type="text" id="cfg-title" placeholder="Contoh: Rumah Taman Alfa Indah" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Harga Penawaran</label>
+            <input type="text" id="cfg-price" placeholder="Contoh: Rp 1.5 Milyar (Nego)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nomor WhatsApp (Aktif)</label>
+            <input type="text" id="cfg-whatsappNumber" placeholder="Contoh: 6287832219195" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Alamat Lengkap</label>
+          <input type="text" id="cfg-address" placeholder="Contoh: Taman Alfa Indah Blok H, Jakarta Selatan" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Headline Utama (Text Besar)</label>
+          <textarea id="cfg-headline" rows="2" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Cerita & Deskripsi Properti (The Story)</label>
+          <textarea id="cfg-story" rows="5" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+        </div>
+      </div>
+
+      <!-- TAB 2: LINK MEDIA (FOTO & VIDEO) -->
+      <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2">
+          <span>🎬</span> Link Video Tour & Peta
+        </h2>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Link Embed YouTube Video Main Tour</label>
+          <input type="text" id="cfg-videoUrl" placeholder="https://www.youtube.com/embed/..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Link Embed YouTube Shorts / Timelapse (9:16)</label>
+          <input type="text" id="cfg-timelapseUrl" placeholder="https://www.youtube.com/embed/..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Latitude Peta</label>
+            <input type="text" id="cfg-latitude" placeholder="-6.224486" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Longitude Peta</label>
+            <input type="text" id="cfg-longitude" placeholder="106.750849" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none">
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: OTAR / PENGATURAN CHATBOT AI -->
+      <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2">
+          <span>🤖</span> Pengaturan Asisten AI (Chatbot)
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Asisten AI</label>
+            <input type="text" id="cfg-bot_name" placeholder="Contoh: Alfin" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Sapaan Utama</label>
+            <input type="text" id="cfg-salutation" placeholder="Contoh: Kak" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Knowledge Base (Pengetahuan Lingkungan & Fasilitas)</label>
+          <p class="text-[11px] text-slate-400 mb-2">Masukkan poin-poin penting seputar rumah, sekolah sekitar, RS, tol, dan keunggulan properti.</p>
+          <textarea id="cfg-knowledge_base" rows="7" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Aturan Larangan Khusus (Custom Rules)</label>
+          <textarea id="cfg-custom_rules" rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+        </div>
+      </div>
+
+      <!-- TAB 4: GALERI FOTO (LINK DRIVE THUMBNAIL) -->
+      <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2">
+          <span>🖼️</span> Galeri Foto Properti (Link Google Drive)
+        </h2>
+        <div id="gallery-inputs" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Dynamically generated 1-16 inputs -->
+        </div>
+      </div>
+
+      <!-- FLOATING SUBMIT BUTTON -->
+      <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-md border-t border-slate-200 z-50">
+        <div class="max-w-2xl mx-auto">
+          <button type="submit" id="btn-save" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 rounded-xl shadow-xl transition-all uppercase tracking-wider text-sm flex justify-center items-center gap-2">
+            <span>💾 SIMPAN & TERBITKAN LANDING PAGE</span>
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwaFo0vzNWxS2Jxe2vGXRVTp64IJk2muDFZjyVeIosam2XRjrOEtZwVSoykDuRLZmding/exec";
+
+    // Generate 16 Gallery Inputs
+    const galleryBox = document.getElementById('gallery-inputs');
+    for (let i = 1; i <= 16; i++) {
+      galleryBox.innerHTML += `
+        <div>
+          <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Foto Galeri ${i}</label>
+          <input type="text" id="cfg-gallery_${i}" placeholder="https://drive.google.com/..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs outline-none">
+        </div>
+      `;
+    }
+
+    // Load Data Terkini dari Google Sheets saat Halaman Dibuka
+    document.addEventListener("DOMContentLoaded", async function() {
+      try {
+        const res = await fetch(GAS_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: "getSaasConfig" })
+        });
+        const data = await res.json();
+        
+        if (data.success && data.config) {
+          const cfg = data.config;
+          
+          // Populate Form Fields
+          const textFields = ["title", "price", "whatsappNumber", "address", "headline", "story", "videoUrl", "timelapseUrl", "latitude", "longitude", "bot_name", "salutation", "knowledge_base", "custom_rules"];
+          textFields.forEach(f => {
+            if (document.getElementById('cfg-' + f) && cfg[f]) {
+              document.getElementById('cfg-' + f).value = cfg[f];
+            }
+          });
+
+          // Populate Gallery Fields
+          if (cfg.gallery && cfg.gallery.length > 0) {
+            cfg.gallery.forEach((url, idx) => {
+              const el = document.getElementById(`cfg-gallery_${idx + 1}`);
+              if (el) el.value = url;
+            });
+          }
+        }
+      } catch (err) {
+        alert("Gagal memuat konfigurasi terkini dari server.");
+      }
+    });
+
+    // Handle Submit Form
+    document.getElementById('admin-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btn-save');
+      const origText = btn.innerText;
+      btn.disabled = true;
+      btn.innerText = "⏳ MEMPROSES & MENYIMPAN...";
+
+      const payload = {
+        title: document.getElementById('cfg-title').value,
+        price: document.getElementById('cfg-price').value,
+        whatsappNumber: document.getElementById('cfg-whatsappNumber').value,
+        address: document.getElementById('cfg-address').value,
+        headline: document.getElementById('cfg-headline').value,
+        story: document.getElementById('cfg-story').value,
+        videoUrl: document.getElementById('cfg-videoUrl').value,
+        timelapseUrl: document.getElementById('cfg-timelapseUrl').value,
+        latitude: document.getElementById('cfg-latitude').value,
+        longitude: document.getElementById('cfg-longitude').value,
+        bot_name: document.getElementById('cfg-bot_name').value,
+        salutation: document.getElementById('cfg-salutation').value,
+        knowledge_base: document.getElementById('cfg-knowledge_base').value,
+        custom_rules: document.getElementById('cfg-custom_rules').value,
+        gallery: []
+      };
+
+      for (let i = 1; i <= 16; i++) {
+        const val = document.getElementById(`cfg-gallery_${i}`).value.trim();
+        if (val) payload.gallery.push(val);
+      }
+
+      try {
+        const res = await fetch(GAS_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: "saveAdminConfig", payload: payload })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          alert("🎉 BERHASIL! Landing page & AI Chatbot sudah ter-update secara instan!");
+        } else {
+          alert("Gagal menyimpan: " + data.error);
+        }
+      } catch (err) {
+        alert("Terjadi kesalahan koneksi saat menyimpan.");
+      } finally {
+        btn.disabled = false;
+        btn.innerText = origText;
+      }
+    });
+  </script>
+</body>
+</html>
