@@ -31,14 +31,17 @@
 
   <div class="max-w-3xl mx-auto">
     
-    <!-- HEADER -->
+    <!-- HEADER DENGAN TOMBOL UNDO & LOCK SESSION -->
     <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
       <div>
         <h1 class="text-xl font-bold">⚙️ Dashboard Pengaturan Properti</h1>
         <p class="text-xs text-slate-400 mt-1">Kelola foto, spesifikasi, dan data landing page</p>
       </div>
-      <div class="flex gap-2 w-full sm:w-auto">
-        <button type="button" onclick="logoutAdmin()" class="bg-red-500 hover:bg-red-600 text-white font-bold px-3 py-2 rounded-xl text-xs shadow-md">
+      <div class="flex flex-wrap gap-2 w-full sm:w-auto">
+        <button type="button" onclick="triggerUndo()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-3 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1">
+          ↩️ UNDO VERSI SEBELUMNYA
+        </button>
+        <button type="button" onclick="logoutAdmin()" class="bg-red-500 hover:bg-red-600 text-white font-bold px-3 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1">
           🔒 Lock Session
         </button>
       </div>
@@ -83,9 +86,9 @@
         </div>
       </div>
 
-      <!-- 2. INSPIRASI RENOVASI & VIDEO -->
+      <!-- 2. INSPIRASI RENOVASI, VIDEO & AUDIO BGM -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-        <h2 class="text-base font-bold text-slate-800 border-b pb-3">🎬 Video & Inspirasi Renovasi</h2>
+        <h2 class="text-base font-bold text-slate-800 border-b pb-3">🎬 Video, Inspirasi Renovasi & BGM</h2>
         
         <div>
           <label class="block text-xs font-bold text-slate-600 mb-1">Judul Inspirasi Renovasi</label>
@@ -107,14 +110,26 @@
             <input type="text" id="cfg-timelapseUrl" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500">
           </div>
         </div>
+
+        <!-- PENGATURAN BGM & VOLUME -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t">
+          <div>
+            <label class="block text-xs font-bold text-slate-600 mb-1">URL Audio Music (BGM)</label>
+            <input type="text" id="cfg-bgmUrl" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500" placeholder="assets/audio/bg-music.mp3">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-600 mb-1">Volume BGM (0.1 - 1.0)</label>
+            <input type="number" step="0.1" min="0" max="1" id="cfg-bgm_volume" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500" placeholder="0.3">
+          </div>
+        </div>
       </div>
 
-      <!-- 3. GALERI FOTO PROPERTI -->
+      <!-- 3. GALERI FOTO PROPERTI (DENGAN TOMBOL DESKTOP, KAMERA & MANUAL) -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b pb-3">
           <div>
             <h2 class="text-base font-bold text-slate-800">📸 Galeri Foto Properti</h2>
-            <p class="text-xs text-slate-400">Masukkan Link Direct Foto Google Drive (Sertakan `=s1920` di akhir link)</p>
+            <p class="text-xs text-slate-400">Jepret dari Kamera, upload Desktop, atau tempel Link Drive</p>
           </div>
           <div class="flex gap-2">
             <button type="button" onclick="clearAllPhotos()" class="text-xs text-red-500 hover:bg-red-50 px-3 py-2 rounded-xl font-bold border border-red-200">
@@ -125,6 +140,31 @@
             </button>
           </div>
         </div>
+
+        <!-- INPUT FILE TERSEMBUNYI UNTUK DESKTOP & KAMERA -->
+        <input type="file" id="desktop-file-input" multiple accept="image/*" class="hidden" onchange="handleFileSelect(event)">
+        <input type="file" id="camera-file-input" accept="image/*" capture="environment" class="hidden" onchange="handleFileSelect(event)">
+
+        <!-- TOMBOL PILIHAN UPLOAD -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button type="button" onclick="document.getElementById('camera-file-input').click()" class="bg-emerald-600 hover:bg-emerald-700 text-white p-4 rounded-xl shadow-md flex items-center justify-center gap-2 transition-all">
+            <span class="text-2xl">📷</span>
+            <div class="text-left">
+              <span class="block text-xs font-bold uppercase">Foto Langsung</span>
+              <span class="block text-[10px] opacity-80">Jepret via Kamera HP</span>
+            </div>
+          </button>
+
+          <button type="button" onclick="document.getElementById('desktop-file-input').click()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 p-4 rounded-xl shadow-md flex items-center justify-center gap-2 transition-all">
+            <span class="text-2xl">📂</span>
+            <div class="text-left">
+              <span class="block text-xs font-bold uppercase">Pilih Dari Desktop</span>
+              <span class="block text-[10px] opacity-80">Folder PC / Laptop</span>
+            </div>
+          </button>
+        </div>
+
+        <p id="upload-status" class="text-xs font-bold text-emerald-600 text-center bg-emerald-50 p-2.5 rounded-xl border border-emerald-200 hidden">⏳ Memproses foto...</p>
 
         <div id="gallery-dynamic-list" class="space-y-3 pt-2"></div>
       </div>
@@ -167,7 +207,6 @@
     let galleryCounter = 0;
     let currentAdminPassword = "";
 
-    // DATA DEFAULT HARDCODED (LANGSUNG MENGISI KETIKA ADMIN DIBUKA)
     const DEFAULT_ADMIN_DATA = {
       title: "Rumah Taman Alfa Indah",
       price: "Rp 1.5 Milyar (Nego)",
@@ -179,6 +218,8 @@
       inspirationStory: "Struktur bangunan yang kokoh dari bata merah pejal memberi fondasi sempurna jika Anda ingin merenovasi atau mengadopsi gaya Modern Minimalis Impian.",
       videoUrl: "https://www.youtube.com/embed/4sB6KoX98m0",
       timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI",
+      bgmUrl: "assets/audio/bg-music.mp3",
+      bgm_volume: 0.3,
       bot_name: "Alfin",
       salutation: "Bapak/Ibu/Kakak",
       knowledge_base: "Rumah di Taman Alfa Indah Blok H, Jakarta Selatan. Bebas banjir 100%. Luas Tanah 102m2, Luas Bangunan 82m2, 2 lantai, 3+1 Kamar Tidur, 2+1 Kamar Mandi, SHM, Listrik 2200 VA, Air Jetpump/PAM."
@@ -209,6 +250,24 @@
     function logoutAdmin() {
       sessionStorage.removeItem('admin_session_pass');
       location.reload();
+    }
+
+    async function triggerUndo() {
+      if (!confirm("Apakah Anda yakin ingin mengembalikan data ke versi cadangan sebelumnya?")) return;
+      try {
+        const res = await fetch(GAS_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: "undoAdminConfig", password: currentAdminPassword })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert("🎉 BERHASIL! Data telah dikembalikan ke versi sebelumnya.");
+          loadData();
+        } else {
+          alert("Gagal Undo: " + (data.error || "Tidak ada data cadangan."));
+        }
+      } catch (err) { alert("Terjadi kesalahan koneksi."); }
     }
 
     function addGalleryRow(url = "", category = "Interior") {
@@ -242,6 +301,12 @@
       }
     }
 
+    function handleFileSelect(e) {
+      const files = e.target.files;
+      if (!files || files.length === 0) return;
+      alert("Catatan: Upload file lokal memerlukan akses backend GAS aktif. Disarankan menggunakan Link Direct Google Drive (+ Link Manual) agar pengiriman instant & stabil.");
+    }
+
     async function loadData() {
       let cfg = DEFAULT_ADMIN_DATA;
 
@@ -259,7 +324,6 @@
         console.log("Menggunakan data default admin."); 
       }
 
-      // ISIKAN DATA KE MASING-MASING FORM INPUT
       document.getElementById('cfg-title').value = cfg.title || DEFAULT_ADMIN_DATA.title;
       document.getElementById('cfg-price').value = cfg.price || DEFAULT_ADMIN_DATA.price;
       document.getElementById('cfg-whatsappNumber').value = cfg.whatsappNumber || DEFAULT_ADMIN_DATA.whatsappNumber;
@@ -270,6 +334,8 @@
       document.getElementById('cfg-inspirationStory').value = cfg.inspirationStory || DEFAULT_ADMIN_DATA.inspirationStory;
       document.getElementById('cfg-videoUrl').value = cfg.videoUrl || DEFAULT_ADMIN_DATA.videoUrl;
       document.getElementById('cfg-timelapseUrl').value = cfg.timelapseUrl || DEFAULT_ADMIN_DATA.timelapseUrl;
+      document.getElementById('cfg-bgmUrl').value = cfg.bgmUrl || DEFAULT_ADMIN_DATA.bgmUrl;
+      document.getElementById('cfg-bgm_volume').value = cfg.bgm_volume !== undefined ? cfg.bgm_volume : DEFAULT_ADMIN_DATA.bgm_volume;
       document.getElementById('cfg-bot_name').value = cfg.bot_name || DEFAULT_ADMIN_DATA.bot_name;
       document.getElementById('cfg-salutation').value = cfg.salutation || DEFAULT_ADMIN_DATA.salutation;
       document.getElementById('cfg-knowledge_base').value = cfg.knowledge_base || DEFAULT_ADMIN_DATA.knowledge_base;
@@ -310,6 +376,8 @@
         inspirationStory: document.getElementById('cfg-inspirationStory').value,
         videoUrl: document.getElementById('cfg-videoUrl').value,
         timelapseUrl: document.getElementById('cfg-timelapseUrl').value,
+        bgmUrl: document.getElementById('cfg-bgmUrl').value,
+        bgm_volume: parseFloat(document.getElementById('cfg-bgm_volume').value) || 0.3,
         bot_name: document.getElementById('cfg-bot_name').value,
         salutation: document.getElementById('cfg-salutation').value,
         knowledge_base: document.getElementById('cfg-knowledge_base').value,
@@ -328,7 +396,7 @@
         });
         const data = await res.json();
         if (data.success) {
-          alert("🎉 BERHASIL! Seluruh data admin & galeri foto telah disimpan di database!");
+          alert("🎉 BERHASIL! Seluruh data admin & galeri foto telah disimpan!");
         } else {
           alert("Gagal menyimpan: " + data.error);
         }
