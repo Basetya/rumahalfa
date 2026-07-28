@@ -10,6 +10,27 @@
 </head>
 <body class="p-4 sm:p-8 pb-36 antialiased">
 
+  <!-- MODAL LOCK SCREEN / LOGIN PASSWORD -->
+  <div id="auth-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+    <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-2xl max-w-sm w-full text-center border border-slate-100">
+      <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
+        🔒
+      </div>
+      <h2 class="text-xl font-bold text-slate-800">Akses Terkunci</h2>
+      <p class="text-xs text-slate-500 mt-1 mb-6">Masukkan Password Admin untuk mengelola data landing page & audio.</p>
+      
+      <form id="auth-form" onsubmit="verifyPassword(event)" class="space-y-4">
+        <div>
+          <input type="password" id="admin-pass-input" placeholder="Masukkan Password Admin" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-center font-mono text-lg tracking-widest outline-none focus:ring-2 focus:ring-amber-500">
+        </div>
+        <p id="auth-error" class="text-xs font-bold text-red-500 hidden">❌ Password salah! Silakan coba lagi.</p>
+        <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all text-xs uppercase tracking-wider">
+          🔓 Buka Dashboard
+        </button>
+      </form>
+    </div>
+  </div>
+
   <div class="max-w-3xl mx-auto">
     
     <!-- HEADER & UNDO BUTTON -->
@@ -26,6 +47,18 @@
     </div>
 
     <form id="admin-form" class="space-y-6">
+
+      <!-- PENGATURAN KEAMANAN (GANTI PASSWORD) -->
+      <div class="bg-slate-800 text-white p-5 sm:p-7 rounded-2xl shadow-md border border-slate-700 space-y-4">
+        <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+          <h2 class="text-base font-bold flex items-center gap-2"><span>🔑</span> Keamanan Admin Dashboard</h2>
+        </div>
+        <div>
+          <label for="cfg-admin_password" class="block text-xs font-bold text-slate-300 uppercase mb-1">Password Admin Baru (Kosongkan jika tidak ingin diubah)</label>
+          <input type="password" id="cfg-admin_password" placeholder="Masukkan password baru..." class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-sm font-mono text-amber-400 outline-none focus:ring-2 focus:ring-amber-500">
+          <p class="text-[10px] text-slate-400 mt-1">*Password ini digunakan untuk login ke halaman admin di masa mendatang.</p>
+        </div>
+      </div>
 
       <!-- INFORMASI UTAMA -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
@@ -259,7 +292,7 @@
         <div id="gallery-dynamic-list" class="space-y-3 pt-2"></div>
       </div>
 
-      <!-- CHATBOT AI ALFIN -->
+      <!-- CHATBOT AI ALFIN & KNOWLEDGE BASE SANGAT LEBAR -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
         <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2"><span>🤖</span> Pengaturan Asisten AI (Chatbot Alfin)</h2>
         <div class="grid grid-cols-2 gap-4">
@@ -272,13 +305,20 @@
             <input type="text" id="cfg-salutation" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
           </div>
         </div>
+
+        <!-- KOTAK LEBAR KHUSUS KNOWLEDGE BASE (14 BARIS MONOSPACE) -->
         <div>
-          <label for="cfg-knowledge_base" class="block text-xs font-bold text-slate-600 uppercase mb-1">Knowledge Base (Catatan Pintar)</label>
-          <textarea id="cfg-knowledge_base" rows="6" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none"></textarea>
+          <div class="flex justify-between items-center mb-1">
+            <label for="cfg-knowledge_base" class="block text-xs font-bold text-slate-600 uppercase">Knowledge Base / Catatan Pintar Properti</label>
+            <span class="text-[10px] text-amber-600 font-bold">✨ Tampilan Editor Luas</span>
+          </div>
+          <textarea id="cfg-knowledge_base" rows="14" placeholder="Masukkan seluruh informasi, spesifikasi, dan aturan properti di sini..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono leading-relaxed outline-none focus:ring-2 focus:ring-amber-500 shadow-inner"></textarea>
+          <p class="text-[10px] text-slate-400 mt-1">*Seluruh fakta, harga, dan poin yang ditulis di atas akan menjadi sumber pengetahuan utama Alfin AI.</p>
         </div>
+
         <div>
           <label for="cfg-custom_rules" class="block text-xs font-bold text-slate-600 uppercase mb-1">Aturan Larangan Khusus</label>
-          <textarea id="cfg-custom_rules" rows="2" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none"></textarea>
+          <textarea id="cfg-custom_rules" rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono outline-none"></textarea>
         </div>
       </div>
 
@@ -299,18 +339,20 @@
 
     let galleryCounter = 0;
     let facilityCounter = 0;
+    let currentAdminPassword = "";
 
     const DEFAULT_CONFIG = {
+      admin_password: "123456",
       title: "Rumah Taman Alfa Indah",
       price: "Rp 1.5 Milyar (Nego)",
       whatsappNumber: "6287832219195",
       address: "Taman Alfa Indah Blok H, Jakarta Selatan",
       headline: "Ketenangan Hidup di Lokasi Emas. Bebas Banjir, Jauh di Bawah Harga Pasar.",
-      story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi: Kalau strategis, pasti mahal. Kalau murah, mungkin banjir.\n\nDi Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran yang Anda rasakan setiap musim hujan tiba, karena rumah ini terbukti 100% bebas banjir, bahkan saat banjir besar melanda Jakarta. Bayangkan kemudahan hidup saat Tol JORR, sekolah anak, hingga pusat perbelanjaan hanya berjarak beberapa menit dari pintu rumah Anda.\n\nDengan harga Rp 1.5 Milyar (di bawah harga pasaran saat ini), ini bukan sekadar tempat tinggal. Ini adalah aset perlindungan keluarga dan investasi cerdas yang sangat langka. Kesempatan ini tidak akan bertahan lama.",
+      story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi...",
       inspirationTitle: "Miliki Kebebasan Mutlak untuk Membangun Rumah Impian Anda",
-      inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid (6x17) di Rumah Alfa Indah ini memberikan Anda keleluasaan untuk mendesain ruang hidup Anda sendiri sesuai impian Anda.\n\nTonton video ini : Lihat bagaimana bangunan ini memiliki potensi luar biasa untuk ditransformasikan menjadi karya arsitektur Modern Minimalis yang megah, bersih, dan berkelas dunia. Anda tidak sedang membeli rumah seken biasa—Anda sedang mengambil alih kendali penuh atas bagaimana masa depan kenyamanan keluarga Anda diwujudkan. Jangan beli selera orang lain, ciptakan kemewahan Anda sendiri di sini.",
+      inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid...",
       galleryTitle: "Galeri Arsitektur",
-      gallerySubheadline: "Kabar baiknya, Anda tidak harus merombak semuanya dari nol. Struktur bangunan asli saat ini sudah sangat kokoh. Cukup dengan renovasi ringan seperti perbaikan lantai dan pengecatan ulang, rumah ini sudah siap bertransformasi menjadi hunian yang indah dan nyaman tanpa biaya besar. Jelajahi potensi tata letak ruang bagian dalam rumah melalui galeri foto di bawah ini:",
+      gallerySubheadline: "Kabar baiknya, Anda tidak harus merombak semuanya dari nol...",
       videoUrl: "https://www.youtube.com/embed/4sB6KoX98m0?cc_load_policy=0",
       timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?autoplay=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
       bgmUrl: "assets/audio/bg-music.mp3",
@@ -319,29 +361,36 @@
       longitude: "106.75084911701877",
       bot_name: "Alfin",
       salutation: "Bapak/Ibu/Kakak",
-      knowledge_base: "Rumah di Taman Alfa Indah Blok H, Jakarta Selatan. Bebas banjir 100%, SHM, LT 102m2, LB 82m2. Harga 1.5 Milyar nego.",
+      knowledge_base: "Rumah di Taman Alfa Indah Blok H, Jakarta Selatan. Bebas banjir 100%...",
       custom_rules: "Gunakan sapaan Bapak/Ibu/Kakak secara ramah dan profesional.",
       useSubGalleryPage: "false",
       galleryPageTitle: "Galeri Foto Ruangan",
-      galleryPageDesc: "Jelajahi setiap sudut keindahan arsitektur dan fasilitas properti secara lengkap di bawah ini.",
-      facilities: [
-        "Zero Anxiety: 100% Bebas Banjir & Diapit 2 Pos Polisi (Aman 24 Jam)",
-        "Komersial Kompleks: HERO Supermarket, McD 24 Jam & Alfamart 24 Jam di Gerbang Utama",
-        "Olahraga & Lifestyle: Kolam Renang & Gym/Fitness Center Resmi di Dalam Kompleks",
-        "Pendidikan Lengkap: HighScope, SIT Citra Az-Zahra, Petra Alpha & Kumon Dalam Kompleks",
-        "High Mobility: 3-5 Menit ke Gerbang Tol JORR Joglo & TransJakarta 8M",
-        "Healthcare & Banking: RSIA Mahati 24 Jam, Klinik, & 6 Bank Major di Jl. Joglo Raya"
-      ],
-      specs: {
-        "Legalitas": "SHM (Sertifikat Hak Milik) - Aman & Valid",
-        "Luas Tanah": "102 m² (Dimensi Ideal 6x17)",
-        "Luas Bangunan": "82 m² (2 Lantai Kokoh Dinding Bata Merah Pejal)",
-        "Kamar Tidur": "3 + 1 (Cocok untuk keluarga berkembang)",
-        "Kamar Mandi": "2 + 1",
-        "Extra Space": "Gudang Penyimpanan Terpisah & Carport",
-        "Air & Listrik": "Air Jetpump Jernih + PAM Jaya / Listrik 2200 VA"
-      }
+      galleryPageDesc: "Jelajahi setiap sudut keindahan arsitektur...",
+      facilities: [],
+      specs: {}
     };
+
+    function verifyPassword(e) {
+      e.preventDefault();
+      const inputPass = document.getElementById('admin-pass-input').value;
+      if (inputPass.trim() !== "") {
+        currentAdminPassword = inputPass;
+        document.getElementById('auth-modal').classList.add('hidden');
+        sessionStorage.setItem('admin_session_pass', inputPass);
+        loadData();
+      } else {
+        document.getElementById('auth-error').classList.remove('hidden');
+      }
+    }
+
+    function checkSession() {
+      const savedPass = sessionStorage.getItem('admin_session_pass');
+      if (savedPass) {
+        currentAdminPassword = savedPass;
+        document.getElementById('auth-modal').classList.add('hidden');
+        loadData();
+      }
+    }
 
     function addGalleryRow(url = "", category = "Interior") {
       galleryCounter++;
@@ -467,11 +516,8 @@
         if (data.success && data.config) {
           cfg = Object.assign({}, DEFAULT_CONFIG, data.config);
         }
-      } catch (err) { 
-        console.log("Memakai data default lokal."); 
-      }
+      } catch (err) { console.log("Memakai data default lokal."); }
 
-      // Populate text inputs
       const textFields = ["title", "price", "whatsappNumber", "address", "headline", "story", "inspirationTitle", "inspirationStory", "galleryTitle", "gallerySubheadline", "videoUrl", "timelapseUrl", "bgmUrl", "bgm_volume", "latitude", "longitude", "bot_name", "salutation", "knowledge_base", "custom_rules", "useSubGalleryPage", "galleryPageTitle", "galleryPageDesc"];
       
       textFields.forEach(f => {
@@ -481,25 +527,21 @@
         }
       });
 
-      // Update label volume saat data terisi
       const volInput = document.getElementById('cfg-bgm_volume');
       if (volInput) {
         document.getElementById('vol-label').innerText = Math.round((parseFloat(volInput.value) || 0.3) * 100) + "%";
       }
 
-      // Populate specs
       const specsData = cfg.specs || DEFAULT_CONFIG.specs;
       for (let k in DEFAULT_CONFIG.specs) {
         const el = document.getElementById('spec-' + k);
         if (el) el.value = specsData[k] || DEFAULT_CONFIG.specs[k];
       }
 
-      // Populate facilities
       document.getElementById('facility-dynamic-list').innerHTML = "";
       const facsData = (cfg.facilities && cfg.facilities.length > 0) ? cfg.facilities : DEFAULT_CONFIG.facilities;
       facsData.forEach(fac => addFacilityRow(fac));
 
-      // Populate gallery
       document.getElementById('gallery-dynamic-list').innerHTML = "";
       if (cfg.gallery && cfg.gallery.length > 0) {
         cfg.gallery.forEach(item => {
@@ -515,7 +557,7 @@
         const res = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ action: "undoAdminConfig" })
+          body: JSON.stringify({ action: "undoAdminConfig", password: currentAdminPassword })
         });
         const data = await res.json();
         if (data.success) {
@@ -527,13 +569,15 @@
       } catch(err) { alert("Kesalahan koneksi saat Undo."); }
     }
 
-    document.addEventListener("DOMContentLoaded", loadData);
+    document.addEventListener("DOMContentLoaded", checkSession);
 
     document.getElementById('admin-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       const btn = document.getElementById('btn-save');
       const origText = btn.innerText;
       btn.disabled = true; btn.innerText = "⏳ MEMPROSES & MENYIMPAN...";
+
+      const newPass = document.getElementById('cfg-admin_password').value.trim();
 
       const galleryList = [];
       document.querySelectorAll('#gallery-dynamic-list > div').forEach(row => {
@@ -556,6 +600,7 @@
       });
 
       const payload = {
+        admin_password: newPass !== "" ? newPass : currentAdminPassword,
         title: document.getElementById('cfg-title').value,
         price: document.getElementById('cfg-price').value,
         whatsappNumber: document.getElementById('cfg-whatsappNumber').value,
@@ -588,11 +633,21 @@
         const res = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ action: "saveAdminConfig", payload: payload })
+          body: JSON.stringify({ action: "saveAdminConfig", payload: payload, password: currentAdminPassword })
         });
         const data = await res.json();
-        if (data.success) alert("🎉 BERHASIL! Landing page, musik & Galeri sudah ter-update secara instan!");
-        else alert("Gagal menyimpan: " + data.error);
+        if (data.success) {
+          if (newPass !== "") {
+            currentAdminPassword = newPass;
+            sessionStorage.setItem('admin_session_pass', newPass);
+            document.getElementById('cfg-admin_password').value = "";
+            alert("🎉 BERHASIL! Password admin & data landing page sudah diperbarui secara instan!");
+          } else {
+            alert("🎉 BERHASIL! Landing page, musik & Galeri sudah ter-update secara instan!");
+          }
+        } else {
+          alert("Gagal menyimpan: " + data.error);
+        }
       } catch (err) { alert("Kesalahan koneksi."); } 
       finally { btn.disabled = false; btn.innerText = origText; }
     });
