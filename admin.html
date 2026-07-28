@@ -16,7 +16,7 @@
     <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
       <div>
         <h1 class="text-xl font-bold">⚙️ Dashboard Pengaturan Properti</h1>
-        <p class="text-xs text-slate-400 mt-1">Ubah landing page, galeri foto, spesifikasi, & AI Chatbot</p>
+        <p class="text-xs text-slate-400 mt-1">Ubah landing page, audio/musik, galeri foto, spesifikasi, & AI Chatbot</p>
       </div>
       <div class="flex gap-2 w-full sm:w-auto">
         <button type="button" onclick="undoConfig()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 w-full sm:w-auto justify-center">
@@ -61,6 +61,25 @@
         <div>
           <label for="cfg-story" class="block text-xs font-bold text-slate-600 uppercase mb-1">Cerita Deskripsi (The Story)</label>
           <textarea id="cfg-story" rows="4" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+        </div>
+      </div>
+
+      <!-- PENGATURAN AUDIO & BACKGROUND MUSIC (BGM) -->
+      <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+        <div class="flex justify-between items-center border-b pb-3">
+          <h2 class="text-base font-bold text-slate-800 flex items-center gap-2"><span>🎵</span> Background Music & Audio Controller</h2>
+        </div>
+        <div>
+          <label for="cfg-bgmUrl" class="block text-xs font-bold text-slate-600 uppercase mb-1">Path / URL File Musik MP3</label>
+          <input type="text" id="cfg-bgmUrl" placeholder="assets/audio/bg-music.mp3" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-amber-500">
+        </div>
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label for="cfg-bgm_volume" class="block text-xs font-bold text-slate-600 uppercase">Volume Default Musik Latar</label>
+            <span id="vol-label" class="text-xs font-bold text-amber-600">30%</span>
+          </div>
+          <input type="range" id="cfg-bgm_volume" min="0" max="1" step="0.05" value="0.3" oninput="document.getElementById('vol-label').innerText = Math.round(this.value * 100) + '%'" class="w-full bg-slate-200 rounded-lg appearance-none h-2 cursor-pointer">
+          <p class="text-[10px] text-slate-400 mt-1">*Nilai volume 0.0 (0%) hingga 1.0 (100%). Rekomendasi 20% - 40% agar pembeli merasa nyaman.</p>
         </div>
       </div>
 
@@ -240,9 +259,9 @@
         <div id="gallery-dynamic-list" class="space-y-3 pt-2"></div>
       </div>
 
-      <!-- CHATBOT AI -->
+      <!-- CHATBOT AI ALFIN -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2"><span>🤖</span> Pengaturan Asisten AI (Chatbot)</h2>
+        <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2"><span>🤖</span> Pengaturan Asisten AI (Chatbot Alfin)</h2>
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label for="cfg-bot_name" class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Bot</label>
@@ -294,12 +313,14 @@
       gallerySubheadline: "Kabar baiknya, Anda tidak harus merombak semuanya dari nol. Struktur bangunan asli saat ini sudah sangat kokoh. Cukup dengan renovasi ringan seperti perbaikan lantai dan pengecatan ulang, rumah ini sudah siap bertransformasi menjadi hunian yang indah dan nyaman tanpa biaya besar. Jelajahi potensi tata letak ruang bagian dalam rumah melalui galeri foto di bawah ini:",
       videoUrl: "https://www.youtube.com/embed/4sB6KoX98m0?cc_load_policy=0",
       timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?autoplay=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
+      bgmUrl: "assets/audio/bg-music.mp3",
+      bgm_volume: 0.3,
       latitude: "-6.224486290732541",
       longitude: "106.75084911701877",
       bot_name: "Alfin",
-      salutation: "Kak",
+      salutation: "Bapak/Ibu/Kakak",
       knowledge_base: "Rumah di Taman Alfa Indah Blok H, Jakarta Selatan. Bebas banjir 100%, SHM, LT 102m2, LB 82m2. Harga 1.5 Milyar nego.",
-      custom_rules: "DILARANG KERAS MENGGUNAKAN KATA: 'kamu', 'Anda', 'Bapak', 'Ibu'.",
+      custom_rules: "Gunakan sapaan Bapak/Ibu/Kakak secara ramah dan profesional.",
       useSubGalleryPage: "false",
       galleryPageTitle: "Galeri Foto Ruangan",
       galleryPageDesc: "Jelajahi setiap sudut keindahan arsitektur dan fasilitas properti secara lengkap di bawah ini.",
@@ -451,12 +472,20 @@
       }
 
       // Populate text inputs
-      const textFields = ["title", "price", "whatsappNumber", "address", "headline", "story", "inspirationTitle", "inspirationStory", "galleryTitle", "gallerySubheadline", "videoUrl", "timelapseUrl", "latitude", "longitude", "bot_name", "salutation", "knowledge_base", "custom_rules", "useSubGalleryPage", "galleryPageTitle", "galleryPageDesc"];
+      const textFields = ["title", "price", "whatsappNumber", "address", "headline", "story", "inspirationTitle", "inspirationStory", "galleryTitle", "gallerySubheadline", "videoUrl", "timelapseUrl", "bgmUrl", "bgm_volume", "latitude", "longitude", "bot_name", "salutation", "knowledge_base", "custom_rules", "useSubGalleryPage", "galleryPageTitle", "galleryPageDesc"];
       
       textFields.forEach(f => {
         const el = document.getElementById('cfg-' + f);
-        if (el) el.value = (cfg[f] !== undefined && cfg[f] !== "") ? cfg[f] : (DEFAULT_CONFIG[f] || "");
+        if (el) {
+          el.value = (cfg[f] !== undefined && cfg[f] !== "") ? cfg[f] : (DEFAULT_CONFIG[f] || "");
+        }
       });
+
+      // Update label volume saat data terisi
+      const volInput = document.getElementById('cfg-bgm_volume');
+      if (volInput) {
+        document.getElementById('vol-label').innerText = Math.round((parseFloat(volInput.value) || 0.3) * 100) + "%";
+      }
 
       // Populate specs
       const specsData = cfg.specs || DEFAULT_CONFIG.specs;
@@ -539,6 +568,8 @@
         gallerySubheadline: document.getElementById('cfg-gallerySubheadline').value,
         videoUrl: document.getElementById('cfg-videoUrl').value,
         timelapseUrl: document.getElementById('cfg-timelapseUrl').value,
+        bgmUrl: document.getElementById('cfg-bgmUrl').value,
+        bgm_volume: parseFloat(document.getElementById('cfg-bgm_volume').value) || 0.3,
         latitude: document.getElementById('cfg-latitude').value,
         longitude: document.getElementById('cfg-longitude').value,
         useSubGalleryPage: document.getElementById('cfg-useSubGalleryPage').value,
@@ -560,7 +591,7 @@
           body: JSON.stringify({ action: "saveAdminConfig", payload: payload })
         });
         const data = await res.json();
-        if (data.success) alert("🎉 BERHASIL! Landing page & Galeri sudah ter-update secara instan!");
+        if (data.success) alert("🎉 BERHASIL! Landing page, musik & Galeri sudah ter-update secara instan!");
         else alert("Gagal menyimpan: " + data.error);
       } catch (err) { alert("Kesalahan koneksi."); } 
       finally { btn.disabled = false; btn.innerText = origText; }

@@ -60,6 +60,11 @@
 </head>
 <body class="bg-[#fafafa] text-dark antialiased font-sans">
 
+  <!-- BACKGROUND AUDIO ELEMENT -->
+  <audio id="bg-audio" loop preload="metadata">
+    <source src="assets/audio/bg-music.mp3" type="audio/mpeg">
+  </audio>
+
   <!-- HERO SECTION -->
   <section id="hero-section" class="relative h-screen flex items-center justify-center bg-cover bg-center transition-all duration-1000">
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80 z-0"></div>
@@ -88,7 +93,7 @@
   <section class="py-12 sm:py-16 bg-white">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <div class="relative w-full overflow-hidden rounded-xl shadow-2xl" style="padding-top: 56.25%;">
-        <iframe id="prop-video" class="absolute top-0 left-0 w-full h-full border-0" src="" allowfullscreen title="Video Tour Properti"></iframe>
+        <iframe id="prop-video" class="absolute top-0 left-0 w-full h-full border-0" src="" allowfullscreen allow="autoplay; encrypted-media" title="Video Tour Properti"></iframe>
       </div>
     </div>
   </section>
@@ -315,11 +320,21 @@
   </footer>
   
   <!-- FLOATING WIDGETS -->
+  
+  <!-- Floating Audio Controller (Kiri Bawah, Di Atas WA) -->
+  <div id="audio-controller" class="fixed bottom-16 left-4 sm:bottom-20 sm:left-6 z-[50]">
+    <button id="audio-toggle-btn" type="button" onclick="toggleAudio()" class="bg-white/80 backdrop-blur-md border border-gray-200/50 text-dark p-2.5 sm:p-3 rounded-full flex items-center justify-center shadow-xl hover:bg-white hover:scale-105 transition-all w-10 h-10 sm:w-12 sm:h-12" aria-label="Toggle Background Music">
+      <span id="audio-icon" class="text-base sm:text-lg">🔇</span>
+    </button>
+  </div>
+
+  <!-- WhatsApp Link (Kiri Bawah) -->
   <a href="#" id="floating-wa-link" target="_blank" class="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 glass hover:bg-[#25d366] hover:text-white text-[#25d366] px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-2 sm:gap-3 shadow-2xl transition-all z-[50] group border-[#25d366]/30">
     <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current shrink-0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     <span class="font-semibold text-xs sm:text-sm group-hover:text-white transition-colors">WhatsApp</span>
   </a>
 
+  <!-- Chat Bubble Alfin (Kanan Bawah) -->
   <div id="ai-chat-bubble" onclick="toggleChatWindow()" class="btn-alfin-pulse fixed bottom-4 right-4 sm:bottom-6 sm:right-6 glass-dark text-white px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-2 sm:gap-3 cursor-pointer shadow-2xl z-[50] hover:bg-dark hover:scale-105 transition-all">
     <div class="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
@@ -354,6 +369,7 @@
     </div>
   </div>
 
+  <!-- SCRIPT UTAMA -->
   <script>
     const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwbtqI258xNMlwe94LXbF-jXkH7zDSnsd1e5-nUUE5TJKzxReFghyOVyYVwEVQ8FPQ7xw/exec";
 
@@ -362,7 +378,7 @@
       whatsappNumber: "6287832219195", 
       price: "Rp 1.5 Milyar (Nego)", 
       address: "Taman Alfa Indah Blok H, Jakarta Selatan",
-      videoUrl: "https://www.youtube.com/embed/4sB6KoX98m0?cc_load_policy=0", 
+      videoUrl: "https://www.youtube.com/embed/4sB6KoX98m0?enablejsapi=1&cc_load_policy=0", 
       latitude: -6.224486290732541,
       longitude: 106.75084911701877,
       whatsappTemplate: "Halo, saya tertarik dengan Rumah di Taman Alfa Indah (%SOURCE%). Saya terinspirasi dengan konsep renovasi modern minimalisnya. Apakah bisa dijadwalkan survey lokasi minggu ini?",
@@ -370,10 +386,11 @@
       story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi: Kalau strategis, pasti mahal. Kalau murah, mungkin banjir.\n\nDi Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran yang Anda rasakan setiap musim hujan tiba, karena rumah ini terbukti 100% bebas banjir, bahkan saat banjir besar melanda Jakarta. Bayangkan kemudahan hidup saat Tol JORR, sekolah anak, hingga pusat perbelanjaan hanya berjarak beberapa menit dari pintu rumah Anda.\n\nDengan harga Rp 1.5 Milyar (di bawah harga pasaran saat ini), ini bukan sekadar tempat tinggal. Ini adalah aset perlindungan keluarga dan investasi cerdas yang sangat langka. Kesempatan ini tidak akan bertahan lama.",
       inspirationTitle: "Miliki Kebebasan Mutlak untuk Membangun Rumah Impian Anda",
       inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid (6x17) di Rumah Alfa Indah ini memberikan Anda keleluasaan untuk mendesain ruang hidup Anda sendiri sesuai impian Anda.\n\nTonton video ini : Lihat bagaimana bangunan ini memiliki potensi luar biasa untuk ditransformasikan menjadi karya arsitektur Modern Minimalis yang megah, bersih, dan berkelas dunia. Anda tidak sedang membeli rumah seken biasa—Anda sedang mengambil alih kendali penuh atas bagaimana masa depan kenyamanan keluarga Anda diwujudkan. Jangan beli selera orang lain, ciptakan kemewahan Anda sendiri di sini.",
-      timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?autoplay=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
+      timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
       galleryTitle: "Galeri Arsitektur",
       gallerySubheadline: "Kabar baiknya, Anda tidak harus merombak semuanya dari nol. Struktur bangunan asli saat ini sudah sangat kokoh. Cukup dengan renovasi ringan seperti perbaikan lantai dan pengecatan ulang, rumah ini sudah siap bertransformasi menjadi hunian yang indah dan nyaman tanpa biaya besar. Jelajahi potensi tata letak ruang bagian dalam rumah melalui galeri foto di bawah ini:",
       useSubGalleryPage: "false",
+      bgm_volume: 0.3,
       facilities: [
         "Zero Anxiety: 100% Bebas Banjir & Diapit 2 Pos Polisi (Aman 24 Jam)",
         "Komersial Kompleks: HERO Supermarket, McD 24 Jam & Alfamart 24 Jam di Gerbang Utama",
@@ -396,6 +413,81 @@
 
     let chatMemory = [];
 
+    /* =========================================================
+       AUDIO BGM & AUTOPLAY LOGIC
+       ========================================================= */
+    const bgAudio = document.getElementById('bg-audio');
+    const audioIcon = document.getElementById('audio-icon');
+    let isAudioPlaying = false;
+
+    function applyAudioVolume() {
+      if (bgAudio) {
+        let vol = parseFloat(PROPERTY_CONFIG.bgm_volume);
+        bgAudio.volume = isNaN(vol) ? 0.3 : Math.min(Math.max(vol, 0), 1);
+      }
+    }
+
+    function toggleAudio() {
+      if (bgAudio.paused) playBGM();
+      else pauseBGM();
+    }
+
+    function playBGM() {
+      if (!bgAudio) return;
+      applyAudioVolume();
+      bgAudio.play().then(() => {
+        isAudioPlaying = true;
+        if (audioIcon) audioIcon.textContent = '🎵';
+      }).catch(err => {
+        console.log("Autoplay memerlukan interaksi awal pengguna.", err);
+      });
+    }
+
+    function pauseBGM() {
+      if (!bgAudio) return;
+      bgAudio.pause();
+      isAudioPlaying = false;
+      if (audioIcon) audioIcon.textContent = '🔇';
+    }
+
+    document.addEventListener('click', function initAudioOnUserInteraction() {
+      if (!isAudioPlaying && bgAudio && bgAudio.paused) {
+        playBGM();
+      }
+      document.removeEventListener('click', initAudioOnUserInteraction);
+    }, { once: true });
+
+    /* =========================================================
+       YOUTUBE IFRAME PLAYER API (AUTO-PAUSE BGM)
+       ========================================================= */
+    var ytPlayers = [];
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function onYouTubeIframeAPIReady() {
+      const videoIds = ['prop-video', 'prop-timelapse-yt'];
+      videoIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.src) {
+          let player = new YT.Player(id, {
+            events: {
+              'onStateChange': function(event) {
+                if (event.data === YT.PlayerState.PLAYING) {
+                  pauseBGM();
+                }
+              }
+            }
+          });
+          ytPlayers.push(player);
+        }
+      });
+    }
+
+    /* =========================================================
+       INITIALIZATION & DOM EVENTS
+       ========================================================= */
     document.addEventListener("DOMContentLoaded", async function() {
       try {
         const saasRes = await fetch(GAS_WEBHOOK_URL, {
@@ -411,6 +503,7 @@
         console.log("Menggunakan fallback konfigurasi lokal.");
       }
 
+      applyAudioVolume();
       renderPropertyData(PROPERTY_CONFIG);
       setDynamicWelcomeMessage();
       calculateKPR();
@@ -450,6 +543,12 @@
       }
     });
 
+    function ensureEnableJsApi(url) {
+      if (!url) return '';
+      if (url.includes('enablejsapi=1')) return url;
+      return url.includes('?') ? `${url}&enablejsapi=1` : `${url}?enablejsapi=1`;
+    }
+
     function renderPropertyData(config) {
       document.getElementById('utm-source').value = new URLSearchParams(window.location.search).get('src') || 'direct';
       document.title = config.title || 'Landing Page Properti';
@@ -466,7 +565,7 @@
       
       const videoIframe = document.getElementById('prop-video');
       if (config.videoUrl && config.videoUrl.trim().length > 5) {
-        videoIframe.src = config.videoUrl;
+        videoIframe.src = ensureEnableJsApi(config.videoUrl);
         videoIframe.closest('section').style.display = 'block';
       } else {
         videoIframe.closest('section').style.display = 'none';
@@ -474,14 +573,14 @@
 
       const timelapseIframe = document.getElementById('prop-timelapse-yt');
       if (config.timelapseUrl && config.timelapseUrl.trim().length > 5) {
-        timelapseIframe.src = config.timelapseUrl;
+        timelapseIframe.src = ensureEnableJsApi(config.timelapseUrl);
         timelapseIframe.closest('section').style.display = 'block';
       } else {
         timelapseIframe.closest('section').style.display = 'none';
       }
 
       document.getElementById('prop-maps').src = `https://maps.google.com/maps?q=${config.latitude || -6.2244},${config.longitude || 106.7508}&t=&z=15&ie=UTF-8&iwloc=&output=embed`;
-      document.getElementById('floating-wa-link').href = `https://wa.me/${config.whatsappNumber || '6287832219195'}?text=${encodeURIComponent((config.whatsappTemplate || 'Halo').replace("%PROPERTY_NAME%", config.title))}`;
+      document.getElementById('floating-wa-link').href = `https://wa.me/${config.whatsappNumber || '6287832219195'}?text=${encodeURIComponent((config.whatsappTemplate || 'Halo').replace("%SOURCE%", document.getElementById('utm-source').value))}`;
 
       if (config.gallery && config.gallery.length > 0) {
         const firstImg = (typeof config.gallery[0] === 'object') ? config.gallery[0].url : config.gallery[0];
