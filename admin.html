@@ -23,7 +23,7 @@
         <div>
           <input type="password" id="admin-pass-input" placeholder="Masukkan Password Admin" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-center font-mono text-lg tracking-widest outline-none focus:ring-2 focus:ring-amber-500">
         </div>
-        <p id="auth-error" class="text-xs font-bold text-red-500 hidden">❌ Password salah! Silakan coba lagi.</p>
+        <p id="auth-error" class="text-xs font-bold text-red-500 hidden">❌ Password salah / kosong! Silakan coba lagi.</p>
         <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all text-xs uppercase tracking-wider">
           🔓 Buka Dashboard
         </button>
@@ -371,12 +371,14 @@
     };
 
     function verifyPassword(e) {
-      e.preventDefault();
-      const inputPass = document.getElementById('admin-pass-input').value;
-      if (inputPass.trim() !== "") {
+      if (e) e.preventDefault();
+      const inputPass = document.getElementById('admin-pass-input').value.trim();
+      
+      if (inputPass !== "") {
         currentAdminPassword = inputPass;
-        document.getElementById('auth-modal').classList.add('hidden');
         sessionStorage.setItem('admin_session_pass', inputPass);
+        document.getElementById('auth-modal').classList.add('hidden');
+        document.getElementById('auth-error').classList.add('hidden');
         loadData();
       } else {
         document.getElementById('auth-error').classList.remove('hidden');
@@ -385,10 +387,13 @@
 
     function checkSession() {
       const savedPass = sessionStorage.getItem('admin_session_pass');
-      if (savedPass) {
-        currentAdminPassword = savedPass;
+      if (savedPass && savedPass.trim() !== "") {
+        currentAdminPassword = savedPass.trim();
         document.getElementById('auth-modal').classList.add('hidden');
         loadData();
+      } else {
+        // Tampilkan modal secara tegas jika tidak ada session aktif
+        document.getElementById('auth-modal').classList.remove('hidden');
       }
     }
 
@@ -573,6 +578,14 @@
 
     document.getElementById('admin-form').addEventListener('submit', async function(e) {
       e.preventDefault();
+      
+      // Keamanan ekstra: cegah simpan jika password lokal belum terisi
+      if (!currentAdminPassword || currentAdminPassword.trim() === "") {
+        document.getElementById('auth-modal').classList.remove('hidden');
+        alert("⚠️ Silakan masukkan password admin terlebih dahulu di popup login!");
+        return;
+      }
+
       const btn = document.getElementById('btn-save');
       const origText = btn.innerText;
       btn.disabled = true; btn.innerText = "⏳ MEMPROSES & MENYIMPAN...";
@@ -643,7 +656,7 @@
             document.getElementById('cfg-admin_password').value = "";
             alert("🎉 BERHASIL! Password admin & data landing page sudah diperbarui secara instan!");
           } else {
-            alert("🎉 BERHASIL! Landing page, musik & Galeri sudah ter-update secara instan!");
+            alert("🎉 BERHASIL! Landing page, musik & Knowledge Base sudah ter-update secara instan!");
           }
         } else {
           alert("Gagal menyimpan: " + data.error);
