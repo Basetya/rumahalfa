@@ -53,33 +53,33 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-bold text-slate-600 mb-1">Judul Landing Page</label>
-            <input type="text" id="cfg-title" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500" placeholder="Contoh: Rumah Taman Alfa Indah">
+            <input type="text" id="cfg-title" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500">
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-600 mb-1">Harga Penawaran</label>
-            <input type="text" id="cfg-price" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500" placeholder="Contoh: Rp 1.5 Milyar (Nego)">
+            <input type="text" id="cfg-price" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-bold text-slate-600 mb-1">Nomor WhatsApp Direct Owner</label>
-            <input type="text" id="cfg-whatsappNumber" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500" placeholder="6287832219195">
+            <input type="text" id="cfg-whatsappNumber" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500">
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-600 mb-1">Alamat Singkat</label>
-            <input type="text" id="cfg-address" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500" placeholder="Taman Alfa Indah Blok H, Jakarta Selatan">
+            <input type="text" id="cfg-address" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500">
           </div>
         </div>
 
         <div>
           <label class="block text-xs font-bold text-slate-600 mb-1">Headline Utama (Sub-Judul Hero)</label>
-          <input type="text" id="cfg-headline" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500" placeholder="Ketenangan Hidup di Lokasi Emas...">
+          <input type="text" id="cfg-headline" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500">
         </div>
 
         <div>
           <label class="block text-xs font-bold text-slate-600 mb-1">Deskripsi/Cerita Properti (Story)</label>
-          <textarea id="cfg-story" rows="4" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500" placeholder="Mencari rumah di Jakarta seringkali..."></textarea>
+          <textarea id="cfg-story" rows="4" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500"></textarea>
         </div>
       </div>
 
@@ -100,11 +100,11 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-bold text-slate-600 mb-1">URL Video Youtube House Tour</label>
-            <input type="text" id="cfg-videoUrl" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500" placeholder="https://www.youtube.com/embed/4sB6KoX98m0">
+            <input type="text" id="cfg-videoUrl" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500">
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-600 mb-1">URL Video Youtube Timelapse</label>
-            <input type="text" id="cfg-timelapseUrl" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500" placeholder="https://www.youtube.com/embed/zDvGAE7vPWI">
+            <input type="text" id="cfg-timelapseUrl" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500">
           </div>
         </div>
       </div>
@@ -114,7 +114,7 @@
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b pb-3">
           <div>
             <h2 class="text-base font-bold text-slate-800">📸 Galeri Foto Properti</h2>
-            <p class="text-xs text-slate-400">Masukkan Link Foto (Direkomendasikan Link Drive dengan parameter `=s1920`)</p>
+            <p class="text-xs text-slate-400">Masukkan Link Direct Foto Google Drive (Sertakan `=s1920` di akhir link)</p>
           </div>
           <div class="flex gap-2">
             <button type="button" onclick="clearAllPhotos()" class="text-xs text-red-500 hover:bg-red-50 px-3 py-2 rounded-xl font-bold border border-red-200">
@@ -136,17 +136,17 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-bold text-slate-600 mb-1">Nama Bot</label>
-            <input type="text" id="cfg-bot_name" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500" placeholder="Alfin">
+            <input type="text" id="cfg-bot_name" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500">
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-600 mb-1">Sapaan Utama</label>
-            <input type="text" id="cfg-salutation" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500" placeholder="Bapak/Ibu/Kakak">
+            <input type="text" id="cfg-salutation" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500">
           </div>
         </div>
 
         <div>
           <label class="block text-xs font-bold text-slate-600 mb-1">Knowledge Base (Informasi Penting untuk AI)</label>
-          <textarea id="cfg-knowledge_base" rows="4" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500" placeholder="Rumah di Taman Alfa Indah Blok H, SHM, Bebas Banjir..."></textarea>
+          <textarea id="cfg-knowledge_base" rows="4" class="w-full px-3 py-2 border rounded-xl text-xs outline-none focus:ring-2 focus:ring-amber-500"></textarea>
         </div>
       </div>
 
@@ -166,6 +166,23 @@
     const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwbtqI258xNMlwe94LXbF-jXkH7zDSnsd1e5-nUUE5TJKzxReFghyOVyYVwEVQ8FPQ7xw/exec";
     let galleryCounter = 0;
     let currentAdminPassword = "";
+
+    // DATA DEFAULT HARDCODED (LANGSUNG MENGISI KETIKA ADMIN DIBUKA)
+    const DEFAULT_ADMIN_DATA = {
+      title: "Rumah Taman Alfa Indah",
+      price: "Rp 1.5 Milyar (Nego)",
+      whatsappNumber: "6287832219195",
+      address: "Taman Alfa Indah Blok H, Jakarta Selatan",
+      headline: "Ketenangan Hidup di Lokasi Emas. Bebas Banjir, Jauh di Bawah Harga Pasar.",
+      story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi antara lokasi, keamanan banjir, dan anggaran. Rumah di Kompleks Taman Alfa Indah Blok H ini hadir sebagai jawaban langka untuk hunian siap pakai atau peluang investasi bernilai tinggi.",
+      inspirationTitle: "Miliki Kebebasan Mutlak untuk Membangun Rumah Impian Anda",
+      inspirationStory: "Struktur bangunan yang kokoh dari bata merah pejal memberi fondasi sempurna jika Anda ingin merenovasi atau mengadopsi gaya Modern Minimalis Impian.",
+      videoUrl: "https://www.youtube.com/embed/4sB6KoX98m0",
+      timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI",
+      bot_name: "Alfin",
+      salutation: "Bapak/Ibu/Kakak",
+      knowledge_base: "Rumah di Taman Alfa Indah Blok H, Jakarta Selatan. Bebas banjir 100%. Luas Tanah 102m2, Luas Bangunan 82m2, 2 lantai, 3+1 Kamar Tidur, 2+1 Kamar Mandi, SHM, Listrik 2200 VA, Air Jetpump/PAM."
+    };
 
     function verifyPassword(e) {
       if (e) e.preventDefault();
@@ -226,6 +243,8 @@
     }
 
     async function loadData() {
+      let cfg = DEFAULT_ADMIN_DATA;
+
       try {
         const res = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
@@ -233,31 +252,35 @@
           body: JSON.stringify({ action: "getSaasConfig" })
         });
         const data = await res.json();
-        if (data.success && data.config) {
-          const cfg = data.config;
-          if (cfg.title) document.getElementById('cfg-title').value = cfg.title;
-          if (cfg.price) document.getElementById('cfg-price').value = cfg.price;
-          if (cfg.whatsappNumber) document.getElementById('cfg-whatsappNumber').value = cfg.whatsappNumber;
-          if (cfg.address) document.getElementById('cfg-address').value = cfg.address;
-          if (cfg.headline) document.getElementById('cfg-headline').value = cfg.headline;
-          if (cfg.story) document.getElementById('cfg-story').value = cfg.story;
-          if (cfg.inspirationTitle) document.getElementById('cfg-inspirationTitle').value = cfg.inspirationTitle;
-          if (cfg.inspirationStory) document.getElementById('cfg-inspirationStory').value = cfg.inspirationStory;
-          if (cfg.videoUrl) document.getElementById('cfg-videoUrl').value = cfg.videoUrl;
-          if (cfg.timelapseUrl) document.getElementById('cfg-timelapseUrl').value = cfg.timelapseUrl;
-          if (cfg.bot_name) document.getElementById('cfg-bot_name').value = cfg.bot_name;
-          if (cfg.salutation) document.getElementById('cfg-salutation').value = cfg.salutation;
-          if (cfg.knowledge_base) document.getElementById('cfg-knowledge_base').value = cfg.knowledge_base;
-
-          document.getElementById('gallery-dynamic-list').innerHTML = "";
-          if (cfg.gallery && cfg.gallery.length > 0) {
-            cfg.gallery.forEach(item => {
-              if (typeof item === 'object') addGalleryRow(item.url, item.category);
-              else addGalleryRow(item, "Interior");
-            });
-          }
+        if (data && data.success && data.config && data.config.title) {
+          cfg = Object.assign({}, DEFAULT_ADMIN_DATA, data.config);
         }
-      } catch (err) { console.log("Gagal memuat data admin."); }
+      } catch (err) { 
+        console.log("Menggunakan data default admin."); 
+      }
+
+      // ISIKAN DATA KE MASING-MASING FORM INPUT
+      document.getElementById('cfg-title').value = cfg.title || DEFAULT_ADMIN_DATA.title;
+      document.getElementById('cfg-price').value = cfg.price || DEFAULT_ADMIN_DATA.price;
+      document.getElementById('cfg-whatsappNumber').value = cfg.whatsappNumber || DEFAULT_ADMIN_DATA.whatsappNumber;
+      document.getElementById('cfg-address').value = cfg.address || DEFAULT_ADMIN_DATA.address;
+      document.getElementById('cfg-headline').value = cfg.headline || DEFAULT_ADMIN_DATA.headline;
+      document.getElementById('cfg-story').value = cfg.story || DEFAULT_ADMIN_DATA.story;
+      document.getElementById('cfg-inspirationTitle').value = cfg.inspirationTitle || DEFAULT_ADMIN_DATA.inspirationTitle;
+      document.getElementById('cfg-inspirationStory').value = cfg.inspirationStory || DEFAULT_ADMIN_DATA.inspirationStory;
+      document.getElementById('cfg-videoUrl').value = cfg.videoUrl || DEFAULT_ADMIN_DATA.videoUrl;
+      document.getElementById('cfg-timelapseUrl').value = cfg.timelapseUrl || DEFAULT_ADMIN_DATA.timelapseUrl;
+      document.getElementById('cfg-bot_name').value = cfg.bot_name || DEFAULT_ADMIN_DATA.bot_name;
+      document.getElementById('cfg-salutation').value = cfg.salutation || DEFAULT_ADMIN_DATA.salutation;
+      document.getElementById('cfg-knowledge_base').value = cfg.knowledge_base || DEFAULT_ADMIN_DATA.knowledge_base;
+
+      document.getElementById('gallery-dynamic-list').innerHTML = "";
+      if (cfg.gallery && cfg.gallery.length > 0) {
+        cfg.gallery.forEach(item => {
+          if (typeof item === 'object') addGalleryRow(item.url, item.category);
+          else addGalleryRow(item, "Interior");
+        });
+      }
     }
 
     window.onload = checkSession;
@@ -305,7 +328,7 @@
         });
         const data = await res.json();
         if (data.success) {
-          alert("🎉 BERHASIL! Seluruh data admin & galeri foto telah diperbarui!");
+          alert("🎉 BERHASIL! Seluruh data admin & galeri foto telah disimpan di database!");
         } else {
           alert("Gagal menyimpan: " + data.error);
         }
