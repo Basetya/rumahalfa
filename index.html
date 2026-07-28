@@ -3,374 +3,770 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rumah Taman Alfa Indah - Hunian Bebas Banjir Jakarta Selatan</title>
+  <title>Rumah Taman Alfa Indah</title>
   
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            serif: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            gold: { 400: '#d4af37', 500: '#c5a880', 600: '#b0946d' },
+            dark: '#111111'
           }
         }
       }
     }
   </script>
+
   <style>
-    .glass-card {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(226, 232, 240, 0.8);
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #c5a880; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #b0946d; }
+
+    .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+    .glass-dark { background: rgba(17, 17, 17, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+
+    .glow-gold { box-shadow: 0 0 35px -5px rgba(197, 168, 128, 0.3); border: 1px solid rgba(197, 168, 128, 0.4); }
+    .glow-dark { box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.15); border: 1px solid rgba(0, 0, 0, 0.08); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-up { animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    
+    @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(197, 168, 128, 0); } 100% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0); } }
+    .btn-alfin-pulse { animation: pulse-gold 2s infinite; }
+    .img-hover-zoom { transition: transform 0.5s ease; }
+    .group:hover .img-hover-zoom { transform: scale(1.05); }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background: #c5a880;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(197, 168, 128, 0.8);
     }
-    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 9999px; }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-amber-100 selection:text-amber-900 pb-24">
+<body class="bg-[#fafafa] text-dark antialiased font-sans">
 
-  <!-- BACKGROUND MUSIC CONTROLLER -->
-  <audio id="bgm-player" loop preload="auto">
-    <source id="bgm-source" src="assets/audio/bg-music.mp3" type="audio/mpeg">
+  <!-- BACKGROUND AUDIO ELEMENT -->
+  <audio id="bg-audio" loop preload="metadata">
+    <source src="assets/audio/bg-music.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- MUTE/UNMUTE FLOATING BUTTON -->
-  <button id="audio-toggle-btn" onclick="toggleAudio()" class="fixed top-5 right-5 z-50 bg-white/90 hover:bg-white text-slate-800 p-3 rounded-full shadow-lg border border-slate-200 transition-all duration-300 hover:scale-110 flex items-center justify-center" title="Audio Background">
-    <span id="audio-icon" class="text-xl">🔇</span>
-  </button>
-
   <!-- HERO SECTION -->
-  <section class="relative min-h-[80vh] flex items-center justify-center bg-slate-900 text-white overflow-hidden py-20 px-4 sm:px-6">
-    <div class="absolute inset-0 z-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent z-0"></div>
+  <section id="hero-section" class="relative h-screen flex items-center justify-center bg-cover bg-center transition-all duration-1000">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80 z-0"></div>
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-up">
+      <p class="text-gold-500 tracking-[0.2em] text-sm uppercase mb-4 font-semibold">Eksklusif & Terbatas</p>
+      <h1 id="prop-title" class="font-serif text-4xl sm:text-5xl md:text-7xl text-white font-bold mb-6 leading-tight drop-shadow-lg">Menyiapkan Properti...</h1>
+      <p id="prop-headline" class="text-base sm:text-lg md:text-2xl text-gray-200 mb-8 font-light">Mohon tunggu sebentar</p>
+      <h2 id="prop-price" class="text-2xl sm:text-3xl md:text-4xl text-white font-serif mb-10 drop-shadow-md">...</h2>
+      <a href="#lead-form" class="inline-block bg-gold-500 hover:bg-gold-600 text-white font-medium tracking-wide uppercase px-8 py-3.5 sm:px-10 sm:py-4 rounded-sm transition-all duration-300 transform hover:-translate-y-1 shadow-xl text-sm sm:text-base">Miliki Sekarang</a>
+    </div>
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/70 animate-bounce">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+    </div>
+  </section>
 
-    <div class="relative z-10 max-w-4xl mx-auto text-center space-y-6">
-      <span class="inline-block px-4 py-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-full text-xs font-semibold tracking-wider uppercase backdrop-blur-md">
-        Dijual Cepat / Direct Owner
-      </span>
-      <h1 id="dyn-title" class="text-3xl sm:text-5xl md:text-6xl font-serif font-bold leading-tight text-white">
-        Rumah Taman Alfa Indah
-      </h1>
-      <p id="dyn-headline" class="text-base sm:text-xl text-slate-200 max-w-2xl mx-auto font-light leading-relaxed">
-        Ketenangan Hidup di Lokasi Emas. Bebas Banjir, Jauh di Bawah Harga Pasar.
-      </p>
-      <div class="pt-4">
-        <span id="dyn-price" class="text-2xl sm:text-4xl font-extrabold text-amber-400 font-serif">
-          Rp 1.5 Milyar (Nego)
-        </span>
-      </div>
-      <div class="pt-6 flex flex-wrap justify-center gap-4">
-        <a id="btn-wa-hero" href="https://wa.me/6287832219195" target="_blank" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5 text-sm uppercase tracking-wider flex items-center gap-2">
-          <span>💬</span> Hubungi Owner via WA
-        </a>
+  <!-- STORY SECTION -->
+  <section class="py-16 sm:py-24 bg-[#fafafa]">
+    <div class="max-w-3xl mx-auto text-center px-6">
+      <span class="text-gold-500 tracking-widest text-xs uppercase font-bold">The Story</span>
+      <h2 class="font-serif text-3xl sm:text-4xl mt-3 mb-8 text-dark">Filosofi Kenyamanan</h2>
+      <p id="prop-story" class="text-gray-600 leading-relaxed text-base sm:text-lg text-justify md:text-center whitespace-pre-line">...</p>
+    </div>
+  </section>
+
+  <!-- VIDEO TOUR -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="relative w-full overflow-hidden rounded-xl shadow-2xl" style="padding-top: 56.25%;">
+        <iframe id="prop-video" class="absolute top-0 left-0 w-full h-full border-0" src="" allowfullscreen allow="autoplay; encrypted-media" title="Video Tour Properti"></iframe>
       </div>
     </div>
   </section>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 space-y-16 sm:space-y-24 -mt-10 relative z-20">
+  <!-- INSPIRATION / TIMELAPSE -->
+  <section class="py-16 sm:py-24 bg-dark text-white">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-gold-500 tracking-widest text-xs uppercase font-bold">Unleash Your Imagination</span>
+        <h2 id="prop-inspiration-title" class="font-serif text-3xl sm:text-4xl mt-4 mb-6 leading-tight">...</h2>
+        <p id="prop-inspiration-story" class="text-gray-400 leading-relaxed text-base sm:text-lg mb-8 whitespace-pre-line">...</p>
+      </div>
+      <div class="flex justify-center">
+        <div class="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[9/16] rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(197,168,128,0.2)] border-4 border-gray-800">
+          <iframe id="prop-timelapse-yt" class="w-full h-full object-cover" src="" allow="autoplay; encrypted-media" allowfullscreen title="Timelapse Renovasi Properti"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- CERITA / THE STORY -->
-    <section class="glass-card p-6 sm:p-10 rounded-3xl shadow-xl">
-      <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900 mb-4 border-b border-slate-200 pb-3">
-        Tentang Properti
-      </h2>
-      <p id="dyn-story" class="text-slate-600 leading-relaxed text-sm sm:text-base whitespace-pre-line">
-        Mencari rumah di Jakarta seringkali memaksa kita berkompromi antara lokasi, keamanan banjir, dan anggaran. Rumah di Kompleks Taman Alfa Indah Blok H ini hadir sebagai jawaban langka untuk hunian siap pakai atau peluang investasi bernilai tinggi.
-      </p>
-    </section>
-
-    <!-- SPESIFIKASI BANGUNAN & FASILITAS -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <!-- GALLERY SECTION -->
+  <section class="py-16 sm:py-24 bg-[#fafafa]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <h3 id="prop-gallery-title" class="font-serif text-3xl sm:text-4xl text-dark mb-4">Galeri Arsitektur</h3>
+        <p id="prop-gallery-sub" class="text-gray-500 text-base sm:text-lg">...</p>
+      </div>
       
-      <!-- SPESIFIKASI BANGUNAN -->
-      <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-lg border border-slate-100">
-        <h2 class="text-2xl font-serif font-bold text-slate-900 mb-6 flex items-center gap-3">
-          <span>🏗️</span> Spesifikasi Bangunan
-        </h2>
-        <div id="specs-container" class="space-y-4 divide-y divide-slate-100">
-          <div class="flex justify-between items-center py-2"><span class="text-xs font-semibold text-slate-500 uppercase">Legalitas</span><span class="text-sm font-bold text-slate-800">SHM (Sertifikat Hak Milik)</span></div>
-          <div class="flex justify-between items-center py-2"><span class="text-xs font-semibold text-slate-500 uppercase">Luas Tanah</span><span class="text-sm font-bold text-slate-800">102 m² (6 x 17m)</span></div>
-          <div class="flex justify-between items-center py-2"><span class="text-xs font-semibold text-slate-500 uppercase">Luas Bangunan</span><span class="text-sm font-bold text-slate-800">82 m² (2 Lantai)</span></div>
-          <div class="flex justify-between items-center py-2"><span class="text-xs font-semibold text-slate-500 uppercase">Kamar Tidur</span><span class="text-sm font-bold text-slate-800">3 + 1</span></div>
-          <div class="flex justify-between items-center py-2"><span class="text-xs font-semibold text-slate-500 uppercase">Kamar Mandi</span><span class="text-sm font-bold text-slate-800">2 + 1</span></div>
-          <div class="flex justify-between items-center py-2"><span class="text-xs font-semibold text-slate-500 uppercase">Extra Space</span><span class="text-sm font-bold text-slate-800">Gudang + Carport</span></div>
-          <div class="flex justify-between items-center py-2"><span class="text-xs font-semibold text-slate-500 uppercase">Air & Listrik</span><span class="text-sm font-bold text-slate-800">Jetpump / PAM & 2200 VA</span></div>
+      <div id="gallery-container-wrapper">
+        <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+        <div id="sub-gallery-btn-wrapper"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECS & FACILITIES -->
+  <section class="py-16 sm:py-24 bg-white border-t border-gray-100">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 sm:gap-16">
+      <div>
+        <h3 class="font-serif text-2xl sm:text-3xl mb-6 sm:mb-8">Spesifikasi Bangunan</h3>
+        <div id="spec-container" class="space-y-4"></div>
+      </div>
+      <div>
+        <h3 class="font-serif text-2xl sm:text-3xl mb-6 sm:mb-8">Fasilitas Eksklusif</h3>
+        <ul id="facility-container" class="space-y-4 sm:space-y-5"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPR CALCULATOR -->
+  <section class="py-16 sm:py-24 bg-[#f8f9fa] border-t border-gray-100 relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="text-center mb-12 sm:mb-16">
+        <span class="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+          Simulasi Finansial
+        </span>
+        <h3 class="font-serif text-3xl sm:text-4xl text-dark font-bold mb-4">Simulasi KPR Interaktif</h3>
+        <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto">Hitung perencanaan cicilan bulanan Anda secara akurat dengan estimasi suku bunga bank devisa nasional.</p>
+      </div>
+      
+      <div class="bg-white rounded-3xl p-6 sm:p-10 glow-dark relative overflow-hidden border border-gray-100">
+        <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+          
+          <div class="lg:col-span-7 space-y-6">
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label for="kpr-harga" class="text-xs font-bold text-gray-500 uppercase tracking-wider">Harga Properti</label>
+                <span class="text-xs text-gold-600 font-bold bg-gold-500/10 px-2 py-0.5 rounded">Default Penawaran</span>
+              </div>
+              <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-gray-400">Rp</span>
+                <input type="text" id="kpr-harga" value="1.500.000.000" oninput="formatAndCalculate(this)" class="w-full pl-12 pr-4 py-3.5 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-bold text-dark text-base sm:text-lg">
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label for="kpr-dp" class="text-xs font-bold text-gray-500 uppercase tracking-wider">Uang Muka / DP</label>
+                <div class="flex gap-1.5">
+                  <button type="button" onclick="setDP(10)" class="text-xs bg-gray-100 hover:bg-gold-500 hover:text-white px-2.5 py-1 rounded-md font-medium transition-colors">10%</button>
+                  <button type="button" onclick="setDP(20)" class="text-xs bg-gray-100 hover:bg-gold-500 hover:text-white px-2.5 py-1 rounded-md font-medium transition-colors">20%</button>
+                  <button type="button" onclick="setDP(30)" class="text-xs bg-gray-100 hover:bg-gold-500 hover:text-white px-2.5 py-1 rounded-md font-medium transition-colors">30%</button>
+                </div>
+              </div>
+              <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-gray-400">Rp</span>
+                <input type="text" id="kpr-dp" value="300.000.000" oninput="formatAndCalculate(this)" class="w-full pl-12 pr-4 py-3.5 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-bold text-dark text-base sm:text-lg">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="kpr-bunga" class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Bunga / Thn (%)</label>
+                <div class="relative">
+                  <input type="number" id="kpr-bunga" value="7.00" step="0.1" oninput="calculateKPR()" class="w-full px-4 py-3.5 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-bold text-dark text-base sm:text-lg">
+                  <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</span>
+                </div>
+              </div>
+
+              <div>
+                <label for="kpr-tenor" class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Tenor Pinjaman</label>
+                <select id="kpr-tenor" onchange="calculateKPR()" class="w-full px-3 sm:px-4 py-3.5 bg-[#f8f9fa] border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-bold text-dark text-base sm:text-lg appearance-none cursor-pointer">
+                  <option value="5">5 Tahun</option>
+                  <option value="10">10 Tahun</option>
+                  <option value="15" selected>15 Tahun</option>
+                  <option value="20">20 Tahun</option>
+                  <option value="25">25 Tahun</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-medium text-gray-400 mb-1">
+                <label for="tenor-range">Geser Tenor:</label>
+                <span id="tenor-val-label" class="text-gold-600 font-bold">15 Tahun</span>
+              </div>
+              <input type="range" id="tenor-range" min="5" max="25" step="5" value="15" oninput="syncTenorRange(this.value)" class="w-full bg-gray-200 rounded-lg appearance-none h-2 cursor-pointer">
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-dark rounded-2xl p-6 sm:p-8 text-white flex flex-col justify-between relative overflow-hidden glow-gold">
+            <div class="absolute -top-12 -right-12 w-40 h-40 bg-gold-500/20 rounded-full blur-3xl"></div>
+            <div class="relative z-10">
+              <span class="text-gold-400 text-xs uppercase tracking-widest font-bold block mb-1">Plafon Pinjaman Bank</span>
+              <h4 id="kpr-plafon" class="text-xl sm:text-2xl font-serif text-gray-200 font-semibold mb-6 sm:mb-8">Rp 1.200.000.000</h4>
+
+              <span class="text-gray-400 text-xs uppercase tracking-widest font-bold block mb-2">Estimasi Angsuran / Bulan</span>
+              <h3 id="kpr-cicilan" class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-gold-400 leading-tight">Rp 10.785.939</h3>
+            </div>
+            <div class="relative z-10 pt-6 sm:pt-8 mt-6 border-t border-gray-800 space-y-4">
+              <div class="flex items-center gap-3 text-xs text-gray-400">
+                <svg class="w-5 h-5 text-gold-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span>Suku bunga tetap (fixed) untuk opsi kepemilikan tenang.</span>
+              </div>
+              <a href="#lead-form" class="block text-center bg-gold-500 hover:bg-gold-600 text-white font-bold uppercase tracking-wider py-3.5 rounded-xl transition-all shadow-lg text-xs sm:text-sm">Konsultasikan KPR Sekarang</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION MAP & COMMUTE CALCULATOR -->
+  <section class="py-16 sm:py-24 bg-white relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+      <span class="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+        Aksesibilitas Prima
+      </span>
+      <h3 class="font-serif text-3xl sm:text-4xl font-bold mb-3">Lokasi Strategis & Rute</h3>
+      <p id="prop-address" class="text-gray-500 mb-10 sm:mb-12 text-base sm:text-lg">...</p>
+      
+      <div class="max-w-3xl mx-auto mb-12 bg-gradient-to-b from-white to-[#fdfbf7] p-6 sm:p-10 rounded-3xl glow-dark text-left border border-gold-500/20 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-600 shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <div>
+              <h4 class="font-serif text-xl sm:text-2xl font-bold text-dark">Kalkulator Jarak Tempuh</h4>
+              <p class="text-gray-500 text-xs">Cek estimasi waktu tempuh dari rumah ke kantor / destinasi Anda.</p>
+            </div>
+          </div>
+          <span class="hidden md:inline-block text-[10px] bg-dark text-white font-bold uppercase tracking-widest px-3 py-1 rounded-full">Algoritma Jakarta</span>
+        </div>
+        
+        <div class="flex flex-col md:flex-row gap-3">
+          <input type="text" id="dest-input" placeholder="Ketik tujuan: SCBD, Plaza Senayan, Bandara..." class="flex-1 px-5 py-3.5 sm:py-4 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-medium text-sm shadow-sm">
+          <button type="button" onclick="calculateCommute()" id="btn-calc" class="bg-dark hover:bg-black text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold tracking-wide transition-all duration-300 flex justify-center items-center gap-2 shrink-0 shadow-lg text-sm">
+            <span>Hitung Waktu Tempuh</span>
+          </button>
+        </div>
+
+        <div id="route-result" class="hidden mt-6 bg-white p-5 sm:p-6 rounded-2xl border border-gold-500/30 shadow-md animate-fade-up">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6">
+            <div>
+              <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Estimasi Waktu (Kondisi Padat Normal)</p>
+              <div class="flex items-end gap-3 text-dark">
+                <span class="text-3xl sm:text-4xl font-bold font-serif text-gold-600" id="res-time">--</span>
+                <span class="text-base sm:text-lg font-medium text-gray-500 mb-1" id="res-dist">(-- km)</span>
+              </div>
+              <p class="text-[10px] text-gray-400 mt-1">*Berdasarkan kecepatan mobil rata-rata (±16 km/jam)</p>
+            </div>
+            <a href="#" id="res-link" target="_blank" class="bg-gold-500 hover:bg-gold-600 text-white px-5 py-3 rounded-xl text-xs font-bold flex items-center gap-2 transition-all shadow-md text-left w-full md:w-auto md:max-w-[200px]">
+              <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Klik untuk rute, jarak dan waktu tempuh yg akurat
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- FASILITAS EKSKLUSIF -->
-      <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-lg border border-slate-100">
-        <h2 class="text-2xl font-serif font-bold text-slate-900 mb-6 flex items-center gap-3">
-          <span>✨</span> Fasilitas Eksklusif
-        </h2>
-        <ul id="facilities-container" class="space-y-3">
-          <li class="flex items-start gap-3 text-xs sm:text-sm text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100"><span class="text-amber-500 text-base shrink-0">✓</span><span>100% Bebas Banjir (Terbukti Aman)</span></li>
-          <li class="flex items-start gap-3 text-xs sm:text-sm text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100"><span class="text-amber-500 text-base shrink-0">✓</span><span>Keamanan 24 Jam (Portal & Pos Polisi)</span></li>
-          <li class="flex items-start gap-3 text-xs sm:text-sm text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100"><span class="text-amber-500 text-base shrink-0">✓</span><span>Supermarket HERO & McD 24 Jam di Gerbang Utama</span></li>
-          <li class="flex items-start gap-3 text-xs sm:text-sm text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100"><span class="text-amber-500 text-base shrink-0">✓</span><span>Kolam Renang, Gym & Lapangan Olahraga Kompleks</span></li>
-          <li class="flex items-start gap-3 text-xs sm:text-sm text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100"><span class="text-amber-500 text-base shrink-0">✓</span><span>Sekolah Internasional HighScope & Citra Az-Zahra</span></li>
-          <li class="flex items-start gap-3 text-xs sm:text-sm text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100"><span class="text-amber-500 text-base shrink-0">✓</span><span>3-5 Menit Akses Gerbang Tol JORR Joglo</span></li>
-        </ul>
+      <div class="w-full h-[350px] sm:h-[420px] rounded-3xl overflow-hidden shadow-xl border border-gray-200">
+        <iframe id="prop-maps" class="w-full h-full border-0" src="" allowfullscreen loading="lazy" title="Peta Lokasi Google Maps"></iframe>
       </div>
+    </div>
+  </section>
 
-    </section>
-
-    <!-- INSPIRASI RENOVASI & VIDEO TIMELAPSE -->
-    <section class="bg-slate-900 text-white p-6 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <div class="space-y-4">
-          <span class="text-amber-400 text-xs font-bold uppercase tracking-widest">Inspirasi Arsitektur</span>
-          <h2 id="dyn-inspirationTitle" class="text-2xl sm:text-4xl font-serif font-bold leading-tight">
-            Miliki Kebebasan Mutlak untuk Membangun Rumah Impian Anda
-          </h2>
-          <p id="dyn-inspirationStory" class="text-slate-300 text-sm leading-relaxed whitespace-pre-line">
-            Struktur bangunan yang kokoh dari bata merah pejal memberi fondasi sempurna jika Anda ingin merenovasi atau mengadopsi gaya Modern Minimalis Impian.
-          </p>
-        </div>
-        <div class="aspect-video w-full rounded-2xl overflow-hidden bg-slate-800 border border-slate-700 shadow-lg">
-          <iframe id="dyn-timelapseIframe" class="w-full h-full" src="https://www.youtube.com/embed/zDvGAE7vPWI?autoplay=0&mute=1" title="Timelapse Video" frameborder="0" allowfullscreen></iframe>
-        </div>
+  <!-- LEAD FORM SECTION -->
+  <section id="lead-form" class="py-16 sm:py-24 bg-dark relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+    <div class="max-w-md mx-auto px-4 sm:px-6 relative z-10">
+      <div class="glass p-6 sm:p-10 rounded-2xl shadow-2xl">
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-center text-dark mb-2">Berminat Survey?</h3>
+        <p class="text-gray-600 text-center text-xs sm:text-sm mb-6 sm:mb-8">Isi formulir di bawah ini untuk terhubung langsung dengan representatif kami.</p>
+        <form id="pms-lead-form" class="space-y-4 sm:space-y-5">
+          <input type="hidden" id="utm-source" name="source" value="direct">
+          <div>
+            <label for="input-name" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nama Lengkap</label>
+            <input type="text" id="input-name" required placeholder="Contoh: Jaya Wijaya" class="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 text-sm">
+          </div>
+          <div>
+            <label for="input-whatsapp" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nomor WhatsApp</label>
+            <input type="tel" id="input-whatsapp" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 bg-white/50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 text-sm">
+          </div>
+          <button type="submit" id="btn-submit" class="w-full bg-gold-500 hover:bg-gold-600 text-white font-bold uppercase tracking-widest py-3.5 sm:py-4 rounded-lg shadow-lg transition-all mt-4 text-xs sm:text-sm">Hubungi Via WhatsApp</button>
+        </form>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- MAIN HOUSE TOUR VIDEO -->
-    <section class="bg-white p-6 sm:p-10 rounded-3xl shadow-lg border border-slate-100 space-y-6">
-      <div class="text-center max-w-2xl mx-auto space-y-2">
-        <h2 class="text-2xl sm:text-4xl font-serif font-bold text-slate-900">
-          Video House Tour
-        </h2>
-        <p class="text-slate-500 text-sm">Lihat detail keliling rumah secara langsung</p>
-      </div>
-      <div class="aspect-video w-full max-w-4xl mx-auto rounded-2xl overflow-hidden bg-slate-900 shadow-xl">
-        <iframe id="dyn-mainVideoIframe" class="w-full h-full" src="https://www.youtube.com/embed/4sB6KoX98m0" title="Main Video Tour" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </section>
-
-    <!-- GALERI FOTO (FORMAT 9:16 DENGAN BLUR BACKDROP) -->
-    <section id="gallery-section" class="space-y-6">
-      <div class="text-center max-w-2xl mx-auto space-y-2">
-        <h2 id="dyn-galleryTitle" class="text-2xl sm:text-4xl font-serif font-bold text-slate-900">
-          Galeri Arsitektur
-        </h2>
-        <p id="dyn-gallerySubheadline" class="text-slate-500 text-sm">
-          Jelajahi setiap sudut potensi hunian di Taman Alfa Indah
-        </p>
-      </div>
-
-      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <!-- DEMO FOTO 9:16 JIKA GALERI ADMIN KOSONG -->
-        <div class="group relative aspect-[9/16] rounded-3xl overflow-hidden shadow-xl bg-slate-900 border border-slate-200/60">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover blur-xl scale-125 opacity-60">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" class="relative z-10 w-full h-full object-contain">
-          <div class="absolute bottom-4 left-4 z-20 bg-slate-900/80 text-amber-300 px-3 py-1 rounded-full text-[10px] font-bold uppercase">Interior</div>
-        </div>
-        <div class="group relative aspect-[9/16] rounded-3xl overflow-hidden shadow-xl bg-slate-900 border border-slate-200/60">
-          <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover blur-xl scale-125 opacity-60">
-          <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80" class="relative z-10 w-full h-full object-contain">
-          <div class="absolute bottom-4 left-4 z-20 bg-slate-900/80 text-amber-300 px-3 py-1 rounded-full text-[10px] font-bold uppercase">Interior</div>
-        </div>
-        <div class="group relative aspect-[9/16] rounded-3xl overflow-hidden shadow-xl bg-slate-900 border border-slate-200/60">
-          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover blur-xl scale-125 opacity-60">
-          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" class="relative z-10 w-full h-full object-contain">
-          <div class="absolute bottom-4 left-4 z-20 bg-slate-900/80 text-amber-300 px-3 py-1 rounded-full text-[10px] font-bold uppercase">Eksterior</div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FLOATING BUTTONS (WA & AI CHATBOT) -->
-  <div class="fixed bottom-6 left-4 right-4 z-40 max-w-6xl mx-auto flex justify-between items-center pointer-events-none">
-    <a id="floating-wa" href="https://wa.me/6287832219195" target="_blank" class="pointer-events-auto bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-5 py-3 rounded-full shadow-2xl flex items-center gap-2 border border-emerald-400 text-xs sm:text-sm">
-      <span class="text-lg">💬</span> WhatsApp
-    </a>
-
-    <button onclick="toggleChatModal()" class="pointer-events-auto bg-slate-900 hover:bg-slate-800 text-amber-400 font-bold px-6 py-3.5 rounded-full shadow-2xl border border-amber-500/40 flex items-center gap-2 text-xs sm:text-sm">
-      <span class="text-lg">🤖</span> <span id="dyn-botButtonText">Tanya Alfin</span>
+  <footer class="py-8 bg-[#0a0a0a] text-gray-500 text-center text-xs sm:text-sm pb-24 sm:pb-8">
+    <p>© 2026 <span id="footer-title"></span>. All Rights Reserved.</p>
+  </footer>
+  
+  <!-- FLOATING WIDGETS -->
+  
+  <!-- Floating Audio Controller (Kiri Bawah, Di Atas WA) -->
+  <div id="audio-controller" class="fixed bottom-16 left-4 sm:bottom-20 sm:left-6 z-[50]">
+    <button id="audio-toggle-btn" type="button" onclick="toggleAudio()" class="bg-white/80 backdrop-blur-md border border-gray-200/50 text-dark p-2.5 sm:p-3 rounded-full flex items-center justify-center shadow-xl hover:bg-white hover:scale-105 transition-all w-10 h-10 sm:w-12 sm:h-12" aria-label="Toggle Background Music">
+      <span id="audio-icon" class="text-base sm:text-lg">🔇</span>
     </button>
   </div>
 
-  <!-- MODAL CHATBOT ALFIN -->
-  <div id="chat-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg h-[600px] max-h-[85vh] flex flex-col overflow-hidden border border-slate-100">
-      
-      <div class="bg-slate-900 text-white p-4 flex justify-between items-center border-b border-slate-800">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-amber-500 text-slate-900 font-bold rounded-2xl flex items-center justify-center text-lg">🤖</div>
-          <div>
-            <h3 id="dyn-modalBotName" class="font-bold text-sm">Alfin - Property Advisor</h3>
-            <p class="text-[10px] text-emerald-400 flex items-center gap-1"><span class="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></span> Online & Siap Membantu</p>
-          </div>
-        </div>
-        <button onclick="toggleChatModal()" class="text-slate-400 hover:text-white p-2 text-xl font-bold">✕</button>
-      </div>
+  <!-- WhatsApp Link (Kiri Bawah) -->
+  <a href="#" id="floating-wa-link" target="_blank" class="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 glass hover:bg-[#25d366] hover:text-white text-[#25d366] px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-2 sm:gap-3 shadow-2xl transition-all z-[50] group border-[#25d366]/30">
+    <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current shrink-0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    <span class="font-semibold text-xs sm:text-sm group-hover:text-white transition-colors">WhatsApp</span>
+  </a>
 
-      <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 custom-scrollbar bg-slate-50 text-xs sm:text-sm">
-        <div class="bg-amber-100/80 text-slate-800 p-3.5 rounded-2xl max-w-[85%] border border-amber-200">
-          <p id="dyn-salutationMsg">Halo! Saya Alfin, asisten virtual resmi untuk Rumah Taman Alfa Indah. Ada yang bisa saya bantu terkait harga, lokasi, atau jadwal survey?</p>
+  <!-- Chat Bubble Alfin (Kanan Bawah) -->
+  <div id="ai-chat-bubble" onclick="toggleChatWindow()" class="btn-alfin-pulse fixed bottom-4 right-4 sm:bottom-6 sm:right-6 glass-dark text-white px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-2 sm:gap-3 cursor-pointer shadow-2xl z-[50] hover:bg-dark hover:scale-105 transition-all">
+    <div class="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-full w-full bg-gold-500"></span>
+    </div>
+    <span class="font-medium text-xs sm:text-sm tracking-wide">Tanya Alfin</span>
+  </div>
+
+  <!-- CHAT WINDOW -->
+  <div id="ai-chat-window" class="hidden fixed bottom-16 right-3 sm:bottom-[90px] sm:right-6 z-[70] w-[calc(100vw-1.5rem)] sm:w-[380px] h-[75vh] max-h-[580px] bg-white rounded-2xl shadow-[0_15px_50px_rgba(0,0,0,0.3)] flex-col overflow-hidden border border-gray-200 origin-bottom-right transition-all">
+    
+    <div class="bg-dark text-white p-3.5 sm:p-4 flex justify-between items-center shrink-0">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gold-500 flex items-center justify-center font-serif font-bold text-lg sm:text-xl">A</div>
+        <div>
+          <strong class="block text-xs sm:text-sm">Alfin</strong>
+          <small class="text-gray-400 text-[10px] sm:text-xs">AI Advisor Online</small>
         </div>
       </div>
+      <button type="button" onclick="toggleChatWindow()" class="text-gray-400 hover:text-white p-2 text-lg">✕</button>
+    </div>
 
-      <form id="chat-form" onsubmit="sendChatMessage(event)" class="p-3 bg-white border-t border-slate-100 flex gap-2">
-        <input type="text" id="chat-input" placeholder="Ketik pertanyaan Anda..." required class="flex-1 px-4 py-3 bg-slate-100 border border-slate-200 rounded-xl text-xs sm:text-sm outline-none focus:ring-2 focus:ring-amber-500">
-        <button type="submit" id="chat-send-btn" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-5 py-3 rounded-xl text-xs sm:text-sm uppercase tracking-wider">Kirim</button>
-      </form>
+    <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-[#f8f9fa] text-xs sm:text-sm leading-relaxed space-y-3 sm:space-y-4">
+      <div id="welcome-message" class="bg-white border border-gray-100 text-gray-800 p-3.5 rounded-2xl rounded-tl-sm shadow-sm max-w-[90%]"></div>
+    </div>
+
+    <div class="p-3 sm:p-4 bg-white border-t border-gray-100 shrink-0">
+      <div class="flex items-center gap-2 bg-[#f1f3f5] p-1.5 rounded-full border border-gray-200 focus-within:border-gold-500 focus-within:ring-1">
+        <input type="text" id="chat-input" placeholder="Tanyakan ke Alfin..." class="flex-1 bg-transparent px-3 py-1.5 text-xs sm:text-sm outline-none text-dark" onkeypress="handleKeyPress(event)">
+        <button type="button" onclick="sendChatMessage()" class="bg-dark text-white px-4 py-2 rounded-full text-xs sm:text-sm font-bold shrink-0 hover:bg-black transition-colors">➤</button>
+      </div>
     </div>
   </div>
 
+  <!-- SCRIPT UTAMA -->
   <script>
     const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwbtqI258xNMlwe94LXbF-jXkH7zDSnsd1e5-nUUE5TJKzxReFghyOVyYVwEVQ8FPQ7xw/exec";
 
-    let isAudioPlaying = false;
-    let chatHistory = [];
+    let PROPERTY_CONFIG = {
+      title: "Rumah Taman Alfa Indah",
+      whatsappNumber: "6287832219195", 
+      price: "Rp 1.5 Milyar (Nego)", 
+      address: "Taman Alfa Indah Blok H, Jakarta Selatan",
+      videoUrl: "https://www.youtube.com/embed/4sB6KoX98m0?enablejsapi=1&cc_load_policy=0", 
+      latitude: -6.224486290732541,
+      longitude: 106.75084911701877,
+      whatsappTemplate: "Halo, saya tertarik dengan Rumah di Taman Alfa Indah (%SOURCE%). Saya terinspirasi dengan konsep renovasi modern minimalisnya. Apakah bisa dijadwalkan survey lokasi minggu ini?",
+      headline: "Ketenangan Hidup di Lokasi Emas. Bebas Banjir, Jauh di Bawah Harga Pasar.",
+      story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi: Kalau strategis, pasti mahal. Kalau murah, mungkin banjir.\n\nDi Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran yang Anda rasakan setiap musim hujan tiba, karena rumah ini terbukti 100% bebas banjir, bahkan saat banjir besar melanda Jakarta. Bayangkan kemudahan hidup saat Tol JORR, sekolah anak, hingga pusat perbelanjaan hanya berjarak beberapa menit dari pintu rumah Anda.\n\nDengan harga Rp 1.5 Milyar (di bawah harga pasaran saat ini), ini bukan sekadar tempat tinggal. Ini adalah aset perlindungan keluarga dan investasi cerdas yang sangat langka. Kesempatan ini tidak akan bertahan lama.",
+      inspirationTitle: "Miliki Kebebasan Mutlak untuk Membangun Rumah Impian Anda",
+      inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid (6x17) di Rumah Alfa Indah ini memberikan Anda keleluasaan untuk mendesain ruang hidup Anda sendiri sesuai impian Anda.\n\nTonton video ini : Lihat bagaimana bangunan ini memiliki potensi luar biasa untuk ditransformasikan menjadi karya arsitektur Modern Minimalis yang megah, bersih, dan berkelas dunia. Anda tidak sedang membeli rumah seken biasa—Anda sedang mengambil alih kendali penuh atas bagaimana masa depan kenyamanan keluarga Anda diwujudkan. Jangan beli selera orang lain, ciptakan kemewahan Anda sendiri di sini.",
+      timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
+      galleryTitle: "Galeri Arsitektur",
+      gallerySubheadline: "Kabar baiknya, Anda tidak harus merombak semuanya dari nol. Struktur bangunan asli saat ini sudah sangat kokoh. Cukup dengan renovasi ringan seperti perbaikan lantai dan pengecatan ulang, rumah ini sudah siap bertransformasi menjadi hunian yang indah dan nyaman tanpa biaya besar. Jelajahi potensi tata letak ruang bagian dalam rumah melalui galeri foto di bawah ini:",
+      useSubGalleryPage: "false",
+      bgm_volume: 0.3,
+      facilities: [
+        "Zero Anxiety: 100% Bebas Banjir & Diapit 2 Pos Polisi (Aman 24 Jam)",
+        "Komersial Kompleks: HERO Supermarket, McD 24 Jam & Alfamart 24 Jam di Gerbang Utama",
+        "Olahraga & Lifestyle: Kolam Renang & Gym/Fitness Center Resmi di Dalam Kompleks",
+        "Pendidikan Lengkap: HighScope, SIT Citra Az-Zahra, Petra Alpha & Kumon Dalam Kompleks",
+        "High Mobility: 3-5 Menit ke Gerbang Tol JORR Joglo & TransJakarta 8M",
+        "Healthcare & Banking: RSIA Mahati 24 Jam, Klinik, & 6 Bank Major di Jl. Joglo Raya"
+      ],
+      specs: {
+        "Legalitas": "SHM (Sertifikat Hak Milik) - Aman & Valid",
+        "Luas Tanah": "102 m² (Dimensi Ideal 6x17)",
+        "Luas Bangunan": "82 m² (2 Lantai Kokoh Dinding Bata Merah Pejal)",
+        "Kamar Tidur": "3 + 1 (Cocok untuk keluarga berkembang)",
+        "Kamar Mandi": "2 + 1",
+        "Extra Space": "Gudang Penyimpanan Terpisah & Carport",
+        "Air & Listrik": "Air Jetpump Jernih + PAM Jaya / Listrik 2200 VA"
+      },
+      gallery: []
+    };
 
-    function toggleAudio() {
-      const player = document.getElementById('bgm-player');
-      const icon = document.getElementById('audio-icon');
-      if (isAudioPlaying) {
-        player.pause(); icon.innerText = "🔇"; isAudioPlaying = false;
-      } else {
-        player.play().then(() => { icon.innerText = "🔊"; isAudioPlaying = true; }).catch(() => alert("Klik layar terlebih dahulu."));
+    let chatMemory = [];
+
+    /* =========================================================
+       AUDIO BGM & AUTOPLAY LOGIC
+       ========================================================= */
+    const bgAudio = document.getElementById('bg-audio');
+    const audioIcon = document.getElementById('audio-icon');
+    let isAudioPlaying = false;
+
+    function applyAudioVolume() {
+      if (bgAudio) {
+        let vol = parseFloat(PROPERTY_CONFIG.bgm_volume);
+        bgAudio.volume = isNaN(vol) ? 0.3 : Math.min(Math.max(vol, 0), 1);
       }
     }
 
-    function toggleChatModal() {
-      document.getElementById('chat-modal').classList.toggle('hidden');
+    function toggleAudio() {
+      if (bgAudio.paused) playBGM();
+      else pauseBGM();
     }
 
-    async function loadConfigData() {
+    function playBGM() {
+      if (!bgAudio) return;
+      applyAudioVolume();
+      bgAudio.play().then(() => {
+        isAudioPlaying = true;
+        if (audioIcon) audioIcon.textContent = '🎵';
+      }).catch(err => {
+        console.log("Autoplay memerlukan interaksi awal pengguna.", err);
+      });
+    }
+
+    function pauseBGM() {
+      if (!bgAudio) return;
+      bgAudio.pause();
+      isAudioPlaying = false;
+      if (audioIcon) audioIcon.textContent = '🔇';
+    }
+
+    document.addEventListener('click', function initAudioOnUserInteraction() {
+      if (!isAudioPlaying && bgAudio && bgAudio.paused) {
+        playBGM();
+      }
+      document.removeEventListener('click', initAudioOnUserInteraction);
+    }, { once: true });
+
+    /* =========================================================
+       YOUTUBE IFRAME PLAYER API (AUTO-PAUSE BGM)
+       ========================================================= */
+    var ytPlayers = [];
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function onYouTubeIframeAPIReady() {
+      const videoIds = ['prop-video', 'prop-timelapse-yt'];
+      videoIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.src) {
+          let player = new YT.Player(id, {
+            events: {
+              'onStateChange': function(event) {
+                if (event.data === YT.PlayerState.PLAYING) {
+                  pauseBGM();
+                }
+              }
+            }
+          });
+          ytPlayers.push(player);
+        }
+      });
+    }
+
+    /* =========================================================
+       INITIALIZATION & DOM EVENTS
+       ========================================================= */
+    document.addEventListener("DOMContentLoaded", async function() {
       try {
-        const res = await fetch(GAS_WEBHOOK_URL, {
+        const saasRes = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify({ action: "getSaasConfig" })
         });
-        const data = await res.json();
-        if (data && data.success && data.config) {
-          const cfg = data.config;
-
-          if (cfg.title) { document.title = cfg.title; document.getElementById('dyn-title').innerText = cfg.title; }
-          if (cfg.headline) document.getElementById('dyn-headline').innerText = cfg.headline;
-          if (cfg.price) document.getElementById('dyn-price').innerText = cfg.price;
-          if (cfg.story) document.getElementById('dyn-story').innerText = cfg.story;
-          if (cfg.inspirationTitle) document.getElementById('dyn-inspirationTitle').innerText = cfg.inspirationTitle;
-          if (cfg.inspirationStory) document.getElementById('dyn-inspirationStory').innerText = cfg.inspirationStory;
-          if (cfg.galleryTitle) document.getElementById('dyn-galleryTitle').innerText = cfg.galleryTitle;
-          if (cfg.gallerySubheadline) document.getElementById('dyn-gallerySubheadline').innerText = cfg.gallerySubheadline;
-          
-          if (cfg.bot_name) {
-            document.getElementById('dyn-botButtonText').innerText = "Tanya " + cfg.bot_name;
-            document.getElementById('dyn-modalBotName').innerText = cfg.bot_name + " - Property Advisor";
-          }
-          if (cfg.whatsappNumber) {
-            const waUrl = "https://wa.me/" + cfg.whatsappNumber;
-            document.getElementById('btn-wa-hero').href = waUrl;
-            document.getElementById('floating-wa').href = waUrl;
-          }
-
-          if (cfg.timelapseUrl) document.getElementById('dyn-timelapseIframe').src = cfg.timelapseUrl;
-          if (cfg.videoUrl) document.getElementById('dyn-mainVideoIframe').src = cfg.videoUrl;
-
-          // RENDER SPESIFIKASI DARI ONLINE JIKA ADA
-          if (cfg.specs && Object.keys(cfg.specs).length > 0) {
-            const specsContainer = document.getElementById('specs-container');
-            specsContainer.innerHTML = "";
-            for (let key in cfg.specs) {
-              if (cfg.specs[key]) {
-                specsContainer.insertAdjacentHTML('beforeend', `
-                  <div class="flex justify-between items-center py-2">
-                    <span class="text-xs font-semibold text-slate-500 uppercase">${key}</span>
-                    <span class="text-sm font-bold text-slate-800">${cfg.specs[key]}</span>
-                  </div>
-                `);
-              }
-            }
-          }
-
-          // RENDER FASILITAS DARI ONLINE JIKA ADA
-          if (cfg.facilities && cfg.facilities.length > 0) {
-            const facContainer = document.getElementById('facilities-container');
-            facContainer.innerHTML = "";
-            cfg.facilities.forEach(fac => {
-              if (fac) {
-                facContainer.insertAdjacentHTML('beforeend', `
-                  <li class="flex items-start gap-3 text-xs sm:text-sm text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                    <span class="text-amber-500 text-base shrink-0">✓</span><span>${fac}</span>
-                  </li>
-                `);
-              }
-            });
-          }
-
-          // RENDER GALERI DARI ONLINE JIKA ADA
-          if (cfg.gallery && cfg.gallery.length > 0) {
-            const galleryGrid = document.getElementById('gallery-grid');
-            galleryGrid.innerHTML = "";
-            cfg.gallery.forEach(item => {
-              const imgUrl = typeof item === 'object' ? item.url : item;
-              const imgCat = typeof item === 'object' ? item.category : 'Interior';
-              if (imgUrl) {
-                galleryGrid.insertAdjacentHTML('beforeend', `
-                  <div class="group relative aspect-[9/16] rounded-3xl overflow-hidden shadow-xl bg-slate-900 border border-slate-200/60">
-                    <img src="${imgUrl}" class="absolute inset-0 w-full h-full object-cover blur-xl scale-125 opacity-60">
-                    <img src="${imgUrl}" class="relative z-10 w-full h-full object-contain">
-                    <div class="absolute bottom-4 left-4 z-20 bg-slate-900/80 text-amber-300 px-3.5 py-1.5 rounded-full text-[10px] font-bold uppercase">${imgCat}</div>
-                  </div>
-                `);
-              }
-            });
-          }
+        const saasData = await saasRes.json();
+        if (saasData.success && saasData.config) {
+          Object.assign(PROPERTY_CONFIG, saasData.config);
         }
       } catch (err) {
-        console.log("Menggunakan tampilan default HTML.");
+        console.log("Menggunakan fallback konfigurasi lokal.");
+      }
+
+      applyAudioVolume();
+      renderPropertyData(PROPERTY_CONFIG);
+      setDynamicWelcomeMessage();
+      calculateKPR();
+
+      const form = document.getElementById('pms-lead-form');
+      if (form) {
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const submitBtn = document.getElementById('btn-submit');
+          const originalText = submitBtn.innerText;
+          submitBtn.disabled = true;
+          submitBtn.innerText = "Memproses...";
+          
+          try {
+            const response = await fetch(GAS_WEBHOOK_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify({
+                action: "saveLead",
+                payload: {
+                  name: document.getElementById('input-name').value,
+                  whatsapp: document.getElementById('input-whatsapp').value,
+                  source: document.getElementById('utm-source').value
+                }
+              })
+            });
+            const resData = await response.json();
+            if (resData.success) window.location.href = resData.redirectUrl;
+            else alert("Gagal: " + resData.error);
+          } catch (err) {
+            alert("Koneksi gagal.");
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalText;
+          }
+        });
+      }
+    });
+
+    function ensureEnableJsApi(url) {
+      if (!url) return '';
+      if (url.includes('enablejsapi=1')) return url;
+      return url.includes('?') ? `${url}&enablejsapi=1` : `${url}?enablejsapi=1`;
+    }
+
+    function renderPropertyData(config) {
+      document.getElementById('utm-source').value = new URLSearchParams(window.location.search).get('src') || 'direct';
+      document.title = config.title || 'Landing Page Properti';
+      document.getElementById('prop-title').innerText = config.title || '';
+      document.getElementById('footer-title').innerText = config.title || '';
+      document.getElementById('prop-headline').innerText = config.headline || '';
+      document.getElementById('prop-price').innerText = config.price || '';
+      document.getElementById('prop-story').innerText = config.story || '';
+      document.getElementById('prop-address').innerText = config.address || '';
+      document.getElementById('prop-inspiration-title').innerText = config.inspirationTitle || '';
+      document.getElementById('prop-inspiration-story').innerText = config.inspirationStory || '';
+      document.getElementById('prop-gallery-title').innerText = config.galleryTitle || 'Galeri Arsitektur';
+      document.getElementById('prop-gallery-sub').innerText = config.gallerySubheadline || '';
+      
+      const videoIframe = document.getElementById('prop-video');
+      if (config.videoUrl && config.videoUrl.trim().length > 5) {
+        videoIframe.src = ensureEnableJsApi(config.videoUrl);
+        videoIframe.closest('section').style.display = 'block';
+      } else {
+        videoIframe.closest('section').style.display = 'none';
+      }
+
+      const timelapseIframe = document.getElementById('prop-timelapse-yt');
+      if (config.timelapseUrl && config.timelapseUrl.trim().length > 5) {
+        timelapseIframe.src = ensureEnableJsApi(config.timelapseUrl);
+        timelapseIframe.closest('section').style.display = 'block';
+      } else {
+        timelapseIframe.closest('section').style.display = 'none';
+      }
+
+      document.getElementById('prop-maps').src = `https://maps.google.com/maps?q=${config.latitude || -6.2244},${config.longitude || 106.7508}&t=&z=15&ie=UTF-8&iwloc=&output=embed`;
+      document.getElementById('floating-wa-link').href = `https://wa.me/${config.whatsappNumber || '6287832219195'}?text=${encodeURIComponent((config.whatsappTemplate || 'Halo').replace("%SOURCE%", document.getElementById('utm-source').value))}`;
+
+      if (config.gallery && config.gallery.length > 0) {
+        const firstImg = (typeof config.gallery[0] === 'object') ? config.gallery[0].url : config.gallery[0];
+        document.getElementById('hero-section').style.backgroundImage = `url('${firstImg}')`;
+      }
+      
+      const gallery = document.getElementById('gallery-container');
+      const btnWrapper = document.getElementById('sub-gallery-btn-wrapper');
+      gallery.innerHTML = '';
+      btnWrapper.innerHTML = '';
+
+      gallery.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6";
+
+      const isSubPageActive = (config.useSubGalleryPage === "true" || config.useSubGalleryPage === true);
+      const totalPhotos = config.gallery ? config.gallery.length : 0;
+      
+      const photosToDisplay = isSubPageActive ? config.gallery.slice(0, 6) : (config.gallery || []);
+
+      photosToDisplay.forEach((item, i) => {
+        const url = (typeof item === 'object') ? item.url : item;
+        if (url) {
+          gallery.innerHTML += `
+            <div class="overflow-hidden rounded-2xl shadow-lg aspect-[9/16] bg-slate-900/90 relative group border border-gray-800 flex items-center justify-center p-2">
+              <img src="${url}" alt="Foto Galeri ${i + 1}" title="Foto Galeri ${i + 1}" class="w-full h-full object-contain img-hover-zoom drop-shadow-md rounded-lg" loading="lazy">
+            </div>
+          `;
+        }
+      });
+
+      if (isSubPageActive && totalPhotos > 6) {
+        btnWrapper.innerHTML = `
+          <div class="text-center mt-12">
+            <a href="gallery.html" class="inline-flex items-center gap-3 bg-dark hover:bg-black text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-xs sm:text-sm shadow-xl transition-all border border-gold-500/30 hover:scale-105">
+              <span>🖼️ Lihat Seluruh ${totalPhotos} Foto & Kategori Ruangan</span>
+              <span>→</span>
+            </a>
+          </div>
+        `;
+      }
+
+      const specs = document.getElementById('spec-container');
+      if (specs) {
+        specs.innerHTML = '';
+        for (let k in config.specs) specs.innerHTML += `<div class="flex justify-between py-4 border-b text-sm sm:text-base"><span class="text-gray-500">${k}</span><span class="font-bold text-dark text-right">${config.specs[k]}</span></div>`;
+      }
+      
+      const facs = document.getElementById('facility-container');
+      if (facs && config.facilities) {
+        facs.innerHTML = '';
+        config.facilities.forEach(f => facs.innerHTML += `<li class="flex items-start gap-3 sm:gap-4 text-sm sm:text-base"><div class="text-gold-500 font-bold">✓</div><span class="text-gray-700">${f}</span></li>`);
       }
     }
 
-    async function sendChatMessage(e) {
-      e.preventDefault();
+    function formatRupiahStr(angka) {
+      return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+    }
+
+    function parseRupiah(str) {
+      return parseInt(str.replace(/[^,\d]/g, '')) || 0;
+    }
+
+    function formatAndCalculate(input) {
+      let val = parseRupiah(input.value);
+      input.value = new Intl.NumberFormat('id-ID').format(val);
+      calculateKPR();
+    }
+
+    function setDP(percent) {
+      let harga = parseRupiah(document.getElementById('kpr-harga').value);
+      let dpVal = (harga * percent) / 100;
+      document.getElementById('kpr-dp').value = new Intl.NumberFormat('id-ID').format(dpVal);
+      calculateKPR();
+    }
+
+    function syncTenorRange(val) {
+      document.getElementById('kpr-tenor').value = val;
+      document.getElementById('tenor-val-label').innerText = val + " Tahun";
+      calculateKPR();
+    }
+
+    function calculateKPR() {
+      let harga = parseRupiah(document.getElementById('kpr-harga').value);
+      let dp = parseRupiah(document.getElementById('kpr-dp').value);
+      let bungaBulan = parseFloat(document.getElementById('kpr-bunga').value) / 100 / 12;
+      let tenorVal = parseInt(document.getElementById('kpr-tenor').value);
+      let bulan = tenorVal * 12;
+      
+      document.getElementById('tenor-range').value = tenorVal;
+      document.getElementById('tenor-val-label').innerText = tenorVal + " Tahun";
+
+      let plafon = harga - dp;
+      if (plafon < 0) plafon = 0;
+      
+      let cicilan = 0;
+      if (plafon > 0 && bungaBulan > 0 && bulan > 0) {
+        cicilan = plafon * (bungaBulan * Math.pow(1 + bungaBulan, bulan)) / (Math.pow(1 + bungaBulan, bulan) - 1);
+      } else if (plafon > 0 && bulan > 0) {
+        cicilan = plafon / bulan;
+      }
+      
+      document.getElementById('kpr-plafon').innerText = formatRupiahStr(plafon);
+      document.getElementById('kpr-cicilan').innerText = formatRupiahStr(Math.round(cicilan));
+    }
+    
+    async function calculateCommute() {
+      const dest = document.getElementById('dest-input').value.trim();
+      if (!dest) return alert("Ketik lokasi tujuan Anda.");
+      const btn = document.getElementById('btn-calc');
+      const origText = btn.innerText;
+      btn.innerText = "Menghitung..."; btn.disabled = true;
+
+      try {
+        const geoRes = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(dest + " Jakarta")}`);
+        const geoData = await geoRes.json();
+        if (!geoData.length) throw new Error("Lokasi tidak ditemukan");
+
+        const destLat = geoData[0].lat, destLon = geoData[0].lon;
+        const propLat = PROPERTY_CONFIG.latitude, propLon = PROPERTY_CONFIG.longitude;
+
+        const routeRes = await fetch(`https://router.project-osrm.org/route/v1/driving/${propLon},${propLat};${destLon},${destLat}?overview=false`);
+        const routeData = await routeRes.json();
+
+        const distanceKm = routeData.routes[0].distance / 1000;
+        const km = distanceKm.toFixed(1);
+        const min = Math.round((distanceKm / 16) * 60);
+
+        document.getElementById('res-time').innerText = min < 60 ? `${min} Mnt` : `${Math.floor(min/60)} Jam ${min%60} Mnt`;
+        document.getElementById('res-dist').innerText = `(${km} km)`;
+        document.getElementById('res-link').href = `https://www.google.com/maps/dir/?api=1&origin=${propLat},${propLon}&destination=${destLat},${destLon}`;
+        document.getElementById('route-result').classList.remove('hidden');
+      } catch (err) {
+        alert("Gagal menghitung: " + err.message);
+      } finally {
+        btn.innerText = origText; btn.disabled = false;
+      }
+    }
+
+    function setDynamicWelcomeMessage() {
+      const h = new Date().getHours();
+      let greet = h<5?"Selamat subuh!":h<11?"Selamat pagi!":h<15?"Selamat siang!":h<18?"Selamat sore!":"Selamat malam!";
+      const botName = PROPERTY_CONFIG.bot_name || "Alfin";
+      document.getElementById('welcome-message').innerHTML = `<b>${greet} Kak!</b><br>Saya ${botName}, advisor untuk ${PROPERTY_CONFIG.title}. Ada yang ingin ditanyakan seputar rumah ini atau fasilitas lingkungan sekitar?`;
+    }
+
+    function toggleChatWindow() {
+      const w = document.getElementById('ai-chat-window');
+      w.classList.toggle('hidden'); w.classList.toggle('flex');
+    }
+
+    function handleKeyPress(e) { if(e.key === 'Enter') sendChatMessage(); }
+
+    async function sendChatMessage() {
       const input = document.getElementById('chat-input');
       const msg = input.value.trim();
       if (!msg) return;
-
-      const chatBox = document.getElementById('chat-messages');
-      chatBox.insertAdjacentHTML('beforeend', `<div class="flex justify-end"><div class="bg-slate-900 text-white p-3.5 rounded-2xl max-w-[85%]"><p>${msg}</p></div></div>`);
-      input.value = "";
-      chatBox.scrollTop = chatBox.scrollHeight;
-
-      const loadingId = "load-" + Date.now();
-      chatBox.insertAdjacentHTML('beforeend', `<div id="${loadingId}" class="bg-slate-200 text-slate-600 p-3 rounded-2xl max-w-[50%] animate-pulse"><p>Alfin sedang mengetik...</p></div>`);
-      chatBox.scrollTop = chatBox.scrollHeight;
+      const box = document.getElementById('chat-messages');
+      const botName = PROPERTY_CONFIG.bot_name || "Alfin";
+      
+      box.innerHTML += `<div class="bg-dark text-white p-3 rounded-xl ml-auto max-w-[85%] mb-3">${escapeHtml(msg)}</div>`;
+      input.value = ''; box.scrollTop = box.scrollHeight;
+      const loadId = 'load-'+Date.now();
+      box.innerHTML += `<div id="${loadId}" class="bg-white border p-3 rounded-xl max-w-[85%] text-gray-400 italic mb-3">${botName} mengetik...</div>`;
+      box.scrollTop = box.scrollHeight;
 
       try {
         const res = await fetch(GAS_WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ action: "chat", message: msg, history: chatHistory })
+          method: 'POST', body: JSON.stringify({ action: "askAI", userMessage: msg, history: chatMemory })
         });
         const data = await res.json();
-        document.getElementById(loadingId).remove();
-
-        if (data.success && data.reply) {
-          chatBox.insertAdjacentHTML('beforeend', `<div class="bg-amber-100/80 text-slate-800 p-3.5 rounded-2xl max-w-[85%] border border-amber-200"><p>${data.reply}</p></div>`);
-          chatHistory.push({ role: "user", text: msg });
-          chatHistory.push({ role: "model", text: data.reply });
+        document.getElementById(loadId)?.remove();
+        if (data.success) {
+          chatMemory.push({role:"user", content:msg}, {role:"assistant", content:data.response});
+          if(chatMemory.length > 12) chatMemory = chatMemory.slice(chatMemory.length - 12);
+          box.innerHTML += `<div class="bg-white border text-gray-800 p-3 rounded-xl max-w-[90%] mb-3">${formatAiResponse(data.response)}</div>`;
         } else {
-          chatBox.insertAdjacentHTML('beforeend', `<div class="bg-red-100 text-red-700 p-3 rounded-2xl">Layanan AI sedang sibuk. Silakan hubungi via WhatsApp.</div>`);
+          box.innerHTML += `<div class="text-red-500 text-sm mb-3">Sistem sibuk, mohon ulangi.</div>`;
         }
       } catch (err) {
-        if (document.getElementById(loadingId)) document.getElementById(loadingId).remove();
-        chatBox.insertAdjacentHTML('beforeend', `<div class="bg-red-100 text-red-700 p-3 rounded-2xl">Gangguan koneksi internet.</div>`);
+        document.getElementById(loadId)?.remove();
+        box.innerHTML += `<div class="text-red-500 text-sm mb-3">Koneksi gagal.</div>`;
       }
-      chatBox.scrollTop = chatBox.scrollHeight;
+      box.scrollTop = box.scrollHeight;
     }
 
-    document.addEventListener("DOMContentLoaded", loadConfigData);
+    function escapeHtml(t) { return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+    function formatAiResponse(t) { return t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g, '<a href="$2" target="_blank" class="text-gold-600 font-bold underline">$1</a>').replace(/\n/g, '<br>'); }
   </script>
 </body>
 </html>
