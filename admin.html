@@ -10,8 +10,8 @@
 </head>
 <body class="p-4 sm:p-8 pb-36 antialiased">
 
-  <!-- MODAL LOCK SCREEN / LOGIN PASSWORD -->
-  <div id="auth-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+  <!-- MODAL LOCK SCREEN / LOGIN PASSWORD (PAKSA POPUP) -->
+  <div id="auth-modal" class="fixed inset-0 bg-slate-900/95 backdrop-blur-md z-[100] flex items-center justify-center p-4">
     <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-2xl max-w-sm w-full text-center border border-slate-100">
       <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
         🔒
@@ -23,7 +23,7 @@
         <div>
           <input type="password" id="admin-pass-input" placeholder="Masukkan Password Admin" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-center font-mono text-lg tracking-widest outline-none focus:ring-2 focus:ring-amber-500">
         </div>
-        <p id="auth-error" class="text-xs font-bold text-red-500 hidden">❌ Password salah / kosong! Silakan coba lagi.</p>
+        <p id="auth-error" class="text-xs font-bold text-red-500 hidden">❌ Password salah/kosong! Silakan coba lagi.</p>
         <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all text-xs uppercase tracking-wider">
           🔓 Buka Dashboard
         </button>
@@ -40,6 +40,9 @@
         <p class="text-xs text-slate-400 mt-1">Ubah landing page, audio/musik, galeri foto, spesifikasi, & AI Chatbot</p>
       </div>
       <div class="flex gap-2 w-full sm:w-auto">
+        <button type="button" onclick="logoutAdmin()" class="bg-red-500 hover:bg-red-600 text-white font-bold px-3 py-2 rounded-xl text-xs shadow-md">
+          🔒 Lock Session
+        </button>
         <button type="button" onclick="undoConfig()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 w-full sm:w-auto justify-center">
           <span>↩️ UNDO VERSI SEBELUMNYA</span>
         </button>
@@ -386,15 +389,22 @@
     }
 
     function checkSession() {
+      // RESET PERMANEN: Hapus autosave lama yang pernah tersimpan kosong
       const savedPass = sessionStorage.getItem('admin_session_pass');
       if (savedPass && savedPass.trim() !== "") {
         currentAdminPassword = savedPass.trim();
         document.getElementById('auth-modal').classList.add('hidden');
         loadData();
       } else {
-        // Tampilkan modal secara tegas jika tidak ada session aktif
+        // TAMPILKAN POPUP SECARA PAKSA
         document.getElementById('auth-modal').classList.remove('hidden');
       }
+    }
+
+    function logoutAdmin() {
+      sessionStorage.removeItem('admin_session_pass');
+      currentAdminPassword = "";
+      location.reload();
     }
 
     function addGalleryRow(url = "", category = "Interior") {
@@ -574,12 +584,14 @@
       } catch(err) { alert("Kesalahan koneksi saat Undo."); }
     }
 
-    document.addEventListener("DOMContentLoaded", checkSession);
+    // PAKSA CEK SAAT LOAD
+    window.onload = function() {
+      checkSession();
+    };
 
     document.getElementById('admin-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      // Keamanan ekstra: cegah simpan jika password lokal belum terisi
       if (!currentAdminPassword || currentAdminPassword.trim() === "") {
         document.getElementById('auth-modal').classList.remove('hidden');
         alert("⚠️ Silakan masukkan password admin terlebih dahulu di popup login!");
