@@ -59,7 +59,7 @@
   </footer>
 
   <script>
-    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwaFo0vzNWxS2Jxe2vGXRVTp64IJk2muDFZjyVeIosam2XRjrOEtZwVSoykDuRLZmding/exec";
+    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwbtqI258xNMlwe94LXbF-jXkH7zDSnsd1e5-nUUE5TJKzxReFghyOVyYVwEVQ8FPQ7xw/exec";
     let allGalleryData = [];
 
     document.addEventListener("DOMContentLoaded", async function() {
@@ -73,14 +73,14 @@
 
         if (data.success && data.config) {
           const cfg = data.config;
-          document.getElementById('nav-title').innerText = cfg.title;
+          document.getElementById('nav-title').innerText = cfg.title || "Galeri Properti";
           if (cfg.galleryPageTitle) document.getElementById('gal-page-title').innerText = cfg.galleryPageTitle;
           if (cfg.galleryPageDesc) document.getElementById('gal-page-desc').innerText = cfg.galleryPageDesc;
 
           allGalleryData = cfg.gallery || [];
           renderGallery("Semua");
         }
-      } catch (err) { alert("Gagal memuat galeri."); }
+      } catch (err) { console.log("Gagal memuat galeri dari webhook, menggunakan data lokal."); }
     });
 
     function filterCategory(catName) {
