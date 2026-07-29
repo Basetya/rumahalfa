@@ -10,9 +10,10 @@
   <style>
     body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #f8fafc; }
     .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-    .hero-gradient { background: linear-gradient(180deg, rgba(15,23,42,0.3) 0%, rgba(15,23,42,0.85) 100%); }
+    .hero-gradient { background: linear-gradient(180deg, rgba(15,23,42,0.4) 0%, rgba(15,23,42,0.9) 100%); }
     .card-shadow { box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05); }
     .bot-shadow { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.05); }
+    .aspect-9-16 { aspect-ratio: 9 / 16; }
   </style>
 </head>
 <body class="text-slate-800 antialiased">
@@ -29,7 +30,7 @@
         <div class="w-9 h-9 bg-slate-900 rounded-xl flex items-center justify-center text-white font-bold text-lg">
           <i class="fa-solid fa-house-chimney text-amber-400"></i>
         </div>
-        <h1 id="nav-title" class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">Properti Eksklusif</h1>
+        <h1 id="nav-title" class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">Rumah Taman Alfa Indah</h1>
       </div>
       <div class="flex items-center gap-3">
         <button onclick="toggleAudio()" id="btn-audio" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors text-lg" title="Putar/Hentikan Musik">
@@ -51,15 +52,15 @@
     <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6 w-full">
       <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium">
         <i class="fa-solid fa-location-dot text-amber-400"></i>
-        <span id="display-address">Memuat Lokasi...</span>
+        <span id="display-address">Taman Alfa Indah Blok H, Jakarta Selatan</span>
       </div>
       
       <h1 id="display-headline" class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
-        Memuat Judul Utama...
+        Ketenangan Hidup di Lokasi Emas. Bebas Banjir, Jauh di Bawah Harga Pasar.
       </h1>
       
       <p id="display-price" class="text-2xl sm:text-4xl font-extrabold text-amber-400">
-        Rp -
+        Rp 1.5 Milyar (Nego)
       </p>
       
       <div class="pt-6 flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -69,7 +70,7 @@
         </a>
         <a href="#gallery" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm sm:text-base font-semibold px-8 py-4 rounded-xl transition-all flex items-center justify-center gap-2">
           <i class="fa-regular fa-images"></i>
-          Lihat Galeri Foto
+          Lihat Galeri Foto (9:16)
         </a>
       </div>
     </div>
@@ -115,22 +116,68 @@
   <section class="py-12 sm:py-20 px-4 sm:px-6">
     <div class="max-w-3xl mx-auto text-center space-y-6">
       <span class="text-xs font-bold text-amber-600 tracking-widest uppercase bg-amber-50 px-3 py-1 rounded-full">Cerita Properti</span>
-      <h2 id="display-title" class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Memuat Judul...</h2>
+      <h2 id="display-title" class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Rumah Taman Alfa Indah</h2>
       <p id="display-story" class="text-slate-600 leading-relaxed text-base sm:text-lg text-justify sm:text-center whitespace-pre-line">
-        Memuat deskripsi cerita properti...
+        Mencari rumah di Jakarta seringkali memaksa kita berkompromi antara lokasi, keamanan banjir, dan anggaran. Rumah di Kompleks Taman Alfa Indah Blok H ini hadir sebagai jawaban langka untuk hunian siap pakai atau peluang investasi bernilai tinggi.
       </p>
     </div>
   </section>
 
-  <!-- GALLERY SECTION -->
-  <section id="gallery" class="py-16 sm:py-24 bg-white px-4 sm:px-6 border-y border-slate-100">
+  <!-- KALKULATOR KPR & COMMUTE -->
+  <section class="py-12 bg-white px-4 sm:px-6 border-y border-slate-100">
+    <div class="max-w-4xl mx-auto space-y-8">
+      <div class="text-center">
+        <span class="text-xs font-bold text-blue-600 tracking-widest uppercase bg-blue-50 px-3 py-1 rounded-full">Simulasi Finansial</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3">Kalkulator KPR Estimasi</h2>
+      </div>
+
+      <div class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-600 mb-1">Harga Properti (Rp)</label>
+            <input type="number" id="kpr-price" value="1500000000" class="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-xl text-sm font-bold" oninput="calculateKPR()">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-600 mb-1">Uang Muka / DP (%)</label>
+            <input type="number" id="kpr-dp" value="20" class="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-xl text-sm font-bold" oninput="calculateKPR()">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-600 mb-1">Tenor / Jangka Waktu (Tahun)</label>
+            <input type="number" id="kpr-tenor" value="15" class="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-xl text-sm font-bold" oninput="calculateKPR()">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-600 mb-1">Suku Bunga per Tahun (%)</label>
+            <input type="number" step="0.1" id="kpr-interest" value="8.5" class="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-xl text-sm font-bold" oninput="calculateKPR()">
+          </div>
+        </div>
+
+        <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-2xl flex flex-col justify-between space-y-6">
+          <div>
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Estimasi Cicilan Per Bulan</h3>
+            <p id="kpr-result" class="text-3xl sm:text-4xl font-extrabold text-amber-400 mt-2">Rp 11.750.000</p>
+          </div>
+          <div class="border-t border-slate-800 pt-4 space-y-2 text-xs text-slate-300">
+            <div class="flex justify-between"><span>Plafon Pinjaman:</span> <span id="kpr-loan" class="font-bold text-white">Rp 1.200.000.000</span></div>
+            <div class="flex justify-between"><span>Estimasi DP:</span> <span id="kpr-dp-nominal" class="font-bold text-white">Rp 300.000.000</span></div>
+          </div>
+          <a id="kpr-consult-btn" href="#" target="_blank" class="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl transition-colors text-sm">
+            💬 Konsultasi KPR via WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY SECTION (RASIO 9:16) -->
+  <section id="gallery" class="py-16 sm:py-24 bg-white px-4 sm:px-6">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-12">
-        <span class="text-xs font-bold text-amber-600 tracking-widest uppercase bg-amber-50 px-3 py-1 rounded-full">Galeri Eksklusif</span>
-        <h2 class="text-3xl font-extrabold text-slate-900 mt-3">Jelajahi Setiap Sudut Ruangan</h2>
+        <span class="text-xs font-bold text-amber-600 tracking-widest uppercase bg-amber-50 px-3 py-1 rounded-full">Galeri Eksklusif (9:16)</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">Jelajahi Setiap Sudut Ruangan</h2>
       </div>
+      <!-- Grid dengan rasio 9:16 -->
       <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <!-- Dynamic Gallery Grid -->
+        <!-- Gallery Items Injected Here -->
       </div>
     </div>
   </section>
@@ -141,7 +188,7 @@
       <div class="text-center mb-16 space-y-4 max-w-2xl mx-auto">
         <span class="text-xs font-bold text-amber-400 tracking-widest uppercase bg-amber-400/10 px-3 py-1 rounded-full">Inspirasi Renovasi</span>
         <h2 id="display-inspirationTitle" class="text-3xl sm:text-4xl font-extrabold">Potensi Tanpa Batas</h2>
-        <p id="display-inspirationStory" class="text-slate-300 text-base leading-relaxed">Memuat inspirasi renovasi...</p>
+        <p id="display-inspirationStory" class="text-slate-300 text-base leading-relaxed">Struktur bangunan yang kokoh dari bata merah pejal memberi fondasi sempurna jika Anda ingin merenovasi atau mengadopsi gaya Modern Minimalis Impian.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -168,8 +215,8 @@
   <!-- FOOTER -->
   <footer class="bg-slate-50 py-12 px-4 border-t border-slate-200 text-center">
     <div class="max-w-3xl mx-auto space-y-3">
-      <h3 id="footer-title" class="font-bold text-slate-800 text-lg">Properti Eksklusif</h3>
-      <p id="footer-address" class="text-slate-500 text-sm">Alamat Properti</p>
+      <h3 id="footer-title" class="font-bold text-slate-800 text-lg">Rumah Taman Alfa Indah</h3>
+      <p id="footer-address" class="text-slate-500 text-sm">Taman Alfa Indah Blok H, Jakarta Selatan</p>
       <p class="text-xs text-slate-400 pt-4">&copy; <span id="current-year"></span> Hak Cipta Dilindungi.</p>
     </div>
   </footer>
@@ -210,7 +257,6 @@
   <script>
     document.getElementById('current-year').innerText = new Date().getFullYear();
 
-    // URL WEBHOOK TERBARU
     const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzgCSqpj94vtO-hXratpAa6dIiDmtHBPeAAL3-jHER_rnl6hGMvrcYNFY7mKjUZ0ss4oA/exec";
     
     const DEFAULT_DATA = {
@@ -264,6 +310,29 @@
       return `https://api.whatsapp.com/send?phone=${cleanNumber}&text=${text}`;
     }
 
+    function calculateKPR() {
+      const price = parseFloat(document.getElementById('kpr-price').value) || 0;
+      const dpPercent = parseFloat(document.getElementById('kpr-dp').value) || 0;
+      const tenorYears = parseFloat(document.getElementById('kpr-tenor').value) || 15;
+      const annualInterest = parseFloat(document.getElementById('kpr-interest').value) || 8.5;
+
+      const dpNominal = price * (dpPercent / 100);
+      const loanAmount = price - dpNominal;
+      const monthlyInterest = (annualInterest / 100) / 12;
+      const totalMonths = tenorYears * 12;
+
+      let monthlyPayment = 0;
+      if (monthlyInterest > 0) {
+        monthlyPayment = (loanAmount * monthlyInterest * Math.pow(1 + monthlyInterest, totalMonths)) / (Math.pow(1 + monthlyInterest, totalMonths) - 1);
+      } else {
+        monthlyPayment = loanAmount / totalMonths;
+      }
+
+      document.getElementById('kpr-result').innerText = "Rp " + Math.round(monthlyPayment).toLocaleString('id-ID');
+      document.getElementById('kpr-loan').innerText = "Rp " + Math.round(loanAmount).toLocaleString('id-ID');
+      document.getElementById('kpr-dp-nominal').innerText = "Rp " + Math.round(dpNominal).toLocaleString('id-ID');
+    }
+
     async function initializePage() {
       let cfg = DEFAULT_DATA;
       try {
@@ -307,6 +376,10 @@
       document.getElementById('nav-wa-btn').href = waLink;
       document.getElementById('hero-wa-btn').href = waLink;
       document.getElementById('bot-wa-btn').href = waLink;
+      document.getElementById('kpr-consult-btn').href = waLink;
+
+      // Inisialisasi Kalkulator KPR
+      calculateKPR();
 
       const galleryGrid = document.getElementById('gallery-grid');
       galleryGrid.innerHTML = "";
@@ -320,8 +393,8 @@
           const cat = typeof item === 'object' ? item.category : "Interior";
           
           const imgHtml = `
-            <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all aspect-[4/3] bg-slate-100">
-              <img src="${url}" onerror="this.src='https://via.placeholder.com/600x450?text=Foto+Tidak+Tersedia'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all aspect-9-16 bg-slate-100">
+              <img src="${url}" onerror="this.src='https://via.placeholder.com/450x800?text=Foto+Tidak+Tersedia'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                 <span class="text-white font-bold text-xs bg-amber-500/90 px-3 py-1 rounded-lg shadow">${cat}</span>
               </div>
