@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #f8fafc; }
-    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-    .hero-gradient { background: linear-gradient(180deg, rgba(15,23,42,0.4) 0%, rgba(15,23,42,0.85) 100%); }
+    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .hero-gradient { background: linear-gradient(180deg, rgba(15,23,42,0.45) 0%, rgba(15,23,42,0.9) 100%); }
     .card-shadow { box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05); }
     .bot-shadow { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.05); }
     .aspect-9-16 { aspect-ratio: 9 / 16; }
@@ -18,15 +18,15 @@
 </head>
 <body class="text-slate-800 antialiased relative">
 
-  <!-- AUDIO BGM -->
+  <!-- AUDIO BGM BACKGROUND MUSIC -->
   <audio id="bg-music" loop>
     <source id="bgm-source" src="" type="audio/mpeg">
   </audio>
 
-  <!-- NAVBAR -->
+  <!-- NAVBAR FIXED TOP -->
   <nav class="fixed top-0 w-full z-40 glass-nav py-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2.5">
         <div class="w-9 h-9 bg-slate-900 rounded-xl flex items-center justify-center text-white font-bold text-lg">
           <i class="fa-solid fa-house-chimney text-amber-400"></i>
         </div>
@@ -39,7 +39,7 @@
     </div>
   </nav>
 
-  <!-- 1. HERO SECTION (BACKGROUND FOTO 1 GALERI) -->
+  <!-- 1. HERO SECTION (BACKGROUND = FOTO 1 GALERI) -->
   <header class="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 overflow-hidden">
     <div id="hero-bg" class="absolute inset-0 bg-cover bg-center z-0 scale-105 transition-all duration-1000" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
     <div class="absolute inset-0 hero-gradient z-0"></div>
@@ -71,7 +71,7 @@
     </div>
   </header>
 
-  <!-- SPESIFIKASI PROPERTI HIGHLIGHT -->
+  <!-- SPESIFIKASI PROPERTI HIGHLIGHT GRID -->
   <section class="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 -mt-12 sm:-mt-16 mb-12">
     <div class="bg-white rounded-2xl card-shadow p-6 sm:p-8 border border-slate-100">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-slate-100">
@@ -95,6 +95,12 @@
           <p class="text-lg font-bold text-slate-800">82 m²</p>
           <p class="text-xs text-slate-500">Luas Bangunan</p>
         </div>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-100 flex flex-wrap justify-center gap-4 text-xs text-slate-600 font-semibold">
+        <span class="bg-slate-100 px-3 py-1 rounded-full"><i class="fa-solid fa-certificate text-amber-500 mr-1"></i> Sertifikat SHM</span>
+        <span class="bg-slate-100 px-3 py-1 rounded-full"><i class="fa-solid fa-bolt text-amber-500 mr-1"></i> Listrik 2200 VA</span>
+        <span class="bg-slate-100 px-3 py-1 rounded-full"><i class="fa-solid fa-droplet text-blue-500 mr-1"></i> Air Jetpump/PAM</span>
+        <span class="bg-slate-100 px-3 py-1 rounded-full"><i class="fa-solid fa-shield-halved text-emerald-500 mr-1"></i> Bebas Banjir 100%</span>
       </div>
     </div>
   </section>
@@ -133,20 +139,20 @@
     </div>
   </section>
 
-  <!-- 4. GALERI FOTO (RASIO 9:16) -->
+  <!-- 4. GALERI FOTO PROPERTI (RASIO VERTIKAL 9:16) -->
   <section id="gallery" class="py-16 bg-white px-4 sm:px-6 border-y border-slate-100">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-12">
-        <span class="text-xs font-bold text-amber-600 tracking-widest uppercase bg-amber-50 px-3 py-1 rounded-full">Galeri Foto (9:16)</span>
+        <span class="text-xs font-bold text-amber-600 tracking-widest uppercase bg-amber-50 px-3 py-1 rounded-full">Galeri Eksklusif (9:16)</span>
         <h2 class="text-3xl font-extrabold text-slate-900 mt-3">Jelajahi Detail Ruangan</h2>
       </div>
       <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <!-- Gallery Items Injected Here -->
+        <!-- Gallery Items Injected Here via JavaScript -->
       </div>
     </div>
   </section>
 
-  <!-- 5. KALKULATOR KPR -->
+  <!-- 5. KALKULATOR ESTIMASI KPR -->
   <section class="py-16 bg-slate-50 px-4 sm:px-6">
     <div class="max-w-4xl mx-auto space-y-8">
       <div class="text-center">
@@ -165,11 +171,11 @@
             <input type="number" id="kpr-dp" value="20" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold" oninput="calculateKPR()">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-600 mb-1">Tenor / Waktu (Tahun)</label>
+            <label class="block text-xs font-bold text-slate-600 mb-1">Tenor / Jangka Waktu (Tahun)</label>
             <input type="number" id="kpr-tenor" value="15" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold" oninput="calculateKPR()">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-600 mb-1">Suku Bunga (%)</label>
+            <label class="block text-xs font-bold text-slate-600 mb-1">Suku Bunga per Tahun (%)</label>
             <input type="number" step="0.1" id="kpr-interest" value="8.5" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold" oninput="calculateKPR()">
           </div>
         </div>
@@ -191,26 +197,26 @@
     </div>
   </section>
 
-  <!-- 6. KALKULATOR JARAK / COMMUTE -->
+  <!-- 6. KALKULATOR JARAK & WAKTU TEMPUH (COMMUTE CALCULATOR) -->
   <section class="py-16 bg-white px-4 sm:px-6 border-t border-slate-100">
     <div class="max-w-4xl mx-auto space-y-8">
       <div class="text-center">
-        <span class="text-xs font-bold text-purple-600 tracking-widest uppercase bg-purple-50 px-3 py-1 rounded-full">Aksesibilitas</span>
+        <span class="text-xs font-bold text-purple-600 tracking-widest uppercase bg-purple-50 px-3 py-1 rounded-full">Aksesibilitas Utama</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3">Kalkulator Waktu Tempuh</h2>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 text-center space-y-2">
+        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 text-center space-y-2 hover:border-amber-400 transition-all">
           <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto text-lg"><i class="fa-solid fa-road"></i></div>
           <h4 class="font-bold text-slate-800 text-sm">Pintu Tol Meruya / Joglo</h4>
           <p class="text-2xl font-extrabold text-slate-900">5-10 <span class="text-xs text-slate-500 font-normal">Menit</span></p>
         </div>
-        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 text-center space-y-2">
+        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 text-center space-y-2 hover:border-blue-400 transition-all">
           <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto text-lg"><i class="fa-solid fa-building-columns"></i></div>
-          <h4 class="font-bold text-slate-800 text-sm">Pusat Bisnis Senayan / SCBD</h4>
+          <h4 class="font-bold text-slate-800 text-sm">Senayan & SCBD Jakarta</h4>
           <p class="text-2xl font-extrabold text-slate-900">20-25 <span class="text-xs text-slate-500 font-normal">Menit</span></p>
         </div>
-        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 text-center space-y-2">
+        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 text-center space-y-2 hover:border-emerald-400 transition-all">
           <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-lg"><i class="fa-solid fa-plane"></i></div>
           <h4 class="font-bold text-slate-800 text-sm">Bandara Soekarno-Hatta</h4>
           <p class="text-2xl font-extrabold text-slate-900">30 <span class="text-xs text-slate-500 font-normal">Menit</span></p>
@@ -219,7 +225,7 @@
     </div>
   </section>
 
-  <!-- 7. PETA LOKASI GOOGLE MAPS -->
+  <!-- 7. PETA LOKASI EMBEDDED GOOGLE MAPS -->
   <section class="py-16 bg-slate-50 px-4 sm:px-6">
     <div class="max-w-5xl mx-auto space-y-6 text-center">
       <span class="text-xs font-bold text-emerald-600 tracking-widest uppercase bg-emerald-50 px-3 py-1 rounded-full">Peta Lokasi</span>
@@ -230,7 +236,7 @@
     </div>
   </section>
 
-  <!-- 8. FORM ISIAN WA LEAD -->
+  <!-- 8. FORMULIR ISIAN LEAD WA SURVEY -->
   <section id="lead-form-section" class="py-16 bg-white px-4 sm:px-6 border-t border-slate-200">
     <div class="max-w-xl mx-auto bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
       <div class="text-center space-y-2">
@@ -266,22 +272,22 @@
     <p class="pt-4 text-slate-600">&copy; <span id="current-year"></span> Hak Cipta Dilindungi.</p>
   </footer>
 
-  <!-- 9. FLOATING BUTTONS (KIRI BAWAH: BGM MUTE + WA | KANAN BAWAH: CHATBOT) -->
-  
-  <!-- KIRI BAWAH -->
+  <!-- 9. FLOATING BUTTONS (DUA SISI) -->
+
+  <!-- KIRI BAWAH: ATAS = CONTROL BGM | BAWAH = DIRECT WHATSAPP -->
   <div class="fixed bottom-6 left-6 z-50 flex flex-col items-start gap-3">
-    <!-- BUTTON 1 (ATAS WA): MEMATIKAN / MEMUTAR BACKGROUND MUSIC -->
+    <!-- BUTTON ATAS: CONTROL MATIKAN/HIDUPKAN BGM MUSIC -->
     <button onclick="toggleAudio()" id="btn-audio" class="w-12 h-12 rounded-full bg-white hover:bg-slate-100 text-slate-800 flex items-center justify-center transition-transform hover:scale-110 shadow-lg border border-slate-200 text-xl" title="Mute/Unmute BGM">
       <i id="audio-icon" class="fa-solid fa-volume-xmark"></i>
     </button>
     
-    <!-- BUTTON 2 (KIRI BAWAH): DIRECT WHATSAPP BUTTON -->
-    <a id="float-wa-btn" href="#" target="_blank" class="w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center text-2xl shadow-xl transition-transform hover:scale-110">
+    <!-- BUTTON BAWAH: DIRECT WHATSAPP BUTTON -->
+    <a id="float-wa-btn" href="#" target="_blank" class="w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center text-2xl shadow-xl transition-transform hover:scale-110" title="Chat WhatsApp Owner">
       <i class="fa-brands fa-whatsapp"></i>
     </a>
   </div>
 
-  <!-- KANAN BAWAH -->
+  <!-- KANAN BAWAH: CHATBOT AI ALFIN -->
   <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
     <!-- CHATBOT WINDOW -->
     <div id="chat-window" class="hidden bg-white w-72 sm:w-80 rounded-2xl bot-shadow border border-slate-100 mb-4 overflow-hidden origin-bottom-right transition-all">
@@ -308,8 +314,8 @@
       </div>
     </div>
 
-    <!-- BUTTON CHATBOT ALFIN -->
-    <button onclick="toggleChat()" class="bg-slate-900 hover:bg-slate-800 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl bot-shadow transition-transform hover:scale-105">
+    <!-- BUTTON TOGGLE CHATBOT ALFIN -->
+    <button onclick="toggleChat()" class="bg-slate-900 hover:bg-slate-800 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl bot-shadow transition-transform hover:scale-105" title="Chat dengan Asisten Alfin">
       <i class="fa-solid fa-comments"></i>
     </button>
   </div>
@@ -317,6 +323,7 @@
   <script>
     document.getElementById('current-year').innerText = new Date().getFullYear();
 
+    // URL WEBHOOK WEB APP GAS TERBARU
     const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzgCSqpj94vtO-hXratpAa6dIiDmtHBPeAAL3-jHER_rnl6hGMvrcYNFY7mKjUZ0ss4oA/exec";
     
     const DEFAULT_DATA = {
@@ -351,7 +358,7 @@
         audioEl.play().then(() => {
           audioIcon.className = "fa-solid fa-volume-high text-emerald-600";
           isAudioPlaying = true;
-        }).catch(err => console.log("Autoplay diblokir."));
+        }).catch(err => console.log("Autoplay diblokir oleh browser."));
       }
     }
 
@@ -414,7 +421,7 @@
           cfg = Object.assign({}, DEFAULT_DATA, data.config);
         }
       } catch (err) {
-        console.warn("Menggunakan data fallback.");
+        console.warn("Menggunakan data fallback default.");
       }
 
       document.title = cfg.title;
@@ -438,6 +445,13 @@
         document.getElementById('bgm-source').src = cfg.bgmUrl;
         audioEl.load();
         audioEl.volume = parseFloat(cfg.bgm_volume) || 0.3;
+        
+        // Listener interaksi pertama untuk memulai audio secara mulus
+        const startAudioOnFirstClick = () => {
+          if (!isAudioPlaying) toggleAudio();
+          document.removeEventListener('click', startAudioOnFirstClick);
+        };
+        document.addEventListener('click', startAudioOnFirstClick);
       }
 
       const waLink = formatWhatsAppLink(cfg.whatsappNumber, cfg.title);
@@ -460,7 +474,7 @@
           const cat = typeof item === 'object' ? item.category : "Interior";
           
           const imgHtml = `
-            <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all aspect-9-16 bg-slate-100">
+            <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all aspect-9-16 bg-slate-100 cursor-pointer">
               <img src="${url}" onerror="this.src='https://via.placeholder.com/450x800?text=Foto+Tidak+Tersedia'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                 <span class="text-white font-bold text-xs bg-amber-500/90 px-3 py-1 rounded-lg shadow">${cat}</span>
