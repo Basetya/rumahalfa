@@ -213,7 +213,7 @@
   </div>
 
   <script>
-    // URL WEBHOOK BARU SESUAI DEPLOYMENT TERAKHIR
+    // MENGGUNAKAN WEBHOOK TERBARU DARI GOOGLE APPS SCRIPT
     const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzgCSqpj94vtO-hXratpAa6dIiDmtHBPeAAL3-jHER_rnl6hGMvrcYNFY7mKjUZ0ss4oA/exec";
     let galleryCounter = 0;
     let currentAdminPassword = "";
@@ -311,8 +311,9 @@
       }
     }
 
-    // KOMPRESI AGRESIF & OPTIMAL UNTUK MENGHINDARI LIMIT PAYLOAD SERVER
-    function compressImage(file, maxWidth = 800, quality = 0.5) {
+    // FUNGSI KOMPRESI EKSTREM AGAR UKURAN DATA LOLOS DARI PEMBLOKIRAN GOOGLE APPS SCRIPT
+    // max-width diturunkan ke 600px dan quality ke 0.4
+    function compressImage(file, maxWidth = 600, quality = 0.4) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -350,7 +351,7 @@
       }
     }
 
-    // FUNGSI UPLOAD YANG SUDAH DIBERSIHKAN DARI HEADER EKSPLISIT AGAR LOLOS CORS DARI LOCALHOST
+    // FUNGSI UPLOAD DENGAN FETCH TANPA HEADER EKSPLISIT UNTUK MENGHINDARI CORS PREFLIGHT (OPTIONS)
     async function uploadFiles(files) {
       if (!files || files.length === 0) return;
       const statusEl = document.getElementById('upload-status');
@@ -361,33 +362,35 @@
         statusEl.innerText = `⏳ Mengompres & Mengunggah foto (${i + 1}/${files.length}): ${file.name}...`;
 
         try {
-          const compressedBase64 = await compressImage(file, 800, 0.5);
+          // Panggil kompresi ekstrem
+          const compressedBase64 = await compressImage(file);
 
-          // Menggunakan JSON.stringify langsung di body tanpa mendefinisikan custom header 
-          // agar browser menganggapnya sebagai Simple Request dan tidak memicu OPTIONS preflight
           const requestBody = JSON.stringify({
             action: "uploadFile",
             payload: {
-              fileName: file.name || `Foto_Properti_${Date.now()}.jpg`,
+              fileName: file.name || `Foto_${Date.now()}.jpg`,
               mimeType: file.type || "image/jpeg",
               base64Data: compressedBase64
             }
           });
 
+          // Fetch murni (browser otomatis set text/plain, bypass CORS OPTIONS)
           const res = await fetch(GAS_WEBHOOK_URL, {
             method: 'POST',
             body: requestBody
           });
           
+          if (!res.ok) throw new Error("Server Error / CORS");
+          
           const data = await res.json();
           if (data.success && data.fileUrl) {
             addGalleryRow(data.fileUrl, "Interior");
           } else {
-            alert("Gagal mengunggah " + file.name + ": " + (data.error || "Server menolak penyimpanan."));
+            alert("Gagal mengunggah " + file.name + ": " + (data.error || "Penyimpanan ditolak server."));
           }
         } catch (err) {
           console.error("Upload error details:", err);
-          alert("❌ Gagal upload file: " + file.name + "\n\nPastikan koneksi internet stabil dan URL Webhook valid. Jika masih berlanjut, ukuran file/script GAS memblokir payload.\n\n💡 SOLUSI AMAN: Gunakan opsi [+ Link Manual] untuk menambahkan foto langsung dari Google Drive.");
+          alert("❌ Gagal upload file: " + file.name + "\n\n⚠️ Info Penting: Server Google memutus koneksi. Ini 99% terjadi jika file/script backend GAS kamu error (misal fungsi 'uploadFile' belum ada) ATAU ukuran data melampaui limit.\n\n💡 DEMI KEAMANAN IKLAN HARI INI: Silakan gunakan tombol [+ Link Manual] dan paste Link Google Drive, itu dijamin aman 100%!");
         }
       }
 
@@ -397,6 +400,7 @@
       document.getElementById('camera-file-input').value = "";
     }
 
+    // LOGIKA DRAG & DROP
     const dropZone = document.getElementById('drop-zone');
 
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
