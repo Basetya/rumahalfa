@@ -213,7 +213,8 @@
   </div>
 
   <script>
-    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwbtqI258xNMlwe94LXbF-jXkH7zDSnsd1e5-nUUE5TJKzxReFghyOVyYVwEVQ8FPQ7xw/exec";
+    // URL WEBHOOK BARU SESUAI DEPLOYMENT TERAKHIR
+    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzgCSqpj94vtO-hXratpAa6dIiDmtHBPeAAL3-jHER_rnl6hGMvrcYNFY7mKjUZ0ss4oA/exec";
     let galleryCounter = 0;
     let currentAdminPassword = "";
 
@@ -277,7 +278,7 @@
         } else {
           alert("Gagal Undo: " + (data.error || "Tidak ada data cadangan."));
         }
-      } catch (err) { alert("Terjadi kesalahan koneksi."); }
+      } catch (err) { alert("Terjadi kesalahan koneksi saat mencoba Undo."); }
     }
 
     function addGalleryRow(url = "", category = "Interior") {
@@ -311,8 +312,7 @@
       }
     }
 
-    // FUNGSI KOMPRESI FOTO LOKAL SEBELUM DIKIRIM KE SERVER
-    function compressImage(file, maxWidth = 1000, quality = 0.6) {
+    function compressImage(file, maxWidth = 800, quality = 0.5) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -343,7 +343,6 @@
       });
     }
 
-    // FUNGSI INI KINI BENAR-BENAR MENJALANKAN UPLOAD, BUKAN MENAMPILKAN ALERT
     function handleFileSelect(e) { 
       const files = e.target.files;
       if (files && files.length > 0) {
@@ -365,34 +364,38 @@
 
           const res = await fetch(GAS_WEBHOOK_URL, {
             method: 'POST',
+            redirect: 'follow',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify({
               action: "uploadFile",
               payload: {
                 fileName: file.name || `Foto_Properti_${Date.now()}.jpg`,
-                mimeType: "image/jpeg",
+                mimeType: file.type || "image/jpeg",
                 base64Data: compressedBase64
               }
             })
           });
+          
+          if (!res.ok) throw new Error("Gagal terhubung ke Webhook (CORS atau Error Server)");
+          
           const data = await res.json();
           if (data.success && data.fileUrl) {
             addGalleryRow(data.fileUrl, "Interior");
           } else {
-            alert("Gagal mengunggah " + file.name + ": " + (data.error || "Penyimpanan gagal"));
+            alert("Gagal mengunggah " + file.name + ": " + (data.error || "Penyimpanan gagal di server."));
           }
         } catch (err) {
-          alert("Gagal koneksi upload untuk file: " + file.name + ". Server GAS memblokir payload atau koneksi terputus.");
+          console.error("Upload error details:", err);
+          alert("❌ Gagal upload file: " + file.name + ".\n\n⚠️ Info Error: Server Google menolak permintaan (Failed to fetch / CORS).\n\n💡 SOLUSI: Jika fitur upload langsung ini tetap gagal, hal ini disebabkan batasan keamanan/script di Google Apps Script Anda. Gunakan opsi [+ Link Manual] dan paste link Google Drive secara langsung agar aman 100%.");
         }
       }
 
-      statusEl.innerText = "✅ Selesai memproses foto!";
-      setTimeout(() => statusEl.classList.add('hidden'), 4000);
+      statusEl.innerText = "✅ Selesai memproses permintaan upload!";
+      setTimeout(() => statusEl.classList.add('hidden'), 5000);
       document.getElementById('desktop-file-input').value = "";
       document.getElementById('camera-file-input').value = "";
     }
 
-    // LOGIKA DRAG & DROP
     const dropZone = document.getElementById('drop-zone');
 
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
