@@ -1,1141 +1,616 @@
-
 <!DOCTYPE html>
-
 <html lang="id">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Admin Dashboard - SaaS Properti</title>
-
   <script src="https://cdn.tailwindcss.com"></script>
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <style> body { font-family: 'Inter', sans-serif; background-color: #f4f6f8; } </style>
-
 </head>
-
 <body class="p-4 sm:p-8 pb-36 antialiased">
 
-
+  <!-- MODAL PROTEKSI PASSWORD ADMIN -->
+  <div id="login-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+    <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-2xl max-w-md w-full text-center border border-slate-200">
+      <div class="w-16 h-16 bg-amber-500/10 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold">🔒</div>
+      <h2 class="text-xl font-bold text-slate-800 mb-1">Akses Admin Properti</h2>
+      <p class="text-xs text-slate-500 mb-6">Masukkan PIN / Password untuk membuka dashboard pengaturan.</p>
+      
+      <form onsubmit="verifyPassword(event)" class="space-y-4">
+        <div>
+          <input type="password" id="input-admin-pass" required placeholder="Masukkan Password Admin" class="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-center text-lg font-bold outline-none focus:ring-2 focus:ring-amber-500 tracking-widest">
+        </div>
+        <p id="login-error" class="text-xs text-red-500 font-bold hidden">❌ Password salah! Silakan coba lagi.</p>
+        <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3.5 rounded-xl shadow-lg transition-all text-sm uppercase tracking-wider">
+          🔓 Buka Akses Dashboard
+        </button>
+      </form>
+    </div>
+  </div>
 
   <div class="max-w-3xl mx-auto">
-
-   
-
+    
     <!-- HEADER & UNDO BUTTON -->
-
     <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-
       <div>
-
         <h1 class="text-xl font-bold">⚙️ Dashboard Pengaturan Properti</h1>
-
         <p class="text-xs text-slate-400 mt-1">Ubah landing page, galeri foto, spesifikasi, & AI Chatbot</p>
-
       </div>
-
       <div class="flex gap-2 w-full sm:w-auto">
-
         <button type="button" onclick="undoConfig()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 w-full sm:w-auto justify-center">
-
           <span>↩️ UNDO VERSI SEBELUMNYA</span>
-
         </button>
-
       </div>
-
     </div>
-
-
 
     <form id="admin-form" class="space-y-6">
 
-
+      <!-- KEAMANAN ADMIN / UBAH PASSWORD -->
+      <div class="bg-amber-50 p-5 sm:p-7 rounded-2xl border-2 border-amber-300 space-y-4 shadow-sm">
+        <h2 class="text-base font-bold text-amber-900 border-b border-amber-200 pb-3 flex items-center gap-2"><span>🔑</span> Keamanan Login Admin</h2>
+        <div>
+          <label for="cfg-admin_password" class="block text-xs font-bold text-amber-900 uppercase mb-1">Password Dashboard Admin (Bisa Diganti Baru)</label>
+          <input type="text" id="cfg-admin_password" class="w-full px-4 py-3 bg-white border border-amber-300 rounded-xl text-sm font-bold text-slate-800 outline-none focus:ring-2 focus:ring-amber-500">
+          <p class="text-[11px] text-amber-700 mt-1">Default: <b>151264</b>. Ubah nilai ini jika ingin mengganti password admin Anda.</p>
+        </div>
+      </div>
 
       <!-- INFORMASI UTAMA -->
-
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-
         <div class="flex justify-between items-center border-b pb-3">
-
           <h2 class="text-base font-bold text-slate-800 flex items-center gap-2"><span>🏡</span> Informasi Utama Properti</h2>
-
           <button type="button" onclick="resetSection(['cfg-title','cfg-price','cfg-address','cfg-headline','cfg-story'])" class="text-xs text-red-500 hover:bg-red-50 px-3 py-1.5 rounded-lg font-bold border border-red-200">
-
             🗑️ Kosongkan Teks Utama
-
           </button>
-
         </div>
 
-
-
         <div>
-
           <label for="cfg-title" class="block text-xs font-bold text-slate-600 uppercase mb-1">Judul Properti</label>
-
           <input type="text" id="cfg-title" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500">
-
         </div>
-
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
           <div>
-
             <label for="cfg-price" class="block text-xs font-bold text-slate-600 uppercase mb-1">Harga Penawaran</label>
-
             <input type="text" id="cfg-price" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500">
-
           </div>
-
           <div>
-
             <label for="cfg-whatsappNumber" class="block text-xs font-bold text-slate-600 uppercase mb-1">Nomor WhatsApp Owner</label>
-
             <input type="text" id="cfg-whatsappNumber" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500">
-
           </div>
-
         </div>
-
         <div>
-
           <label for="cfg-address" class="block text-xs font-bold text-slate-600 uppercase mb-1">Alamat Lengkap</label>
-
           <input type="text" id="cfg-address" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500">
-
         </div>
-
         <div>
-
           <label for="cfg-headline" class="block text-xs font-bold text-slate-600 uppercase mb-1">Headline Utama</label>
-
           <textarea id="cfg-headline" rows="2" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500"></textarea>
-
         </div>
-
         <div>
-
           <label for="cfg-story" class="block text-xs font-bold text-slate-600 uppercase mb-1">Cerita Deskripsi (The Story)</label>
-
           <textarea id="cfg-story" rows="4" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500"></textarea>
-
         </div>
-
       </div>
-
-
 
       <!-- INSPIRASI & TIMELAPSE -->
-
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-
         <div class="flex justify-between items-center border-b pb-3">
-
           <h2 class="text-base font-bold text-slate-800 flex items-center gap-2"><span>💡</span> Teks Inspirasi & Video Timelapse</h2>
-
           <button type="button" onclick="resetSection(['cfg-inspirationTitle','cfg-inspirationStory'])" class="text-xs text-red-500 hover:bg-red-50 px-3 py-1.5 rounded-lg font-bold border border-red-200">
-
             🗑️ Kosongkan Teks
-
           </button>
-
         </div>
-
         <div>
-
           <label for="cfg-inspirationTitle" class="block text-xs font-bold text-slate-600 uppercase mb-1">Judul Inspirasi Renovasi</label>
-
           <input type="text" id="cfg-inspirationTitle" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500">
-
         </div>
-
         <div>
-
           <label for="cfg-inspirationStory" class="block text-xs font-bold text-slate-600 uppercase mb-1">Cerita Inspirasi Renovasi</label>
-
           <textarea id="cfg-inspirationStory" rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-amber-500"></textarea>
-
         </div>
-
       </div>
-
-
 
       <!-- VIDEO & MAPS -->
-
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-
         <div class="flex justify-between items-center border-b pb-3">
-
           <h2 class="text-base font-bold text-slate-800 flex items-center gap-2"><span>🎬</span> Video Tour & Peta</h2>
-
           <button type="button" onclick="resetSection(['cfg-videoUrl','cfg-timelapseUrl'])" class="text-xs text-red-500 hover:bg-red-50 px-3 py-1.5 rounded-lg font-bold border border-red-200">
-
             🗑️ Kosongkan Video
-
           </button>
-
         </div>
 
-
-
         <div>
-
           <label for="cfg-videoUrl" class="block text-xs font-bold text-slate-600 uppercase mb-1">Link Embed YouTube Main Video (Kosongkan jika ingin disembunyikan)</label>
-
           <input type="text" id="cfg-videoUrl" placeholder="https://www.youtube.com/embed/..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
-
         </div>
-
         <div>
-
           <label for="cfg-timelapseUrl" class="block text-xs font-bold text-slate-600 uppercase mb-1">Link Embed YouTube Shorts / Timelapse (Kosongkan jika ingin disembunyikan)</label>
-
           <input type="text" id="cfg-timelapseUrl" placeholder="https://www.youtube.com/embed/..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
-
         </div>
-
         <div class="grid grid-cols-2 gap-4">
-
           <div>
-
             <label for="cfg-latitude" class="block text-xs font-bold text-slate-600 uppercase mb-1">Latitude</label>
-
             <input type="text" id="cfg-latitude" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
-
           </div>
-
           <div>
-
             <label for="cfg-longitude" class="block text-xs font-bold text-slate-600 uppercase mb-1">Longitude</label>
-
             <input type="text" id="cfg-longitude" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
-
           </div>
-
         </div>
-
       </div>
-
-
 
       <!-- TEKS SECTION GALERI -->
-
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-
         <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2"><span>📝</span> Teks Header Galeri</h2>
-
         <div>
-
           <label for="cfg-galleryTitle" class="block text-xs font-bold text-slate-600 uppercase mb-1">Judul Section Galeri</label>
-
           <input type="text" id="cfg-galleryTitle" placeholder="Contoh: Galeri Arsitektur" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
-
         </div>
-
         <div>
-
           <label for="cfg-gallerySubheadline" class="block text-xs font-bold text-slate-600 uppercase mb-1">Sub-Deskripsi Galeri (Teks Di Atas Foto)</label>
-
           <textarea id="cfg-gallerySubheadline" rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none"></textarea>
-
         </div>
-
       </div>
-
-
 
       <!-- SPESIFIKASI BANGUNAN -->
-
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-
         <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2"><span>🏗️</span> Spesifikasi Bangunan</h2>
-
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
           <div>
-
             <label for="spec-Legalitas" class="block text-xs font-bold text-slate-600 uppercase mb-1">Legalitas</label>
-
             <input type="text" id="spec-Legalitas" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
-
           </div>
-
           <div>
-
             <label for="spec-Luas Tanah" class="block text-xs font-bold text-slate-600 uppercase mb-1">Luas Tanah</label>
-
             <input type="text" id="spec-Luas Tanah" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
-
           </div>
-
           <div>
-
             <label for="spec-Luas Bangunan" class="block text-xs font-bold text-slate-600 uppercase mb-1">Luas Bangunan</label>
-
             <input type="text" id="spec-Luas Bangunan" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
-
           </div>
-
           <div>
-
             <label for="spec-Kamar Tidur" class="block text-xs font-bold text-slate-600 uppercase mb-1">Kamar Tidur</label>
-
             <input type="text" id="spec-Kamar Tidur" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
-
           </div>
-
           <div>
-
             <label for="spec-Kamar Mandi" class="block text-xs font-bold text-slate-600 uppercase mb-1">Kamar Mandi</label>
-
             <input type="text" id="spec-Kamar Mandi" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
-
           </div>
-
           <div>
-
             <label for="spec-Extra Space" class="block text-xs font-bold text-slate-600 uppercase mb-1">Extra Space</label>
-
             <input type="text" id="spec-Extra Space" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
-
           </div>
-
           <div class="sm:col-span-2">
-
             <label for="spec-Air & Listrik" class="block text-xs font-bold text-slate-600 uppercase mb-1">Air & Listrik</label>
-
             <input type="text" id="spec-Air & Listrik" class="spec-input w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none">
-
           </div>
-
         </div>
-
       </div>
-
-
 
       <!-- FASILITAS EKSKLUSIF (DYNAMIC LIST) -->
-
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-
         <div class="flex justify-between items-center border-b pb-3">
-
           <h2 class="text-base font-bold text-slate-800 flex items-center gap-2"><span>✨</span> Fasilitas Eksklusif & Lingkungan</h2>
-
           <button type="button" onclick="addFacilityRow()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-3.5 py-2 rounded-xl shadow-md transition-all">
-
             + Tambah Fasilitas
-
           </button>
-
         </div>
-
         <div id="facility-dynamic-list" class="space-y-3"></div>
-
       </div>
-
-
 
       <!-- SAKELAR SUB-PAGE GALERI -->
-
       <div class="bg-amber-50 p-5 sm:p-7 rounded-2xl border-2 border-amber-300 space-y-4 shadow-sm">
-
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-amber-200 pb-3">
-
           <div>
-
             <h2 class="text-base font-bold text-amber-900 flex items-center gap-2"><span>🖼️</span> Mode Halaman Galeri Khusus</h2>
-
             <p class="text-xs text-amber-700 mt-0.5">Default OFF (semua foto tampil di landing page). Set ON jika foto sangat banyak.</p>
-
           </div>
-
           <select id="cfg-useSubGalleryPage" title="Mode Galeri" aria-label="Mode Galeri" class="bg-amber-500 text-slate-900 font-bold px-4 py-2.5 rounded-xl text-xs outline-none border border-amber-600 shadow-md">
-
             <option value="false">OFF (Semua Foto di Landing Page)</option>
-
             <option value="true">ON (Gunakan Sub-Page Gallery.html)</option>
-
           </select>
-
         </div>
 
-
-
         <div>
-
           <label for="cfg-galleryPageTitle" class="block text-xs font-bold text-amber-900 uppercase mb-1">Judul Halaman Galeri Khusus</label>
-
           <input type="text" id="cfg-galleryPageTitle" class="w-full px-4 py-3 bg-white border border-amber-200 rounded-xl text-sm outline-none">
-
         </div>
-
         <div>
-
           <label for="cfg-galleryPageDesc" class="block text-xs font-bold text-amber-900 uppercase mb-1">Deskripsi Halaman Galeri Khusus</label>
-
           <textarea id="cfg-galleryPageDesc" rows="2" class="w-full px-4 py-3 bg-white border border-amber-200 rounded-xl text-sm outline-none"></textarea>
-
         </div>
-
       </div>
 
-
-
-      <!-- DAFTAR FOTO GALERI DENGAN DUAL INPUT MOBILE & DRAG & DROP -->
-
+      <!-- DAFTAR FOTO GALERI -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b pb-3">
-
           <div>
-
             <h2 class="text-base font-bold text-slate-800">📸 Galeri Foto Properti</h2>
-
             <p class="text-xs text-slate-400">Jepret langsung via Kamera HP atau upload dari Galeri/Komputer!</p>
-
           </div>
-
           <div class="flex gap-2">
-
             <button type="button" onclick="clearAllPhotos()" class="text-xs text-red-500 hover:bg-red-50 px-3 py-2 rounded-xl font-bold border border-red-200">
-
               🗑️ Hapus Semua
-
             </button>
-
             <button type="button" onclick="addGalleryRow()" class="bg-slate-700 hover:bg-slate-800 text-white font-bold text-xs px-3.5 py-2 rounded-xl shadow-md transition-all">
-
               + Link Manual
-
             </button>
-
           </div>
-
         </div>
-
-
 
         <input type="file" id="camera-input" accept="image/*" capture="environment" class="hidden" onchange="handleFileSelect(event)">
-
         <input type="file" id="gallery-input" multiple accept="image/*" class="hidden" onchange="handleFileSelect(event)">
 
-
-
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-
           <button type="button" onclick="document.getElementById('camera-input').click()" class="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white p-4 rounded-2xl shadow-lg flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-95 border border-emerald-400">
-
             <span class="text-2xl">📷</span>
-
             <div class="text-left">
-
               <span class="block text-xs font-bold uppercase tracking-wider">Foto Langsung</span>
-
               <span class="block text-[10px] text-emerald-100 font-light">Buka Kamera HP & Jepret Lokasi</span>
-
             </div>
-
           </button>
-
-
 
           <button type="button" onclick="document.getElementById('gallery-input').click()" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-900 p-4 rounded-2xl shadow-lg flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-95 border border-amber-300">
-
             <span class="text-2xl">📂</span>
-
             <div class="text-left">
-
               <span class="block text-xs font-bold uppercase tracking-wider">Pilih Dari Galeri</span>
-
               <span class="block text-[10px] text-slate-800 font-light">Pilih Foto di HP / Folder PC</span>
-
             </div>
-
           </button>
-
         </div>
-
-
 
         <div id="dropzone" onclick="document.getElementById('gallery-input').click()" class="hidden sm:block border-2 border-dashed border-amber-300 bg-amber-50/40 p-4 rounded-xl text-center cursor-pointer hover:bg-amber-100/50 transition-all">
-
           <p class="text-xs font-bold text-slate-700">Atau Seret (Drag & Drop) File Foto Langsung ke Sini</p>
-
         </div>
-
-
 
         <p id="upload-status" class="text-xs font-bold text-emerald-600 text-center bg-emerald-50 p-3 rounded-xl border border-emerald-200 hidden animate-pulse">⏳ Mengunggah foto ke Google Drive...</p>
 
-
-
         <div id="gallery-dynamic-list" class="space-y-3 pt-2"></div>
-
       </div>
-
-
 
       <!-- CHATBOT AI -->
-
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-
         <h2 class="text-base font-bold text-slate-800 border-b pb-3 flex items-center gap-2"><span>🤖</span> Pengaturan Asisten AI (Chatbot)</h2>
-
         <div class="grid grid-cols-2 gap-4">
-
           <div>
-
             <label for="cfg-bot_name" class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Bot</label>
-
             <input type="text" id="cfg-bot_name" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
-
           </div>
-
           <div>
-
             <label for="cfg-salutation" class="block text-xs font-bold text-slate-600 uppercase mb-1">Sapaan Utama</label>
-
             <input type="text" id="cfg-salutation" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none">
-
           </div>
-
         </div>
-
         <div>
-
           <label for="cfg-knowledge_base" class="block text-xs font-bold text-slate-600 uppercase mb-1">Knowledge Base (Catatan Pintar)</label>
-
           <textarea id="cfg-knowledge_base" rows="6" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none"></textarea>
-
         </div>
-
         <div>
-
           <label for="cfg-custom_rules" class="block text-xs font-bold text-slate-600 uppercase mb-1">Aturan Larangan Khusus</label>
-
           <textarea id="cfg-custom_rules" rows="2" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none"></textarea>
-
         </div>
-
       </div>
-
-
 
       <!-- SUBMIT BUTTON -->
-
       <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-md border-t border-slate-200 z-50">
-
         <div class="max-w-3xl mx-auto">
-
           <button type="submit" id="btn-save" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 rounded-xl shadow-xl transition-all uppercase tracking-wider text-sm">
-
             💾 SIMPAN & TERBITKAN LANDING PAGE
-
           </button>
-
         </div>
-
       </div>
 
-
-
     </form>
-
   </div>
 
-
-
   <script>
-
-    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwbtqI258xNMlwe94LXbF-jXkH7zDSnsd1e5-nUUE5TJKzxReFghyOVyYVwEVQ8FPQ7xw/exec";
-
-
+    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzgCSqpj94vtO-hXratpAa6dIiDmtHBPeAAL3-jHER_rnl6hGMvrcYNFY7mKjUZ0ss4oA/exec";
 
     let galleryCounter = 0;
-
     let facilityCounter = 0;
-
-
+    let currentAdminPassword = "151264"; // DEFAULT PASSWORD ADMIN
 
     const DEFAULT_CONFIG = {
-
+      admin_password: "151264",
       title: "Rumah Taman Alfa Indah",
-
       price: "Rp 1.5 Milyar (Nego)",
-
       whatsappNumber: "6287832219195",
-
       address: "Taman Alfa Indah Blok H, Jakarta Selatan",
-
       headline: "Ketenangan Hidup di Lokasi Emas. Bebas Banjir, Jauh di Bawah Harga Pasar.",
-
       story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi: Kalau strategis, pasti mahal. Kalau murah, mungkin banjir.\n\nDi Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran yang Anda rasakan setiap musim hujan tiba, karena rumah ini terbukti 100% bebas banjir, bahkan saat banjir besar melanda Jakarta. Bayangkan kemudahan hidup saat Tol JORR, sekolah anak, hingga pusat perbelanjaan hanya berjarak beberapa menit dari pintu rumah Anda.\n\nDengan harga Rp 1.5 Milyar (di bawah harga pasaran saat ini), ini bukan sekadar tempat tinggal. Ini adalah aset perlindungan keluarga dan investasi cerdas yang sangat langka. Kesempatan ini tidak akan bertahan lama.",
-
       inspirationTitle: "Miliki Kebebasan Mutlak untuk Membangun Rumah Impian Anda",
-
       inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid (6x17) di Rumah Alfa Indah ini memberikan Anda keleluasaan untuk mendesain ruang hidup Anda sendiri sesuai impian Anda.\n\nTonton video ini : Lihat bagaimana bangunan ini memiliki potensi luar biasa untuk ditransformasikan menjadi karya arsitektur Modern Minimalis yang megah, bersih, dan berkelas dunia. Anda tidak sedang membeli rumah seken biasa—Anda sedang mengambil alih kendali penuh atas bagaimana masa depan kenyamanan keluarga Anda diwujudkan. Jangan beli selera orang lain, ciptakan kemewahan Anda sendiri di sini.",
-
       galleryTitle: "Galeri Arsitektur",
-
       gallerySubheadline: "Kabar baiknya, Anda tidak harus merombak semuanya dari nol. Struktur bangunan asli saat ini sudah sangat kokoh. Cukup dengan renovasi ringan seperti perbaikan lantai dan pengecatan ulang, rumah ini sudah siap bertransformasi menjadi hunian yang indah dan nyaman tanpa biaya besar. Jelajahi potensi tata letak ruang bagian dalam rumah melalui galeri foto di bawah ini:",
-
-      videoUrl: "https://www.youtube.com/embed/4sB6KoX98m0?cc_load_policy=0",
-
-      timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?autoplay=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
-
+      videoUrl: "https://www.youtube.com/embed/4sB6KoX98m0?enablejsapi=1&cc_load_policy=0",
+      timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?enablejsapi=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
       latitude: "-6.224486290732541",
-
       longitude: "106.75084911701877",
-
       bot_name: "Alfin",
-
       salutation: "Kak",
-
       knowledge_base: "Rumah di Taman Alfa Indah Blok H, Jakarta Selatan. Bebas banjir 100%, SHM, LT 102m2, LB 82m2. Harga 1.5 Milyar nego.",
-
       custom_rules: "DILARANG KERAS MENGGUNAKAN KATA: 'kamu', 'Anda', 'Bapak', 'Ibu'.",
-
       useSubGalleryPage: "false",
-
       galleryPageTitle: "Galeri Foto Ruangan",
-
       galleryPageDesc: "Jelajahi setiap sudut keindahan arsitektur dan fasilitas properti secara lengkap di bawah ini.",
-
       facilities: [
-
         "Zero Anxiety: 100% Bebas Banjir & Diapit 2 Pos Polisi (Aman 24 Jam)",
-
         "Komersial Kompleks: HERO Supermarket, McD 24 Jam & Alfamart 24 Jam di Gerbang Utama",
-
         "Olahraga & Lifestyle: Kolam Renang & Gym/Fitness Center Resmi di Dalam Kompleks",
-
-        "Pendidikan Lengkap: HighScope, SIT Citra Az-Zahra, Petra Alpha & Kumon Dalam Kompleks",
-
+        "Pendidikan Lengkap: HighScope, SIT Citra Az-Zahra, SDK Petra Alpha & Kumon Dalam Kompleks",
         "High Mobility: 3-5 Menit ke Gerbang Tol JORR Joglo & TransJakarta 8M",
-
         "Healthcare & Banking: RSIA Mahati 24 Jam, Klinik, & 6 Bank Major di Jl. Joglo Raya"
-
       ],
-
       specs: {
-
         "Legalitas": "SHM (Sertifikat Hak Milik) - Aman & Valid",
-
         "Luas Tanah": "102 m² (Dimensi Ideal 6x17)",
-
         "Luas Bangunan": "82 m² (2 Lantai Kokoh Dinding Bata Merah Pejal)",
-
         "Kamar Tidur": "3 + 1 (Cocok untuk keluarga berkembang)",
-
         "Kamar Mandi": "2 + 1",
-
         "Extra Space": "Gudang Penyimpanan Terpisah & Carport",
-
-        "Air & Listrik": "Air Jetpump Jernih + PAM Jaya / Listrik 2200 VA"
-
+        "Air & Listrik": "Air Jetpump Jernih (Jaringan PAM siap pasang) / Listrik 2200 VA"
       }
-
     };
 
-
+    function verifyPassword(e) {
+      e.preventDefault();
+      const entered = document.getElementById('input-admin-pass').value.trim();
+      const errEl = document.getElementById('login-error');
+      
+      if (entered === currentAdminPassword) {
+        document.getElementById('login-modal').classList.add('hidden');
+        errEl.classList.add('hidden');
+      } else {
+        errEl.classList.remove('hidden');
+      }
+    }
 
     function addGalleryRow(url = "", category = "Interior") {
-
       galleryCounter++;
-
       const container = document.getElementById('gallery-dynamic-list');
-
       const rowId = `gal-row-${galleryCounter}`;
-
-     
-
+      
       const rowHtml = `
-
         <div id="${rowId}" class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row gap-2 items-center">
-
           ${url ? `<div class="w-12 h-16 shrink-0 rounded-lg overflow-hidden bg-gray-200 border border-gray-300"><img src="${url}" class="w-full h-full object-cover"></div>` : ''}
-
           <div class="flex-1 w-full">
-
             <input type="text" class="gal-url-input w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none" placeholder="Link Google Drive Foto..." title="Link Foto ${galleryCounter}" aria-label="Link Foto ${galleryCounter}" value="${url}">
-
           </div>
-
           <div class="w-full sm:w-44">
-
             <select class="gal-cat-input w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none font-bold text-slate-700" title="Kategori ${galleryCounter}" aria-label="Kategori ${galleryCounter}">
-
               <option value="Interior" ${category === "Interior" ? "selected" : ""}>Interior</option>
-
               <option value="Eksterior" ${category === "Eksterior" ? "selected" : ""}>Eksterior</option>
-
               <option value="Fasilitas/Office" ${category === "Fasilitas/Office" ? "selected" : ""}>Fasilitas/Office</option>
-
               <option value="Lingkungan" ${category === "Lingkungan" ? "selected" : ""}>Lingkungan</option>
-
             </select>
-
           </div>
-
           <button type="button" onclick="document.getElementById('${rowId}').remove()" class="text-red-500 hover:bg-red-50 px-3 py-2 rounded-lg text-xs font-bold w-full sm:w-auto text-center shrink-0">✕ Hapus</button>
-
         </div>
-
       `;
-
       container.insertAdjacentHTML('beforeend', rowHtml);
-
     }
-
-
 
     function addFacilityRow(text = "") {
-
       facilityCounter++;
-
       const container = document.getElementById('facility-dynamic-list');
-
       const rowId = `fac-row-${facilityCounter}`;
-
       const rowHtml = `
-
         <div id="${rowId}" class="flex gap-2 items-center">
-
           <input type="text" class="fac-input flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none" placeholder="Contoh: Bebas Banjir 100%" value="${text}">
-
           <button type="button" onclick="document.getElementById('${rowId}').remove()" class="text-red-500 hover:bg-red-50 px-3 py-2 rounded-lg text-xs font-bold">✕</button>
-
         </div>
-
       `;
-
       container.insertAdjacentHTML('beforeend', rowHtml);
-
     }
-
-
 
     const dropzone = document.getElementById('dropzone');
-
     if (dropzone) {
-
       ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-
         dropzone.addEventListener(eventName, preventDefaults, false);
-
       });
-
       ['dragenter', 'dragover'].forEach(eventName => dropzone.addEventListener(eventName, () => dropzone.classList.add('bg-amber-200/80'), false));
-
       ['dragleave', 'drop'].forEach(eventName => dropzone.addEventListener(eventName, () => dropzone.classList.remove('bg-amber-200/80'), false));
-
       dropzone.addEventListener('drop', (e) => uploadFiles(e.dataTransfer.files), false);
-
     }
-
-
 
     function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
-
     function handleFileSelect(e) { uploadFiles(e.target.files); }
 
-
-
     async function uploadFiles(files) {
-
       if (!files || files.length === 0) return;
-
       const statusEl = document.getElementById('upload-status');
-
       statusEl.classList.remove('hidden');
 
-
-
       for (let i = 0; i < files.length; i++) {
-
         const file = files[i];
-
         statusEl.innerText = `⏳ Memproses & Mengunggah foto (${i + 1}/${files.length}): ${file.name}...`;
 
-
-
         try {
-
           const base64Data = await convertFileToBase64(file);
-
           const res = await fetch(GAS_WEBHOOK_URL, {
-
             method: 'POST',
-
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-
             body: JSON.stringify({
-
               action: "uploadFile",
-
               payload: {
-
                 fileName: file.name || `Foto_HP_${Date.now()}.jpg`,
-
                 mimeType: file.type || "image/jpeg",
-
                 base64Data: base64Data
-
               }
-
             })
-
           });
-
           const data = await res.json();
-
           if (data.success && data.fileUrl) {
-
             addGalleryRow(data.fileUrl, "Interior");
-
           } else {
-
             alert("Gagal mengunggah " + file.name + ": " + data.error);
-
           }
-
         } catch (err) { alert("Gagal koneksi upload: " + err.message); }
-
       }
-
-
 
       statusEl.innerText = "✅ Foto berhasil diunggah! Klik SIMPAN DI BAWAH untuk menerbitkan.";
-
       setTimeout(() => statusEl.classList.add('hidden'), 5000);
-
       document.getElementById('camera-input').value = "";
-
       document.getElementById('gallery-input').value = "";
-
     }
-
-
 
     function convertFileToBase64(file) {
-
       return new Promise((resolve, reject) => {
-
         const reader = new FileReader();
-
         reader.readAsDataURL(file);
-
         reader.onload = () => resolve(reader.result.split(',')[1]);
-
         reader.onerror = error => reject(error);
-
       });
-
     }
-
-
 
     function resetSection(elementIds) {
-
       if (confirm("Apakah Anda yakin ingin mengosongkan bagian ini?")) {
-
         elementIds.forEach(id => {
-
           if (document.getElementById(id)) document.getElementById(id).value = "";
-
         });
-
       }
-
     }
-
-
 
     function clearAllPhotos() {
-
       if (confirm("Apakah Anda yakin ingin menghapus seluruh daftar foto?")) {
-
         document.getElementById('gallery-dynamic-list').innerHTML = "";
-
       }
-
     }
-
-
 
     async function loadData() {
-
       let cfg = DEFAULT_CONFIG;
-
       try {
-
         const res = await fetch(GAS_WEBHOOK_URL, {
-
           method: 'POST',
-
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-
           body: JSON.stringify({ action: "getSaasConfig" })
-
         });
-
         const data = await res.json();
-
         if (data.success && data.config) {
-
           cfg = Object.assign({}, DEFAULT_CONFIG, data.config);
-
         }
-
       } catch (err) {
-
         console.log("Memakai data default lokal.");
-
       }
 
-
+      if (cfg.admin_password) currentAdminPassword = cfg.admin_password;
 
       // Populate text inputs
-
-      const textFields = ["title", "price", "whatsappNumber", "address", "headline", "story", "inspirationTitle", "inspirationStory", "galleryTitle", "gallerySubheadline", "videoUrl", "timelapseUrl", "latitude", "longitude", "bot_name", "salutation", "knowledge_base", "custom_rules", "useSubGalleryPage", "galleryPageTitle", "galleryPageDesc"];
-
-     
-
+      const textFields = ["admin_password", "title", "price", "whatsappNumber", "address", "headline", "story", "inspirationTitle", "inspirationStory", "galleryTitle", "gallerySubheadline", "videoUrl", "timelapseUrl", "latitude", "longitude", "bot_name", "salutation", "knowledge_base", "custom_rules", "useSubGalleryPage", "galleryPageTitle", "galleryPageDesc"];
+      
       textFields.forEach(f => {
-
         const el = document.getElementById('cfg-' + f);
-
         if (el) el.value = (cfg[f] !== undefined && cfg[f] !== "") ? cfg[f] : (DEFAULT_CONFIG[f] || "");
-
       });
 
-
-
       // Populate specs
-
       const specsData = cfg.specs || DEFAULT_CONFIG.specs;
-
       for (let k in DEFAULT_CONFIG.specs) {
-
         const el = document.getElementById('spec-' + k);
-
         if (el) el.value = specsData[k] || DEFAULT_CONFIG.specs[k];
-
       }
-
-
 
       // Populate facilities
-
       document.getElementById('facility-dynamic-list').innerHTML = "";
-
       const facsData = (cfg.facilities && cfg.facilities.length > 0) ? cfg.facilities : DEFAULT_CONFIG.facilities;
-
       facsData.forEach(fac => addFacilityRow(fac));
 
-
-
       // Populate gallery
-
       document.getElementById('gallery-dynamic-list').innerHTML = "";
-
       if (cfg.gallery && cfg.gallery.length > 0) {
-
         cfg.gallery.forEach(item => {
-
           if (typeof item === 'object') addGalleryRow(item.url, item.category);
-
           else addGalleryRow(item, "Interior");
-
         });
-
       }
-
     }
-
-
 
     async function undoConfig() {
-
       if (!confirm("Apakah Anda yakin ingin mengembalikan seluruh data ke versi sebelum simpan terakhir?")) return;
-
       try {
-
         const res = await fetch(GAS_WEBHOOK_URL, {
-
           method: 'POST',
-
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-
           body: JSON.stringify({ action: "undoAdminConfig" })
-
         });
-
         const data = await res.json();
-
         if (data.success) {
-
           alert("🎉 BERHASIL UNDO! Mengembalikan data versi sebelumnya...");
-
           loadData();
-
         } else {
-
           alert("Gagal Undo: " + data.error);
-
         }
-
       } catch(err) { alert("Kesalahan koneksi saat Undo."); }
-
     }
-
-
 
     document.addEventListener("DOMContentLoaded", loadData);
 
-
-
     document.getElementById('admin-form').addEventListener('submit', async function(e) {
-
       e.preventDefault();
-
       const btn = document.getElementById('btn-save');
-
       const origText = btn.innerText;
-
       btn.disabled = true; btn.innerText = "⏳ MEMPROSES & MENYIMPAN...";
 
-
-
       const galleryList = [];
-
       document.querySelectorAll('#gallery-dynamic-list > div').forEach(row => {
-
         const urlInput = row.querySelector('.gal-url-input');
-
         const catInput = row.querySelector('.gal-cat-input');
-
         if (urlInput && urlInput.value.trim()) {
-
           galleryList.push({ url: urlInput.value.trim(), category: catInput ? catInput.value : "Interior" });
-
         }
-
       });
-
-
 
       const specsObj = {};
-
       document.querySelectorAll('.spec-input').forEach(input => {
-
         const key = input.id.replace('spec-', '');
-
         specsObj[key] = input.value.trim();
-
       });
-
-
 
       const facList = [];
-
       document.querySelectorAll('.fac-input').forEach(input => {
-
         if (input.value.trim()) facList.push(input.value.trim());
-
       });
 
-
-
       const payload = {
-
+        admin_password: document.getElementById('cfg-admin_password').value.trim() || "151264",
         title: document.getElementById('cfg-title').value,
-
         price: document.getElementById('cfg-price').value,
-
         whatsappNumber: document.getElementById('cfg-whatsappNumber').value,
-
         address: document.getElementById('cfg-address').value,
-
         headline: document.getElementById('cfg-headline').value,
-
         story: document.getElementById('cfg-story').value,
-
         inspirationTitle: document.getElementById('cfg-inspirationTitle').value,
-
         inspirationStory: document.getElementById('cfg-inspirationStory').value,
-
         galleryTitle: document.getElementById('cfg-galleryTitle').value,
-
         gallerySubheadline: document.getElementById('cfg-gallerySubheadline').value,
-
         videoUrl: document.getElementById('cfg-videoUrl').value,
-
         timelapseUrl: document.getElementById('cfg-timelapseUrl').value,
-
         latitude: document.getElementById('cfg-latitude').value,
-
         longitude: document.getElementById('cfg-longitude').value,
-
         useSubGalleryPage: document.getElementById('cfg-useSubGalleryPage').value,
-
         galleryPageTitle: document.getElementById('cfg-galleryPageTitle').value,
-
         galleryPageDesc: document.getElementById('cfg-galleryPageDesc').value,
-
         bot_name: document.getElementById('cfg-bot_name').value,
-
         salutation: document.getElementById('cfg-salutation').value,
-
         knowledge_base: document.getElementById('cfg-knowledge_base').value,
-
         custom_rules: document.getElementById('cfg-custom_rules').value,
-
         gallery: galleryList,
-
         specs: specsObj,
-
         facilities: facList
-
       };
 
-
-
       try {
-
+        // MENGHILANGKAN HEADER CUSTOM UNTUK MENCEGAH TERJADINYA KESALAHAN KONEKSI CORS
         const res = await fetch(GAS_WEBHOOK_URL, {
-
           method: 'POST',
-
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-
           body: JSON.stringify({ action: "saveAdminConfig", payload: payload })
-
         });
-
         const data = await res.json();
-
-        if (data.success) alert("🎉 BERHASIL! Landing page & Galeri sudah ter-update secara instan!");
-
-        else alert("Gagal menyimpan: " + data.error);
-
-      } catch (err) { alert("Kesalahan koneksi."); }
-
+        if (data.success) {
+          alert("🎉 BERHASIL! Landing page & Galeri sudah ter-update secara instan!");
+          if (payload.admin_password) currentAdminPassword = payload.admin_password;
+        } else alert("Gagal menyimpan: " + data.error);
+      } catch (err) { alert("Kesalahan koneksi saat menyimpan."); }
       finally { btn.disabled = false; btn.innerText = origText; }
-
     });
-
   </script>
-
 </body>
-
-</html> 
-
+</html>
