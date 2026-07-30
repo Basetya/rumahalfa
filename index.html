@@ -446,7 +446,6 @@
         audioEl.load();
         audioEl.volume = parseFloat(cfg.bgm_volume) || 0.3;
         
-        // Listener interaksi pertama untuk memulai audio secara mulus
         const startAudioOnFirstClick = () => {
           if (!isAudioPlaying) toggleAudio();
           document.removeEventListener('click', startAudioOnFirstClick);
