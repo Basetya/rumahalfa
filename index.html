@@ -143,7 +143,7 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
       <div class="text-center mb-12 sm:mb-16">
         <span class="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M15 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
           Simulasi Finansial
         </span>
         <h3 class="font-serif text-3xl sm:text-4xl text-dark font-bold mb-4">Simulasi KPR Interaktif</h3>
@@ -232,7 +232,7 @@
     </div>
   </section>
 
-  <!-- LOCATION MAP & COMMUTE CALCULATOR (FEAT. KEY-IN SPEED & TOMTOM / CNN DATA GUIDE) -->
+  <!-- LOCATION MAP & COMMUTE CALCULATOR (FEAT. EXPLICIT TOMTOM MOBIL DATA & COMPACT TEXT) -->
   <section class="py-16 sm:py-24 bg-white relative">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
       <span class="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
@@ -293,19 +293,31 @@
           </div>
         </div>
 
-        <!-- PANDUAN TEKS REAL DATA TOMTOM & CNN INDONESIA -->
-        <div class="mt-5 p-4 bg-gold-500/10 rounded-2xl border border-gold-500/20 text-xs text-gray-700 space-y-1.5 leading-relaxed">
-          <div class="flex items-center gap-2 font-bold text-gold-600">
-            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-            <span>Panduan Kecepatan Rata-rata Lalu Lintas Jakarta:</span>
+        <!-- PANDUAN TEKS EDITED: PENJELASAN DATA TOMTOM MOBIL (TOL+NON-TOL) FONT KECIL RENYAH -->
+        <div class="mt-4 p-3.5 bg-gold-500/10 rounded-2xl border border-gold-500/20 text-gray-700 leading-relaxed space-y-1">
+          <div class="flex items-center gap-1.5 font-bold text-gold-600 text-[11px]">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+            <span>ℹ️ Catatan Panduan Kecepatan Lalu Lintas Jakarta (Roda 4 / Mobil):</span>
           </div>
-          <ul class="list-disc list-inside space-y-1 text-[11px] text-gray-600 pl-1">
-            <li><b>Jam Sibuk Pagi (07.00–09.00 WIB):</b> 17,8 – 21 km/jam (Puncak berangkat kerja/sekolah).</li>
-            <li><b>Jam Kerja Normal (10.00–16.00 WIB):</b> 22 – 25 km/jam (Lalu lintas bergerak sedang).</li>
-            <li><b>Jam Sibuk Pulang Kerja (17.00–20.00 WIB):</b> 17,8 – 19 km/jam (Puncak kemacetan harian).</li>
-            <li><b>Malam & Dini Hari (21.00–05.00 WIB):</b> 30 – 40 km/jam (Jalanan relatif lancar).</li>
+          
+          <p class="text-[10.5px] text-gray-600 italic">
+            Angka kecepatan di atas berdasarkan riset resmi <b>TomTom Traffic Index</b> (kecepatan rata-rata mobil gabungan rute jalan biasa & tol):
+          </p>
+
+          <ul class="list-disc list-inside space-y-0.5 text-[10.5px] text-gray-600 pl-1">
+            <li><b>Jam Sibuk Pagi (07.00–09.00):</b> Rata-rata <b>20 km/jam</b> (Berangkat kerja/sekolah).</li>
+            <li><b>Jam Normal Siang (10.00–16.00):</b> Rata-rata <b>25 km/jam</b>.</li>
+            <li><b>Jam Pulang Kerja (17.00–20.00):</b> Rata-rata <b>18 km/jam</b> (Titik macet tertinggi).</li>
+            <li><b>Malam & Dini Hari (21.00–05.00):</b> Rata-rata <b>35 km/jam</b>.</li>
           </ul>
-          <p class="text-[10px] text-gray-400 italic pt-1 border-t border-gold-500/10">📌 Source: Laporan Riset Global TomTom Traffic Index & Statistik Kemacetan DKI Jakarta (CNN Indonesia).</p>
+
+          <div class="mt-2 pt-1.5 border-t border-gold-500/15 text-[10.5px] text-dark font-medium leading-normal">
+            💡 <b>Tips Macet Parah:</b> Jika rute Anda melewati jalur non-tol padat, gunakan kolom <b>Key-In Speed</b> dan ketik <b>12 – 15 km/jam</b> untuk simulasi kondisi padat merayap.
+          </div>
+
+          <p class="text-[9.5px] text-gray-400 italic pt-0.5">
+            Sumber Data: TomTom Traffic Index Report & Statistik Kemacetan Jakarta (CNN Indonesia).
+          </p>
         </div>
 
         <!-- RESULT CONTAINER -->
@@ -317,7 +329,7 @@
                 <span class="text-3xl sm:text-4xl font-bold font-serif text-gold-600" id="res-time">--</span>
                 <span class="text-base sm:text-lg font-medium text-gray-500 mb-1" id="res-dist">(-- km)</span>
               </div>
-              <p class="text-[10px] text-gray-500 mt-1 font-semibold" id="res-speed-desc">*Dihitung berdasarkan opsi kecepatan terpilih.</p>
+              <p class="text-[10px] text-gray-500 mt-1 font-semibold" id="res-speed-desc">*Dihitung berdasarkan kecepatan terpilih.</p>
             </div>
             <a href="#" id="res-link" target="_blank" class="bg-gold-500 hover:bg-gold-600 text-white px-5 py-3 rounded-xl text-xs font-bold flex items-center gap-2 transition-all shadow-md text-left w-full md:w-auto md:max-w-[200px]">
               <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
