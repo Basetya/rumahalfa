@@ -443,7 +443,7 @@
       story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi: Kalau strategis, pasti mahal. Kalau murah, mungkin banjir.\n\nDi Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran yang Anda rasakan setiap musim hujan tiba, karena rumah ini terbukti 100% bebas banjir, bahkan saat banjir besar melanda Jakarta. Bayangkan kemudahan hidup saat Tol JORR, sekolah anak, hingga pusat perbelanjaan hanya berjarak beberapa menit dari pintu rumah Anda.\n\nDengan harga Rp 1.5 Milyar (di bawah harga pasaran saat ini), ini bukan sekadar tempat tinggal. Ini adalah aset perlindungan keluarga dan investasi cerdas yang sangat langka. Kesempatan ini tidak akan bertahan lama.",
       inspirationTitle: "Miliki Kebebasan Mutlak untuk Membangun Rumah Impian Anda",
       inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid (6x17) di Rumah Alfa Indah ini memberikan Anda keleluasaan untuk mendesain ruang hidup Anda sendiri sesuai impian Anda.\n\nTonton video ini : Lihat bagaimana bangunan ini memiliki potensi luar biasa untuk ditransformasikan menjadi karya arsitektur Modern Minimalis yang megah, bersih, dan berkelas dunia. Anda tidak sedang membeli rumah seken biasa—Anda sedang mengambil alih kendali penuh atas bagaimana masa depan kenyamanan keluarga Anda diwujudkan. Jangan beli selera orang lain, ciptakan kemewahan Anda sendiri di sini.",
-      // MODIFIKASI AUTOPLAY OFF UNTUK VIDEO TIMELAPSE (TIDAK LAGI MENGGANGGU BGM DI AWAL)
+      // KUNCI: PASTI CANCEL AUTOPLAY PADA TIMELAPSE DEFAULT
       timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?enablejsapi=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
       galleryTitle: "Galeri Arsitektur",
       gallerySubheadline: "Kabar baiknya, Anda tidak harus merombak semuanya dari nol. Struktur bangunan asli saat ini sudah sangat kokoh. Cukup dengan renovasi ringan seperti perbaikan lantai dan pengecatan ulang, rumah ini sudah siap bertransformasi menjadi hunian yang indah dan nyaman tanpa biaya besar. Jelajahi potensi tata letak ruang bagian dalam rumah melalui galeri foto di bawah ini:",
@@ -498,7 +498,7 @@
       }
     }
 
-    // YOUTUBE MESSAGE EVENT LISTENER (100% PASTI PAUSE BGM SAAT VIDEO PLAYING)
+    // YOUTUBE MESSAGE EVENT LISTENER
     window.addEventListener('message', function(event) {
       if (!event.data) return;
       try {
@@ -507,7 +507,7 @@
           // infoState 1 = PLAYING, 2 = PAUSED, 0 = ENDED
           if (data.info.playerState === 1) {
             isVideoPlaying = true;
-            if (isAudioPlaying) toggleAudio(true); // OFF BGM
+            if (isAudioPlaying) toggleAudio(true); // OFF BGM saat Video YouTube Diputar
           } else if (data.info.playerState === 2 || data.info.playerState === 0) {
             isVideoPlaying = false;
             if (!isAudioPlaying) toggleAudio(false); // RESUME BGM
@@ -535,7 +535,7 @@
       setDynamicWelcomeMessage();
       calculateKPR();
 
-      // AUTO-PLAY BGM ON KLIK PERTAMA
+      // AUTO-PLAY BGM ON PERTAMA KALI KONTAN DENGAN KLIK/SCROLL
       audioEl.src = PROPERTY_CONFIG.bgmUrl || "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3";
       audioEl.volume = parseFloat(PROPERTY_CONFIG.bgm_volume) || 0.3;
 
@@ -548,8 +548,10 @@
           }).catch(() => {});
         }
         document.removeEventListener('click', startAudioOnFirstClick);
+        document.removeEventListener('touchstart', startAudioOnFirstClick);
       };
       document.addEventListener('click', startAudioOnFirstClick);
+      document.addEventListener('touchstart', startAudioOnFirstClick);
 
       const form = document.getElementById('pms-lead-form');
       if (form) {
@@ -615,8 +617,8 @@
       const timelapseIframe = document.getElementById('prop-timelapse-yt');
       if (config.timelapseUrl && config.timelapseUrl.trim().length > 5) {
         let cleanTimeUrl = config.timelapseUrl;
-        // PASTI HAPUS AUTOPLAY AGAR TIDAK MEMATIKAN BGM AWAL
-        cleanTimeUrl = cleanTimeUrl.replace('autoplay=1', 'autoplay=0');
+        // PASTI HAPUS AUTOPLAY DAN GANTI MENJADI AUTOPLAY=0
+        cleanTimeUrl = cleanTimeUrl.replace(/autoplay=1/g, 'autoplay=0');
         if (!cleanTimeUrl.includes('enablejsapi=1')) {
           cleanTimeUrl += (cleanTimeUrl.includes('?') ? '&' : '?') + 'enablejsapi=1';
         }
