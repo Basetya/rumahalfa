@@ -31,15 +31,18 @@
 
   <div class="max-w-3xl mx-auto">
     
-    <!-- HEADER & UNDO BUTTON -->
+    <!-- HEADER & UNDO / REFRESH BUTTON -->
     <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
       <div>
         <h1 class="text-xl font-bold">⚙️ Dashboard Pengaturan Properti</h1>
         <p class="text-xs text-slate-400 mt-1">Ubah landing page, galeri foto, spesifikasi, & AI Chatbot</p>
       </div>
-      <div class="flex gap-2 w-full sm:w-auto">
+      <div class="flex gap-2 w-full sm:w-auto flex-wrap sm:flex-nowrap">
+        <button type="button" onclick="loadData()" class="bg-slate-700 hover:bg-slate-800 text-white font-bold px-3.5 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 w-full sm:w-auto justify-center">
+          <span>🔄 FETCH DATA GAS</span>
+        </button>
         <button type="button" onclick="undoConfig()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 w-full sm:w-auto justify-center">
-          <span>↩️ UNDO VERSI SEBELUMNYA</span>
+          <span>↩️ UNDO</span>
         </button>
       </div>
     </div>
@@ -188,7 +191,7 @@
         </div>
       </div>
 
-      <!-- FASILITAS EKSKLUSIF (DYNAMIC LIST) -->
+      <!-- FASILITAS EKSKLUSIF -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
         <div class="flex justify-between items-center border-b pb-3">
           <h2 class="text-base font-bold text-slate-800 flex items-center gap-2"><span>✨</span> Fasilitas Eksklusif & Lingkungan</h2>
@@ -309,7 +312,7 @@
 
     let galleryCounter = 0;
     let facilityCounter = 0;
-    let currentAdminPassword = "151264"; // DEFAULT PASSWORD ADMIN
+    let currentAdminPassword = "151264";
 
     const DEFAULT_CONFIG = {
       admin_password: "151264",
@@ -417,6 +420,7 @@
     function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
     function handleFileSelect(e) { uploadFiles(e.target.files); }
 
+    // DENGAN BYPASS FORM-ENCODED UNTUK MENCEGAH KESALAHAN KONEKSI CORS VIA GAS
     async function uploadFiles(files) {
       if (!files || files.length === 0) return;
       const statusEl = document.getElementById('upload-status');
@@ -428,22 +432,25 @@
 
         try {
           const base64Data = await convertFileToBase64(file);
+          const reqBody = {
+            action: "uploadFile",
+            payload: {
+              fileName: file.name || `Foto_HP_${Date.now()}.jpg`,
+              mimeType: file.type || "image/jpeg",
+              base64Data: base64Data
+            }
+          };
+
           const res = await fetch(GAS_WEBHOOK_URL, {
             method: 'POST',
-            body: JSON.stringify({
-              action: "uploadFile",
-              payload: {
-                fileName: file.name || `Foto_HP_${Date.now()}.jpg`,
-                mimeType: file.type || "image/jpeg",
-                base64Data: base64Data
-              }
-            })
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ request: JSON.stringify(reqBody) })
           });
           const data = await res.json();
           if (data.success && data.fileUrl) {
             addGalleryRow(data.fileUrl, "Interior");
           } else {
-            alert("Gagal mengunggah " + file.name + ": " + data.error);
+            alert("Gagal mengunggah " + file.name + ": " + (data.error || "Gagal upload"));
           }
         } catch (err) { alert("Gagal koneksi upload: " + err.message); }
       }
@@ -477,12 +484,15 @@
       }
     }
 
+    // FUNGSI FETCH UTAMA DENGAN FORM ENCODED BYPASS
     async function loadData() {
       let cfg = DEFAULT_CONFIG;
       try {
+        const reqBody = { action: "getSaasConfig" };
         const res = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
-          body: JSON.stringify({ action: "getSaasConfig" })
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ request: JSON.stringify(reqBody) })
         });
         const data = await res.json();
         if (data.success && data.config) {
@@ -514,10 +524,12 @@
       const facsData = (cfg.facilities && cfg.facilities.length > 0) ? cfg.facilities : DEFAULT_CONFIG.facilities;
       facsData.forEach(fac => addFacilityRow(fac));
 
-      // Populate gallery
+      // Populate gallery (POPULATE DAFTAR FOTO)
       document.getElementById('gallery-dynamic-list').innerHTML = "";
-      if (cfg.gallery && cfg.gallery.length > 0) {
-        cfg.gallery.forEach(item => {
+      const galleryData = (cfg.gallery && cfg.gallery.length > 0) ? cfg.gallery : (DEFAULT_CONFIG.gallery || []);
+      
+      if (galleryData.length > 0) {
+        galleryData.forEach(item => {
           if (typeof item === 'object') addGalleryRow(item.url, item.category);
           else addGalleryRow(item, "Interior");
         });
@@ -527,9 +539,11 @@
     async function undoConfig() {
       if (!confirm("Apakah Anda yakin ingin mengembalikan seluruh data ke versi sebelum simpan terakhir?")) return;
       try {
+        const reqBody = { action: "undoAdminConfig" };
         const res = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
-          body: JSON.stringify({ action: "undoAdminConfig" })
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ request: JSON.stringify(reqBody) })
         });
         const data = await res.json();
         if (data.success) {
@@ -598,16 +612,18 @@
       };
 
       try {
-        // MENGHILANGKAN HEADER CUSTOM UNTUK MENCEGAH TERJADINYA KESALAHAN KONEKSI CORS
+        // FORM ENCODED BODY UNTUK BYPASS HINDARI CORS/CONNECTION ERROR DI BROWSER
+        const reqBody = { action: "saveAdminConfig", payload: payload };
         const res = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
-          body: JSON.stringify({ action: "saveAdminConfig", payload: payload })
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ request: JSON.stringify(reqBody) })
         });
         const data = await res.json();
         if (data.success) {
           alert("🎉 BERHASIL! Landing page & Galeri sudah ter-update secara instan!");
           if (payload.admin_password) currentAdminPassword = payload.admin_password;
-        } else alert("Gagal menyimpan: " + data.error);
+        } else alert("Gagal menyimpan: " + (data.error || "Gagal update"));
       } catch (err) { alert("Kesalahan koneksi saat menyimpan."); }
       finally { btn.disabled = false; btn.innerText = origText; }
     });
