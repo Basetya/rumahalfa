@@ -8,45 +8,67 @@
   <!-- Fonts & Tailwind CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
+    /* PROTOKOL ANTI-REGRESI: LOCK OVERFLOW & RESPONSIVE CONTAINER */
     *, *::before, *::after { box-sizing: border-box; }
+    
     html, body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       max-width: 100vw !important;
       overflow-x: hidden !important;
       margin: 0; padding: 0;
-      background-color: #0f172a;
+      background-color: #0b0f17;
       color: #f8fafc;
     }
+
     img, iframe, video { max-width: 100% !important; height: auto; }
-    .responsive-card { width: 100%; max-width: 1200px; margin: 0 auto; padding: 1rem; }
-    @media (min-width: 768px) { .responsive-card { padding: 2rem; } }
-    .glass-card {
-      background: rgba(30, 41, 59, 0.75);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 1.5rem;
+
+    .responsive-card {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
     }
+
+    @media (min-width: 768px) {
+      .responsive-card { padding: 2.5rem 2rem; }
+    }
+
+    /* GLASSMORPHISM CARD ULTRA ELEGANT */
+    .glass-card {
+      background: rgba(23, 32, 51, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1.75rem;
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+    }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     #chatWidget { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between antialiased">
 
-  <!-- HEADER NAVBAR -->
-  <header class="w-full bg-slate-900/90 border-b border-slate-800 sticky top-0 z-40 backdrop-blur-md">
+  <!-- HEADER / NAVBAR -->
+  <header class="w-full bg-[#0b0f17]/90 border-b border-slate-800/80 sticky top-0 z-40 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold text-xl">
+        <div class="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold text-xl shadow-inner">
           🏠
         </div>
-        <h1 id="heroTitle" class="text-lg sm:text-xl font-bold text-white truncate max-w-[200px] sm:max-w-none">
+        <h1 id="heroTitle" class="text-lg sm:text-xl font-extrabold text-white truncate max-w-[200px] sm:max-w-none tracking-tight">
           Rumah Taman Alfa Indah
         </h1>
       </div>
-      <a id="waHeaderBtn" href="https://wa.me/6287832219195?text=Halo,%20saya%20tertarik%20dengan%20unit%20Rumah%20Alfa%20Indah" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center space-x-2 shadow-lg shadow-emerald-900/20">
+      <a id="waHeaderBtn" href="https://wa.me/6287832219195?text=Halo,%20saya%20tertarik%20dengan%20unit%20Rumah%20Alfa%20Indah" target="_blank" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center space-x-2 shadow-lg shadow-emerald-950/40 border border-emerald-400/20">
         <span>Hubungi Owner</span>
       </a>
     </div>
@@ -57,14 +79,15 @@
     <div class="responsive-card space-y-8 sm:space-y-12">
       
       <!-- HERO ANNOUNCEMENT & PRICE -->
-      <section class="glass-card p-6 sm:p-10 text-center space-y-6 border-amber-500/20">
-        <span class="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-semibold tracking-wide uppercase">
-          BEST INVESTMENT OPPORTUNITY
+      <section class="glass-card p-6 sm:p-12 text-center space-y-6 border-amber-500/20 relative overflow-hidden">
+        <div class="absolute -top-24 -left-24 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <span class="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-bold tracking-widest uppercase">
+          ✨ BEST INVESTMENT OPPORTUNITY
         </span>
-        <h2 id="heroHeadline" class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
+        <h2 id="heroHeadline" class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tight">
           Ketenangan Hidup di Lokasi Emas. Bebas Banjir, Jauh di Bawah Harga Pasar.
         </h2>
-        <div class="text-3xl sm:text-5xl font-black text-amber-400 tracking-tight" id="heroPrice">
+        <div class="text-4xl sm:text-6xl font-black gold-gradient-text tracking-tight" id="heroPrice">
           Rp 1.5 Milyar
         </div>
         <p id="heroAddress" class="text-slate-400 text-sm sm:text-base flex items-center justify-center space-x-2">
@@ -78,7 +101,7 @@
           <h3 class="text-lg font-bold text-white flex items-center space-x-2">
             <span>🎬</span> <span>Video Virtual Tour</span>
           </h3>
-          <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
+          <div class="aspect-video w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-800/80 shadow-inner">
             <iframe id="videoIframe" class="w-full h-full" src="https://www.youtube.com/embed/4sB6KoX98m0" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
@@ -86,7 +109,7 @@
           <h3 class="text-lg font-bold text-white flex items-center space-x-2">
             <span>⏱️</span> <span>Potensi Transformasi Arsitektur</span>
           </h3>
-          <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
+          <div class="aspect-video w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-800/80 shadow-inner">
             <iframe id="timelapseIframe" class="w-full h-full" src="https://www.youtube.com/embed/zDvGAE7vPWI?autoplay=1&mute=1&loop=1&playlist=zDvGAE7vPWI" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
@@ -94,7 +117,7 @@
 
       <!-- STORY & DESKRIPSI -->
       <section class="glass-card p-6 sm:p-10 space-y-6">
-        <h3 class="text-xl sm:text-2xl font-bold text-white border-b border-slate-800 pb-3">Mengapa Properti Ini Pilihan Terbaik?</h3>
+        <h3 class="text-xl sm:text-2xl font-bold text-white border-b border-slate-800/80 pb-4">Mengapa Properti Ini Pilihan Terbaik?</h3>
         <div id="storyContent" class="text-slate-300 text-base sm:text-lg leading-relaxed whitespace-pre-line space-y-4">Mencari rumah di Jakarta seringkali memaksa kita berkompromi: Kalau strategis, pasti mahal. Kalau murah, pasti banjir.
 
 Di Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran yang Anda rasakan setiap musim hujan tiba, karena hunian ini terbukti 100% bebas banjir. Bayangkan kemudahan hidup saat Tol JORR, sekolah anak, hingga pusat perbelanjaan hanya berjarak beberapa menit dari pintu rumah Anda.</div>
@@ -102,7 +125,7 @@ Di Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran 
 
       <!-- KALKULATOR JARAK TEMPUH -->
       <section class="glass-card p-6 sm:p-10 space-y-6 border-amber-500/20">
-        <div class="flex items-center space-x-3 border-b border-slate-800 pb-3">
+        <div class="flex items-center space-x-3 border-b border-slate-800/80 pb-4">
           <span class="text-2xl">⚡</span>
           <div>
             <h3 class="text-xl sm:text-2xl font-bold text-white">Kalkulator Waktu Tempuh & Akses</h3>
@@ -110,20 +133,20 @@ Di Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran 
           </div>
         </div>
         <div class="flex flex-col sm:flex-row gap-3">
-          <input type="text" id="destInput" placeholder="Ketik lokasi: SCBD, Plaza Senayan, Bandara Soekarno Hatta..." class="flex-grow bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 text-sm">
-          <button type="button" onclick="calculateCommute()" id="btnCalcCommute" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition-all text-sm shrink-0">
+          <input type="text" id="destInput" placeholder="Ketik lokasi: SCBD, Plaza Senayan, Bandara Soekarno Hatta..." class="flex-grow bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-amber-500 text-sm transition-all">
+          <button type="button" onclick="calculateCommute()" id="btnCalcCommute" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl transition-all text-sm shrink-0 shadow-lg">
             Hitung Jarak & Waktu
           </button>
         </div>
-        <div id="commuteResult" class="hidden bg-slate-900/90 border border-amber-500/30 p-4 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div id="commuteResult" class="hidden bg-slate-950/90 border border-amber-500/30 p-4 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <p class="text-xs text-slate-400 uppercase font-bold">Estimasi Waktu Perjalanan Normal</p>
-            <div class="flex items-baseline space-x-2">
+            <div class="flex items-baseline space-x-2 mt-1">
               <span id="resTime" class="text-2xl font-black text-amber-400">--</span>
               <span id="resDist" class="text-sm font-semibold text-slate-300">(-- km)</span>
             </div>
           </div>
-          <a id="resMapLink" href="#" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1">
+          <a id="resMapLink" href="#" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center space-x-1 shadow-md">
             <span>🗺️ Buka Rute Google Maps</span>
           </a>
         </div>
@@ -131,7 +154,7 @@ Di Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran 
 
       <!-- KALKULATOR SIMULASI KPR -->
       <section class="glass-card p-6 sm:p-10 space-y-6">
-        <div class="border-b border-slate-800 pb-3">
+        <div class="border-b border-slate-800/80 pb-4">
           <h3 class="text-xl sm:text-2xl font-bold text-white flex items-center space-x-2">
             <span>🧮</span> <span>Simulasi KPR Interaktif</span>
           </h3>
@@ -140,21 +163,21 @@ Di Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div class="space-y-4">
             <div>
-              <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Harga Unit (Rp)</label>
-              <input type="text" id="kprHarga" value="1.500.000.000" oninput="formatAndCalcKPR(this)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-amber-500 focus:outline-none">
+              <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Harga Unit (Rp)</label>
+              <input type="text" id="kprHarga" value="1.500.000.000" oninput="formatAndCalcKPR(this)" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-amber-500 focus:outline-none transition-all">
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Uang Muka / DP (Rp)</label>
-              <input type="text" id="kprDp" value="300.000.000" oninput="formatAndCalcKPR(this)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-amber-500 focus:outline-none">
+              <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Uang Muka / DP (Rp)</label>
+              <input type="text" id="kprDp" value="300.000.000" oninput="formatAndCalcKPR(this)" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-amber-500 focus:outline-none transition-all">
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Bunga Pertahun (%)</label>
-                <input type="number" id="kprBunga" value="7.0" step="0.1" oninput="calcKPR()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-amber-500 focus:outline-none">
+                <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Bunga Pertahun (%)</label>
+                <input type="number" id="kprBunga" value="7.0" step="0.1" oninput="calcKPR()" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-amber-500 focus:outline-none transition-all">
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Tenor (Tahun)</label>
-                <select id="kprTenor" onchange="calcKPR()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-3 text-white font-bold text-sm focus:border-amber-500 focus:outline-none">
+                <label class="block text-xs font-bold text-slate-400 uppercase mb-1.5">Tenor (Tahun)</label>
+                <select id="kprTenor" onchange="calcKPR()" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-3 py-3 text-white font-bold text-sm focus:border-amber-500 focus:outline-none transition-all">
                   <option value="5">5 Tahun</option>
                   <option value="10">10 Tahun</option>
                   <option value="15" selected>15 Tahun</option>
@@ -163,14 +186,14 @@ Di Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran 
               </div>
             </div>
           </div>
-          <div class="bg-slate-950 p-6 rounded-2xl border border-amber-500/20 flex flex-col justify-between space-y-6">
+          <div class="bg-slate-950 p-6 sm:p-8 rounded-2xl border border-amber-500/20 flex flex-col justify-between space-y-6 shadow-inner">
             <div>
               <span class="text-xs font-bold uppercase text-slate-400 tracking-wider">Plafon Pinjaman Bank</span>
-              <h4 id="resPlafon" class="text-xl font-bold text-slate-200 mt-1">Rp 1.200.000.000</h4>
+              <h4 id="resPlafon" class="text-2xl font-bold text-slate-200 mt-1">Rp 1.200.000.000</h4>
             </div>
             <div class="border-t border-slate-800 pt-4">
               <span class="text-xs font-bold uppercase text-amber-400 tracking-wider">Estimasi Cicilan / Bulan</span>
-              <h3 id="resCicilan" class="text-3xl sm:text-4xl font-black text-amber-400 mt-1">Rp 10.785.939</h3>
+              <h3 id="resCicilan" class="text-3xl sm:text-5xl font-black gold-gradient-text mt-1">Rp 10.785.939</h3>
             </div>
           </div>
         </div>
@@ -178,22 +201,22 @@ Di Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran 
 
       <!-- SPESIFIKASI & FASILITAS -->
       <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div class="glass-card p-6 space-y-6">
-          <h3 class="text-xl font-bold text-white border-b border-slate-800 pb-3">Spesifikasi Bangunan</h3>
+        <div class="glass-card p-6 sm:p-8 space-y-6">
+          <h3 class="text-xl font-bold text-white border-b border-slate-800/80 pb-4">Spesifikasi Bangunan</h3>
           <div id="specsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800"><div class="text-xs font-bold text-amber-400 uppercase">Legalitas</div><div class="text-sm font-semibold text-slate-200">SHM (Sertifikat Hak Milik)</div></div>
-            <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800"><div class="text-xs font-bold text-amber-400 uppercase">Luas Tanah</div><div class="text-sm font-semibold text-slate-200">102 m² (6x17)</div></div>
-            <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800"><div class="text-xs font-bold text-amber-400 uppercase">Luas Bangunan</div><div class="text-sm font-semibold text-slate-200">82 m² (2 Lantai)</div></div>
-            <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800"><div class="text-xs font-bold text-amber-400 uppercase">Kamar Tidur</div><div class="text-sm font-semibold text-slate-200">3 + 1</div></div>
+            <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80"><div class="text-[11px] font-bold text-amber-400 uppercase">Legalitas</div><div class="text-sm font-semibold text-slate-200 mt-0.5">SHM (Sertifikat Hak Milik)</div></div>
+            <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80"><div class="text-[11px] font-bold text-amber-400 uppercase">Luas Tanah</div><div class="text-sm font-semibold text-slate-200 mt-0.5">102 m² (6x17)</div></div>
+            <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80"><div class="text-[11px] font-bold text-amber-400 uppercase">Luas Bangunan</div><div class="text-sm font-semibold text-slate-200 mt-0.5">82 m² (2 Lantai)</div></div>
+            <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80"><div class="text-[11px] font-bold text-amber-400 uppercase">Kamar Tidur</div><div class="text-sm font-semibold text-slate-200 mt-0.5">3 + 1</div></div>
           </div>
         </div>
-        <div class="glass-card p-6 space-y-6">
-          <h3 class="text-xl font-bold text-white border-b border-slate-800 pb-3">Fasilitas Eksternal</h3>
-          <ul id="facilitiesContainer" class="space-y-3 text-slate-300">
-            <li class="flex items-start space-x-2"><span>✅</span> <span>100% Bebas Banjir & Diapit Pos Polisi</span></li>
-            <li class="flex items-start space-x-2"><span>✅</span> <span>HERO Supermarket & McD 24 Jam di Gerbang</span></li>
-            <li class="flex items-start space-x-2"><span>✅</span> <span>Kolam Renang & Fitness Center Kompleks</span></li>
-            <li class="flex items-start space-x-2"><span>✅</span> <span>3 Menit ke Gerbang Tol JORR Joglo</span></li>
+        <div class="glass-card p-6 sm:p-8 space-y-6">
+          <h3 class="text-xl font-bold text-white border-b border-slate-800/80 pb-4">Fasilitas Eksternal</h3>
+          <ul id="facilitiesContainer" class="space-y-3.5 text-slate-300 text-sm">
+            <li class="flex items-start space-x-2.5"><span>✅</span> <span>100% Bebas Banjir & Diapit Pos Polisi</span></li>
+            <li class="flex items-start space-x-2.5"><span>✅</span> <span>HERO Supermarket & McD 24 Jam di Gerbang</span></li>
+            <li class="flex items-start space-x-2.5"><span>✅</span> <span>Kolam Renang & Fitness Center Kompleks</span></li>
+            <li class="flex items-start space-x-2.5"><span>✅</span> <span>3 Menit ke Gerbang Tol JORR Joglo</span></li>
           </ul>
         </div>
       </section>
@@ -201,33 +224,33 @@ Di Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran 
       <!-- GALERI FOTO PROPERTI -->
       <section class="glass-card p-6 sm:p-10 space-y-6">
         <div class="text-center space-y-2">
-          <h3 id="galleryTitle" class="text-2xl sm:text-3xl font-bold text-white">Galeri Arsitektur</h3>
+          <h3 id="galleryTitle" class="text-2xl sm:text-3xl font-extrabold text-white">Galeri Arsitektur</h3>
           <p id="gallerySubheadline" class="text-slate-400 text-sm sm:text-base">Jelajahi setiap sudut keindahan arsitektur dan fasilitas properti.</p>
         </div>
-        <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <div class="group relative aspect-square rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+        <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+          <div class="group relative aspect-square rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-lg">
             <img src="https://lh3.googleusercontent.com/d/1sup_MVr3HgJuDwfVDZzM8_ugUgbbvywF" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300">
-            <div class="absolute bottom-2 left-2 bg-slate-950/80 px-3 py-1 rounded-lg text-xs font-bold text-amber-400 border border-amber-500/20">Interior</div>
+            <div class="absolute bottom-3 left-3 bg-slate-950/85 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-bold text-amber-400 border border-amber-500/30">Interior</div>
           </div>
         </div>
       </section>
 
       <!-- FORM SURVEI LOKASI -->
-      <section class="glass-card p-6 sm:p-10 border-amber-500/30 max-w-2xl mx-auto space-y-6">
+      <section class="glass-card p-6 sm:p-10 border-amber-500/30 max-w-2xl mx-auto space-y-6 relative overflow-hidden">
         <div class="text-center space-y-2">
-          <h3 class="text-2xl font-bold text-white">Berminat Survey Lokasi?</h3>
+          <h3 class="text-2xl font-extrabold text-white">Berminat Survey Lokasi?</h3>
           <p class="text-slate-400 text-sm">Isi formulir di bawah ini untuk terhubung langsung dengan representatif kami.</p>
         </div>
         <form id="leadForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
           <div>
             <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Nama Lengkap</label>
-            <input type="text" id="leadName" required placeholder="Contoh: Jaya Wijaya" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
+            <input type="text" id="leadName" required placeholder="Contoh: Jaya Wijaya" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-amber-500 transition-all">
           </div>
           <div>
             <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Nomor WhatsApp</label>
-            <input type="tel" id="leadWa" required placeholder="Contoh: 081234567890" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
+            <input type="tel" id="leadWa" required placeholder="Contoh: 081234567890" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-amber-500 transition-all">
           </div>
-          <button type="submit" id="btnSubmitForm" class="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-slate-950 font-extrabold py-4 rounded-xl shadow-lg transition-all text-base uppercase tracking-wider">
+          <button type="submit" id="btnSubmitForm" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black py-4 rounded-xl shadow-xl transition-all text-base uppercase tracking-wider">
             HUBUNGI VIA WHATSAPP
           </button>
         </form>
@@ -238,10 +261,10 @@ Di Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran 
 
   <!-- FLOATING CHATBOT ALFIN -->
   <div id="chatWidget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-    <div id="chatBox" class="hidden w-[90vw] sm:w-[380px] h-[480px] glass-card bg-slate-900/95 border-amber-500/30 flex flex-col shadow-2xl mb-4 overflow-hidden">
-      <div class="bg-slate-800 px-4 py-3 border-b border-slate-700 flex items-center justify-between">
+    <div id="chatBox" class="hidden w-[90vw] sm:w-[380px] h-[480px] glass-card bg-[#0b0f17]/95 border-amber-500/30 flex flex-col shadow-2xl mb-4 overflow-hidden">
+      <div class="bg-slate-900 px-4 py-3.5 border-b border-slate-800 flex items-center justify-between">
         <div class="flex items-center space-x-3">
-          <div class="w-8 h-8 rounded-full bg-amber-500 text-slate-950 font-bold flex items-center justify-center text-sm">A</div>
+          <div class="w-8 h-8 rounded-full bg-amber-500 text-slate-950 font-bold flex items-center justify-center text-sm shadow">A</div>
           <div>
             <h4 id="botNameTitle" class="text-sm font-bold text-white">Alfin</h4>
             <p class="text-[10px] text-emerald-400 flex items-center space-x-1">
@@ -254,29 +277,29 @@ Di Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran 
       </div>
 
       <div id="chatMessages" class="flex-grow p-4 overflow-y-auto space-y-3 text-sm">
-        <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-none max-w-[85%] border border-slate-700">
+        <div class="bg-slate-800/90 text-slate-200 p-3.5 rounded-2xl rounded-tl-none max-w-[85%] border border-slate-700/80">
           Halo Kak! Saya Alfin, asisten virtual untuk unit ini. Ada yang bisa Alfin bantu jelaskan? 😊
         </div>
       </div>
 
       <div class="p-3 bg-slate-950 border-t border-slate-800 flex space-x-2">
-        <input type="text" id="chatInput" onkeypress="handleChatKeyPress(event)" placeholder="Tanyakan ke Alfin..." class="flex-grow bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-amber-500">
-        <button onclick="sendChatMessage()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2 rounded-xl font-bold text-sm">Kirim</button>
+        <input type="text" id="chatInput" onkeypress="handleChatKeyPress(event)" placeholder="Tanyakan ke Alfin..." class="flex-grow bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-white text-sm focus:outline-none focus:border-amber-500">
+        <button onclick="sendChatMessage()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2 rounded-xl font-bold text-sm shadow">Kirim</button>
       </div>
     </div>
 
-    <button onclick="toggleChat()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-5 py-3 rounded-full shadow-2xl flex items-center space-x-2 border-2 border-amber-400/50">
-      <span>💬</span>
+    <button onclick="toggleChat()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-5 py-3.5 rounded-full shadow-2xl flex items-center space-x-2 border-2 border-amber-400/50">
+      <span class="text-lg">💬</span>
       <span class="text-sm">Tanya Alfin</span>
     </button>
   </div>
 
   <!-- FOOTER -->
-  <footer class="w-full bg-slate-950 border-t border-slate-800 py-6 text-center text-slate-500 text-xs">
+  <footer class="w-full bg-slate-950 border-t border-slate-900 py-6 text-center text-slate-500 text-xs">
     © 2026 Rumah Taman Alfa Indah. All Rights Reserved.
   </footer>
 
-  <!-- SCRIPT ENGINE -->
+  <!-- SCRIPT ENGINE DENGAN SAFEGUARD & ANTI-REGRESI -->
   <script>
     const GAS_URL = "https://script.google.com/macros/s/AKfycbxx5Hjtf9z9ZL3ZpH5eFta8zWp5ZszfDtklCZ0rIX8GyGv40fTVF72aAF-Uzq9U9rqG/exec";
 
@@ -301,7 +324,7 @@ Di Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran 
           renderLandingPage(data.config);
         }
       })
-      .catch(err => console.log("Menjalankan Tampilan Default HTML Aman", err));
+      .catch(err => console.log("Safeguard Aktif: Menggunakan Tampilan HTML Lokal", err));
     }
 
     function renderLandingPage(c) {
@@ -311,55 +334,63 @@ Di Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran 
         if (c.price) document.getElementById("heroPrice").innerText = c.price;
         if (c.address) document.getElementById("heroAddress").innerHTML = `<span>📍</span> <span>${c.address}</span>`;
         if (c.story) document.getElementById("storyContent").innerText = c.story;
+        
         if (c.whatsappNumber) {
           document.getElementById("waHeaderBtn").href = `https://wa.me/${c.whatsappNumber}?text=Halo,%20saya%20tertarik%20dengan%20unit%20Rumah%20Alfa%20Indah`;
         }
+        
         if (c.videoUrl) document.getElementById("videoIframe").src = c.videoUrl;
         if (c.timelapseUrl) document.getElementById("timelapseIframe").src = c.timelapseUrl;
 
         if (c.specs && typeof c.specs === 'object') {
           const specsContainer = document.getElementById("specsContainer");
-          specsContainer.innerHTML = "";
-          Object.keys(c.specs).forEach(key => {
-            if (c.specs[key]) {
-              specsContainer.innerHTML += `
-                <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
-                  <div class="text-xs font-bold text-amber-400 uppercase">${key}</div>
-                  <div class="text-sm font-semibold text-slate-200">${c.specs[key]}</div>
-                </div>
-              `;
-            }
-          });
+          if (specsContainer) {
+            specsContainer.innerHTML = "";
+            Object.keys(c.specs).forEach(key => {
+              if (c.specs[key]) {
+                specsContainer.innerHTML += `
+                  <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80">
+                    <div class="text-[11px] font-bold text-amber-400 uppercase">${key}</div>
+                    <div class="text-sm font-semibold text-slate-200 mt-0.5">${c.specs[key]}</div>
+                  </div>
+                `;
+              }
+            });
+          }
         }
 
         if (c.facilities && Array.isArray(c.facilities)) {
           const facContainer = document.getElementById("facilitiesContainer");
-          facContainer.innerHTML = "";
-          c.facilities.forEach(fac => {
-            if (fac) facContainer.innerHTML += `<li class="flex items-start space-x-2"><span>✅</span> <span>${fac}</span></li>`;
-          });
+          if (facContainer) {
+            facContainer.innerHTML = "";
+            c.facilities.forEach(fac => {
+              if (fac) facContainer.innerHTML += `<li class="flex items-start space-x-2.5"><span>✅</span> <span>${fac}</span></li>`;
+            });
+          }
         }
 
         if (c.gallery && Array.isArray(c.gallery)) {
           const galleryGrid = document.getElementById("galleryGrid");
-          galleryGrid.innerHTML = "";
-          c.gallery.forEach(img => {
-            let imgUrl = typeof img === 'object' ? img.url : img;
-            let category = typeof img === 'object' ? (img.category || 'Interior') : 'Interior';
-            if (imgUrl) {
-              galleryGrid.innerHTML += `
-                <div class="group relative aspect-square rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
-                  <img src="${imgUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300">
-                  <div class="absolute bottom-2 left-2 bg-slate-950/80 px-3 py-1 rounded-lg text-xs font-bold text-amber-400 border border-amber-500/20">
-                    ${category}
+          if (galleryGrid) {
+            galleryGrid.innerHTML = "";
+            c.gallery.forEach(img => {
+              let imgUrl = typeof img === 'object' ? img.url : img;
+              let category = typeof img === 'object' ? (img.category || 'Interior') : 'Interior';
+              if (imgUrl) {
+                galleryGrid.innerHTML += `
+                  <div class="group relative aspect-square rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-lg">
+                    <img src="${imgUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300">
+                    <div class="absolute bottom-3 left-3 bg-slate-950/85 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-bold text-amber-400 border border-amber-500/30">
+                      ${category}
+                    </div>
                   </div>
-                </div>
-              `;
-            }
-          });
+                `;
+              }
+            });
+          }
         }
         if (c.bot_name) document.getElementById("botNameTitle").innerText = c.bot_name;
-      } catch (err) { console.log("Safe Render Handled Exception:", err); }
+      } catch (err) { console.log("Anti-Regresi Handled Exception:", err); }
     }
 
     async function calculateCommute() {
