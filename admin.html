@@ -10,54 +10,22 @@
 </head>
 <body class="p-4 sm:p-8 pb-36 antialiased">
 
-  <!-- MODAL PROTEKSI PASSWORD ADMIN -->
-  <div id="login-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-md z-[100] flex items-center justify-center p-4">
-    <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-2xl max-w-md w-full text-center border border-slate-200">
-      <div class="w-16 h-16 bg-amber-500/10 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold">🔒</div>
-      <h2 class="text-xl font-bold text-slate-800 mb-1">Akses Admin Properti</h2>
-      <p class="text-xs text-slate-500 mb-6">Masukkan PIN / Password untuk membuka dashboard pengaturan.</p>
-      
-      <form onsubmit="verifyPassword(event)" class="space-y-4">
-        <div>
-          <input type="password" id="input-admin-pass" required placeholder="Masukkan Password Admin" class="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-center text-lg font-bold outline-none focus:ring-2 focus:ring-amber-500 tracking-widest">
-        </div>
-        <p id="login-error" class="text-xs text-red-500 font-bold hidden">❌ Password salah! Silakan coba lagi.</p>
-        <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3.5 rounded-xl shadow-lg transition-all text-sm uppercase tracking-wider">
-          🔓 Buka Akses Dashboard
-        </button>
-      </form>
-    </div>
-  </div>
-
   <div class="max-w-3xl mx-auto">
-    
-    <!-- HEADER & UNDO / REFRESH BUTTON -->
+   
+    <!-- HEADER & UNDO BUTTON -->
     <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
       <div>
         <h1 class="text-xl font-bold">⚙️ Dashboard Pengaturan Properti</h1>
         <p class="text-xs text-slate-400 mt-1">Ubah landing page, galeri foto, spesifikasi, & AI Chatbot</p>
       </div>
-      <div class="flex gap-2 w-full sm:w-auto flex-wrap sm:flex-nowrap">
-        <button type="button" onclick="loadData()" class="bg-slate-700 hover:bg-slate-800 text-white font-bold px-3.5 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 w-full sm:w-auto justify-center">
-          <span>🔄 FETCH DATA GAS</span>
-        </button>
+      <div class="flex gap-2 w-full sm:w-auto">
         <button type="button" onclick="undoConfig()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 w-full sm:w-auto justify-center">
-          <span>↩️ UNDO</span>
+          <span>↩️ UNDO VERSI SEBELUMNYA</span>
         </button>
       </div>
     </div>
 
     <form id="admin-form" class="space-y-6">
-
-      <!-- KEAMANAN ADMIN / UBAH PASSWORD -->
-      <div class="bg-amber-50 p-5 sm:p-7 rounded-2xl border-2 border-amber-300 space-y-4 shadow-sm">
-        <h2 class="text-base font-bold text-amber-900 border-b border-amber-200 pb-3 flex items-center gap-2"><span>🔑</span> Keamanan Login Admin</h2>
-        <div>
-          <label for="cfg-admin_password" class="block text-xs font-bold text-amber-900 uppercase mb-1">Password Dashboard Admin (Bisa Diganti Baru)</label>
-          <input type="text" id="cfg-admin_password" class="w-full px-4 py-3 bg-white border border-amber-300 rounded-xl text-sm font-bold text-slate-800 outline-none focus:ring-2 focus:ring-amber-500">
-          <p class="text-[11px] text-amber-700 mt-1">Default: <b>151264</b>. Ubah nilai ini jika ingin mengganti password admin Anda.</p>
-        </div>
-      </div>
 
       <!-- INFORMASI UTAMA -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
@@ -191,7 +159,7 @@
         </div>
       </div>
 
-      <!-- FASILITAS EKSKLUSIF -->
+      <!-- FASILITAS EKSKLUSIF (DYNAMIC LIST) -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
         <div class="flex justify-between items-center border-b pb-3">
           <h2 class="text-base font-bold text-slate-800 flex items-center gap-2"><span>✨</span> Fasilitas Eksklusif & Lingkungan</h2>
@@ -225,7 +193,7 @@
         </div>
       </div>
 
-      <!-- DAFTAR FOTO GALERI -->
+      <!-- DAFTAR FOTO GALERI DENGAN DUAL INPUT MOBILE & DRAG & DROP -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b pb-3">
           <div>
@@ -308,14 +276,13 @@
   </div>
 
   <script>
-    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxx5Hjtf9z9ZL3ZpH5eFta8zWp5ZszfDtklCZ0rIX8GyGv40fTVF72aAF-Uzq9U9rqG/exec";
+    // SINKRONISASI WEBHOOK GAS TERBARU UNTUK INDEX & ADMIN
+    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzgCSqpj94vtO-hXratpAa6dIiDmtHBPeAAL3-jHER_rnl6hGMvrcYNFY7mKjUZ0ss4oA/exec";
 
     let galleryCounter = 0;
     let facilityCounter = 0;
-    let currentAdminPassword = "151264";
 
     const DEFAULT_CONFIG = {
-      admin_password: "151264",
       title: "Rumah Taman Alfa Indah",
       price: "Rp 1.5 Milyar (Nego)",
       whatsappNumber: "6287832219195",
@@ -326,8 +293,8 @@
       inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid (6x17) di Rumah Alfa Indah ini memberikan Anda keleluasaan untuk mendesain ruang hidup Anda sendiri sesuai impian Anda.\n\nTonton video ini : Lihat bagaimana bangunan ini memiliki potensi luar biasa untuk ditransformasikan menjadi karya arsitektur Modern Minimalis yang megah, bersih, dan berkelas dunia. Anda tidak sedang membeli rumah seken biasa—Anda sedang mengambil alih kendali penuh atas bagaimana masa depan kenyamanan keluarga Anda diwujudkan. Jangan beli selera orang lain, ciptakan kemewahan Anda sendiri di sini.",
       galleryTitle: "Galeri Arsitektur",
       gallerySubheadline: "Kabar baiknya, Anda tidak harus merombak semuanya dari nol. Struktur bangunan asli saat ini sudah sangat kokoh. Cukup dengan renovasi ringan seperti perbaikan lantai dan pengecatan ulang, rumah ini sudah siap bertransformasi menjadi hunian yang indah dan nyaman tanpa biaya besar. Jelajahi potensi tata letak ruang bagian dalam rumah melalui galeri foto di bawah ini:",
-      videoUrl: "https://www.youtube.com/embed/4sB6KoX98m0?enablejsapi=1&cc_load_policy=0",
-      timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?enablejsapi=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
+      videoUrl: "https://www.youtube.com/embed/4sB6KoX98m0?cc_load_policy=0",
+      timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?autoplay=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
       latitude: "-6.224486290732541",
       longitude: "106.75084911701877",
       bot_name: "Alfin",
@@ -341,7 +308,7 @@
         "Zero Anxiety: 100% Bebas Banjir & Diapit 2 Pos Polisi (Aman 24 Jam)",
         "Komersial Kompleks: HERO Supermarket, McD 24 Jam & Alfamart 24 Jam di Gerbang Utama",
         "Olahraga & Lifestyle: Kolam Renang & Gym/Fitness Center Resmi di Dalam Kompleks",
-        "Pendidikan Lengkap: HighScope, SIT Citra Az-Zahra, SDK Petra Alpha & Kumon Dalam Kompleks",
+        "Pendidikan Lengkap: HighScope, SIT Citra Az-Zahra, Petra Alpha & Kumon Dalam Kompleks",
         "High Mobility: 3-5 Menit ke Gerbang Tol JORR Joglo & TransJakarta 8M",
         "Healthcare & Banking: RSIA Mahati 24 Jam, Klinik, & 6 Bank Major di Jl. Joglo Raya"
       ],
@@ -352,28 +319,15 @@
         "Kamar Tidur": "3 + 1 (Cocok untuk keluarga berkembang)",
         "Kamar Mandi": "2 + 1",
         "Extra Space": "Gudang Penyimpanan Terpisah & Carport",
-        "Air & Listrik": "Air Jetpump Jernih (Jaringan PAM siap pasang) / Listrik 2200 VA"
+        "Air & Listrik": "Air Jetpump Jernih + PAM Jaya / Listrik 2200 VA"
       }
     };
-
-    function verifyPassword(e) {
-      e.preventDefault();
-      const entered = document.getElementById('input-admin-pass').value.trim();
-      const errEl = document.getElementById('login-error');
-      
-      if (entered === currentAdminPassword) {
-        document.getElementById('login-modal').classList.add('hidden');
-        errEl.classList.add('hidden');
-      } else {
-        errEl.classList.remove('hidden');
-      }
-    }
 
     function addGalleryRow(url = "", category = "Interior") {
       galleryCounter++;
       const container = document.getElementById('gallery-dynamic-list');
       const rowId = `gal-row-${galleryCounter}`;
-      
+     
       const rowHtml = `
         <div id="${rowId}" class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row gap-2 items-center">
           ${url ? `<div class="w-12 h-16 shrink-0 rounded-lg overflow-hidden bg-gray-200 border border-gray-300"><img src="${url}" class="w-full h-full object-cover"></div>` : ''}
@@ -420,7 +374,6 @@
     function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
     function handleFileSelect(e) { uploadFiles(e.target.files); }
 
-    // DENGAN BYPASS FORM-ENCODED UNTUK MENCEGAH KESALAHAN KONEKSI CORS VIA GAS
     async function uploadFiles(files) {
       if (!files || files.length === 0) return;
       const statusEl = document.getElementById('upload-status');
@@ -432,25 +385,23 @@
 
         try {
           const base64Data = await convertFileToBase64(file);
-          const reqBody = {
-            action: "uploadFile",
-            payload: {
-              fileName: file.name || `Foto_HP_${Date.now()}.jpg`,
-              mimeType: file.type || "image/jpeg",
-              base64Data: base64Data
-            }
-          };
-
           const res = await fetch(GAS_WEBHOOK_URL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({ request: JSON.stringify(reqBody) })
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({
+              action: "uploadFile",
+              payload: {
+                fileName: file.name || `Foto_HP_${Date.now()}.jpg`,
+                mimeType: file.type || "image/jpeg",
+                base64Data: base64Data
+              }
+            })
           });
           const data = await res.json();
           if (data.success && data.fileUrl) {
             addGalleryRow(data.fileUrl, "Interior");
           } else {
-            alert("Gagal mengunggah " + file.name + ": " + (data.error || "Gagal upload"));
+            alert("Gagal mengunggah " + file.name + ": " + (data.error || "Kesalahan tidak diketahui"));
           }
         } catch (err) { alert("Gagal koneksi upload: " + err.message); }
       }
@@ -484,52 +435,42 @@
       }
     }
 
-    // FUNGSI FETCH UTAMA DENGAN FORM ENCODED BYPASS
     async function loadData() {
       let cfg = DEFAULT_CONFIG;
       try {
-        const reqBody = { action: "getSaasConfig" };
         const res = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ request: JSON.stringify(reqBody) })
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: "getSaasConfig" })
         });
         const data = await res.json();
-        if (data.success && data.config) {
+        if (data && data.success && data.config) {
           cfg = Object.assign({}, DEFAULT_CONFIG, data.config);
         }
       } catch (err) {
         console.log("Memakai data default lokal.");
       }
 
-      if (cfg.admin_password) currentAdminPassword = cfg.admin_password;
-
-      // Populate text inputs
-      const textFields = ["admin_password", "title", "price", "whatsappNumber", "address", "headline", "story", "inspirationTitle", "inspirationStory", "galleryTitle", "gallerySubheadline", "videoUrl", "timelapseUrl", "latitude", "longitude", "bot_name", "salutation", "knowledge_base", "custom_rules", "useSubGalleryPage", "galleryPageTitle", "galleryPageDesc"];
-      
+      const textFields = ["title", "price", "whatsappNumber", "address", "headline", "story", "inspirationTitle", "inspirationStory", "galleryTitle", "gallerySubheadline", "videoUrl", "timelapseUrl", "latitude", "longitude", "bot_name", "salutation", "knowledge_base", "custom_rules", "useSubGalleryPage", "galleryPageTitle", "galleryPageDesc"];
+     
       textFields.forEach(f => {
         const el = document.getElementById('cfg-' + f);
         if (el) el.value = (cfg[f] !== undefined && cfg[f] !== "") ? cfg[f] : (DEFAULT_CONFIG[f] || "");
       });
 
-      // Populate specs
       const specsData = cfg.specs || DEFAULT_CONFIG.specs;
       for (let k in DEFAULT_CONFIG.specs) {
         const el = document.getElementById('spec-' + k);
         if (el) el.value = specsData[k] || DEFAULT_CONFIG.specs[k];
       }
 
-      // Populate facilities
       document.getElementById('facility-dynamic-list').innerHTML = "";
       const facsData = (cfg.facilities && cfg.facilities.length > 0) ? cfg.facilities : DEFAULT_CONFIG.facilities;
       facsData.forEach(fac => addFacilityRow(fac));
 
-      // Populate gallery (POPULATE DAFTAR FOTO)
       document.getElementById('gallery-dynamic-list').innerHTML = "";
-      const galleryData = (cfg.gallery && cfg.gallery.length > 0) ? cfg.gallery : (DEFAULT_CONFIG.gallery || []);
-      
-      if (galleryData.length > 0) {
-        galleryData.forEach(item => {
+      if (cfg.gallery && cfg.gallery.length > 0) {
+        cfg.gallery.forEach(item => {
           if (typeof item === 'object') addGalleryRow(item.url, item.category);
           else addGalleryRow(item, "Interior");
         });
@@ -539,18 +480,17 @@
     async function undoConfig() {
       if (!confirm("Apakah Anda yakin ingin mengembalikan seluruh data ke versi sebelum simpan terakhir?")) return;
       try {
-        const reqBody = { action: "undoAdminConfig" };
         const res = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ request: JSON.stringify(reqBody) })
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: "undoAdminConfig" })
         });
         const data = await res.json();
-        if (data.success) {
+        if (data && data.success) {
           alert("🎉 BERHASIL UNDO! Mengembalikan data versi sebelumnya...");
           loadData();
         } else {
-          alert("Gagal Undo: " + data.error);
+          alert("Gagal Undo: " + (data ? data.error : "Kesalahan tidak diketahui"));
         }
       } catch(err) { alert("Kesalahan koneksi saat Undo."); }
     }
@@ -584,7 +524,6 @@
       });
 
       const payload = {
-        admin_password: document.getElementById('cfg-admin_password').value.trim() || "151264",
         title: document.getElementById('cfg-title').value,
         price: document.getElementById('cfg-price').value,
         whatsappNumber: document.getElementById('cfg-whatsappNumber').value,
@@ -608,23 +547,20 @@
         custom_rules: document.getElementById('cfg-custom_rules').value,
         gallery: galleryList,
         specs: specsObj,
+
         facilities: facList
       };
 
       try {
-        // FORM ENCODED BODY UNTUK BYPASS HINDARI CORS/CONNECTION ERROR DI BROWSER
-        const reqBody = { action: "saveAdminConfig", payload: payload };
         const res = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ request: JSON.stringify(reqBody) })
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: "saveAdminConfig", payload: payload })
         });
         const data = await res.json();
-        if (data.success) {
-          alert("🎉 BERHASIL! Landing page & Galeri sudah ter-update secara instan!");
-          if (payload.admin_password) currentAdminPassword = payload.admin_password;
-        } else alert("Gagal menyimpan: " + (data.error || "Gagal update"));
-      } catch (err) { alert("Kesalahan koneksi saat menyimpan."); }
+        if (data && data.success) alert("🎉 BERHASIL! Landing page & Galeri sudah ter-update secara instan!");
+        else alert("Gagal menyimpan: " + (data ? data.error : "Kesalahan tidak diketahui"));
+      } catch (err) { alert("Kesalahan koneksi."); }
       finally { btn.disabled = false; btn.innerText = origText; }
     });
   </script>
