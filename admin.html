@@ -4,9 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard - SaaS Properti</title>
+  
+  <!-- Tailwind CSS & Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style> body { font-family: 'Inter', sans-serif; background-color: #f4f6f8; } </style>
+  
+  <!-- GOLDEN BASE 4: SORTABLEJS UNTUK INTERACTIVE DRAG & DROP GALLERY -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+  <style> 
+    body { font-family: 'Inter', sans-serif; background-color: #f4f6f8; } 
+    
+    /* STYLING DRAG & DROP CARDS */
+    .sortable-ghost {
+      opacity: 0.4;
+      transform: scale(0.95);
+      border: 2 border-dashed #f59e0b !important;
+    }
+    .sortable-drag {
+      cursor: grabbing;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+  </style>
 </head>
 <body class="p-4 sm:p-8 pb-36 antialiased">
 
@@ -35,7 +54,7 @@
     <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
       <div>
         <h1 class="text-xl font-bold">⚙️ Dashboard Pengaturan Properti</h1>
-        <p class="text-xs text-slate-400 mt-1">Ubah landing page, galeri foto, spesifikasi, & AI Chatbot</p>
+        <p class="text-xs text-slate-400 mt-1">Golden Base 4: Galeri Drag & Drop, Landing Page, Spesifikasi & AI Chatbot</p>
       </div>
       <div class="flex gap-2 w-full sm:w-auto flex-wrap sm:flex-nowrap">
         <button type="button" onclick="loadData()" class="bg-slate-700 hover:bg-slate-800 text-white font-bold px-3.5 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 w-full sm:w-auto justify-center">
@@ -225,12 +244,14 @@
         </div>
       </div>
 
-      <!-- DAFTAR FOTO GALERI -->
+      <!-- GOLDEN BASE 4: INTERACTIVE DRAG & DROP GALLERY BUILDER -->
       <div class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm border border-slate-200 space-y-4">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b pb-3">
           <div>
-            <h2 class="text-base font-bold text-slate-800">📸 Galeri Foto Properti</h2>
-            <p class="text-xs text-slate-400">Jepret langsung via Kamera HP atau upload dari Galeri/Komputer!</p>
+            <h2 class="text-base font-bold text-slate-800 flex items-center gap-2">
+              <span>📸</span> Galeri Foto Properti
+            </h2>
+            <p class="text-xs text-slate-500 mt-0.5">✨ <b>Golden Base 4:</b> Klik, tahan & geser tombol <span class="bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold">☰ Drag</span> untuk mengatur tata letak foto secara visual!</p>
           </div>
           <div class="flex gap-2">
             <button type="button" onclick="clearAllPhotos()" class="text-xs text-red-500 hover:bg-red-50 px-3 py-2 rounded-xl font-bold border border-red-200">
@@ -269,7 +290,8 @@
 
         <p id="upload-status" class="text-xs font-bold text-emerald-600 text-center bg-emerald-50 p-3 rounded-xl border border-emerald-200 hidden animate-pulse">⏳ Mengunggah foto ke Google Drive...</p>
 
-        <div id="gallery-dynamic-list" class="space-y-3 pt-2"></div>
+        <!-- SORTABLE GALLERY CONTAINER (GRID VISUAL CARD DENGAN DRAG & DROP) -->
+        <div id="gallery-dynamic-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2"></div>
       </div>
 
       <!-- CHATBOT AI -->
@@ -313,11 +335,12 @@
     let galleryCounter = 0;
     let facilityCounter = 0;
     let currentAdminPassword = "151264";
+    let sortableGallery = null;
 
     const DEFAULT_CONFIG = {
       admin_password: "151264",
       title: "Rumah Taman Alfa Indah",
-      price: "Rp 1.5 Milyar (Nego)",
+      price: "Rp 1.5 Milyar",
       whatsappNumber: "6287832219195",
       address: "Taman Alfa Indah Blok H, Jakarta Selatan",
       headline: "Ketenangan Hidup di Lokasi Emas. Bebas Banjir, Jauh di Bawah Harga Pasar.",
@@ -332,7 +355,7 @@
       longitude: "106.75084911701877",
       bot_name: "Alfin",
       salutation: "Kak",
-      knowledge_base: "Rumah di Taman Alfa Indah Blok H, Jakarta Selatan. Bebas banjir 100%, SHM, LT 102m2, LB 82m2. Harga 1.5 Milyar nego.",
+      knowledge_base: "Rumah di Taman Alfa Indah Blok H, Jakarta Selatan. Bebas banjir 100%, SHM, LT 102m2, LB 82m2. Harga 1.5 Milyar.",
       custom_rules: "DILARANG KERAS MENGGUNAKAN KATA: 'kamu', 'Anda', 'Bapak', 'Ibu'.",
       useSubGalleryPage: "false",
       galleryPageTitle: "Galeri Foto Ruangan",
@@ -369,29 +392,79 @@
       }
     }
 
+    // GOLDEN BASE 4: VISUAL CARD WITH DRAG & DROP HANDLE
     function addGalleryRow(url = "", category = "Interior") {
       galleryCounter++;
       const container = document.getElementById('gallery-dynamic-list');
       const rowId = `gal-row-${galleryCounter}`;
       
       const rowHtml = `
-        <div id="${rowId}" class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row gap-2 items-center">
-          ${url ? `<div class="w-12 h-16 shrink-0 rounded-lg overflow-hidden bg-gray-200 border border-gray-300"><img src="${url}" class="w-full h-full object-cover"></div>` : ''}
-          <div class="flex-1 w-full">
-            <input type="text" class="gal-url-input w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none" placeholder="Link Google Drive Foto..." title="Link Foto ${galleryCounter}" aria-label="Link Foto ${galleryCounter}" value="${url}">
+        <div id="${rowId}" class="gal-card p-3 bg-slate-50 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col gap-2 relative bg-white">
+          <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-2">
+            <span class="drag-handle cursor-grab active:cursor-grabbing bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold px-2.5 py-1 rounded-lg text-[11px] flex items-center gap-1">
+              <span>☰</span> <span>Drag</span>
+            </span>
+            <span class="gal-index-badge text-[10px] font-extrabold bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">#</span>
+            <button type="button" onclick="removeGalleryRow('${rowId}')" class="text-red-500 hover:bg-red-50 px-2 py-1 rounded-lg text-xs font-bold transition-all">✕ Hapus</button>
           </div>
-          <div class="w-full sm:w-44">
-            <select class="gal-cat-input w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none font-bold text-slate-700" title="Kategori ${galleryCounter}" aria-label="Kategori ${galleryCounter}">
-              <option value="Interior" ${category === "Interior" ? "selected" : ""}>Interior</option>
-              <option value="Eksterior" ${category === "Eksterior" ? "selected" : ""}>Eksterior</option>
-              <option value="Fasilitas/Office" ${category === "Fasilitas/Office" ? "selected" : ""}>Fasilitas/Office</option>
-              <option value="Lingkungan" ${category === "Lingkungan" ? "selected" : ""}>Lingkungan</option>
-            </select>
+
+          <div class="flex gap-3 items-center">
+            <div class="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 relative group">
+              <img src="${url || 'https://via.placeholder.com/150?text=No+Photo'}" onerror="this.src='https://via.placeholder.com/150?text=Error+Image'" class="gal-thumb-img w-full h-full object-cover">
+            </div>
+            
+            <div class="flex-1 space-y-2">
+              <input type="text" oninput="updateThumb(this)" class="gal-url-input w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs outline-none focus:ring-1 focus:ring-amber-500 font-mono text-slate-600" placeholder="Link Foto Drive / URL..." value="${url}">
+              
+              <select class="gal-cat-input w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-bold text-slate-700 outline-none">
+                <option value="Interior" ${category === "Interior" ? "selected" : ""}>Interior</option>
+                <option value="Eksterior" ${category === "Eksterior" ? "selected" : ""}>Eksterior</option>
+                <option value="Fasilitas/Office" ${category === "Fasilitas/Office" ? "selected" : ""}>Fasilitas/Office</option>
+                <option value="Lingkungan" ${category === "Lingkungan" ? "selected" : ""}>Lingkungan</option>
+              </select>
+            </div>
           </div>
-          <button type="button" onclick="document.getElementById('${rowId}').remove()" class="text-red-500 hover:bg-red-50 px-3 py-2 rounded-lg text-xs font-bold w-full sm:w-auto text-center shrink-0">✕ Hapus</button>
         </div>
       `;
       container.insertAdjacentHTML('beforeend', rowHtml);
+      updateGalleryIndices();
+    }
+
+    function removeGalleryRow(rowId) {
+      const el = document.getElementById(rowId);
+      if (el) {
+        el.remove();
+        updateGalleryIndices();
+      }
+    }
+
+    function updateThumb(input) {
+      const card = input.closest('.gal-card');
+      const img = card.querySelector('.gal-thumb-img');
+      img.src = input.value.trim() || 'https://via.placeholder.com/150?text=No+Photo';
+    }
+
+    function updateGalleryIndices() {
+      document.querySelectorAll('#gallery-dynamic-list .gal-card').forEach((card, index) => {
+        const badge = card.querySelector('.gal-index-badge');
+        if (badge) badge.innerText = `#${index + 1}`;
+      });
+    }
+
+    function initSortableGallery() {
+      const el = document.getElementById('gallery-dynamic-list');
+      if (el && typeof Sortable !== 'undefined') {
+        if (sortableGallery) sortableGallery.destroy();
+        sortableGallery = Sortable.create(el, {
+          handle: '.drag-handle',
+          animation: 200,
+          ghostClass: 'sortable-ghost',
+          dragClass: 'sortable-drag',
+          onEnd: function () {
+            updateGalleryIndices();
+          }
+        });
+      }
     }
 
     function addFacilityRow(text = "") {
@@ -420,7 +493,6 @@
     function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
     function handleFileSelect(e) { uploadFiles(e.target.files); }
 
-    // DENGAN BYPASS FORM-ENCODED UNTUK MENCEGAH KESALAHAN KONEKSI CORS VIA GAS
     async function uploadFiles(files) {
       if (!files || files.length === 0) return;
       const statusEl = document.getElementById('upload-status');
@@ -484,7 +556,6 @@
       }
     }
 
-    // FUNGSI FETCH UTAMA DENGAN FORM ENCODED BYPASS
     async function loadData() {
       let cfg = DEFAULT_CONFIG;
       try {
@@ -524,7 +595,7 @@
       const facsData = (cfg.facilities && cfg.facilities.length > 0) ? cfg.facilities : DEFAULT_CONFIG.facilities;
       facsData.forEach(fac => addFacilityRow(fac));
 
-      // Populate gallery (POPULATE DAFTAR FOTO)
+      // Populate gallery (POPULATE DAFTAR FOTO VISUAL CARD)
       document.getElementById('gallery-dynamic-list').innerHTML = "";
       const galleryData = (cfg.gallery && cfg.gallery.length > 0) ? cfg.gallery : (DEFAULT_CONFIG.gallery || []);
       
@@ -534,6 +605,9 @@
           else addGalleryRow(item, "Interior");
         });
       }
+
+      // INISIALISASI DRAG & DROP SORTABLEJS
+      initSortableGallery();
     }
 
     async function undoConfig() {
@@ -564,7 +638,7 @@
       btn.disabled = true; btn.innerText = "⏳ MEMPROSES & MENYIMPAN...";
 
       const galleryList = [];
-      document.querySelectorAll('#gallery-dynamic-list > div').forEach(row => {
+      document.querySelectorAll('#gallery-dynamic-list .gal-card').forEach(row => {
         const urlInput = row.querySelector('.gal-url-input');
         const catInput = row.querySelector('.gal-cat-input');
         if (urlInput && urlInput.value.trim()) {
@@ -612,7 +686,6 @@
       };
 
       try {
-        // FORM ENCODED BODY UNTUK BYPASS HINDARI CORS/CONNECTION ERROR DI BROWSER
         const reqBody = { action: "saveAdminConfig", payload: payload };
         const res = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
