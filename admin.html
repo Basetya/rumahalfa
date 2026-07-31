@@ -35,7 +35,7 @@
     <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
       <div>
         <h1 class="text-xl font-bold">⚙️ Dashboard Pengaturan Properti</h1>
-        <p class="text-xs text-slate-400 mt-1">Golden Base 3: Versi Stabil & Teruji</p>
+        <p class="text-xs text-slate-400 mt-1">Ubah landing page, galeri foto, spesifikasi, & AI Chatbot</p>
       </div>
       <div class="flex gap-2 w-full sm:w-auto flex-wrap sm:flex-nowrap">
         <button type="button" onclick="loadData()" class="bg-slate-700 hover:bg-slate-800 text-white font-bold px-3.5 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 w-full sm:w-auto justify-center">
@@ -308,7 +308,7 @@
   </div>
 
   <script>
-    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzgCSqpj94vtO-hXratpAa6dIiDmtHBPeAAL3-jHER_rnl6hGMvrcYNFY7mKjUZ0ss4oA/exec";
+    const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxx5Hjtf9z9ZL3ZpH5eFta8zWp5ZszfDtklCZ0rIX8GyGv40fTVF72aAF-Uzq9U9rqG/exec";
 
     let galleryCounter = 0;
     let facilityCounter = 0;
@@ -317,7 +317,7 @@
     const DEFAULT_CONFIG = {
       admin_password: "151264",
       title: "Rumah Taman Alfa Indah",
-      price: "Rp 1.5 Milyar",
+      price: "Rp 1.5 Milyar (Nego)",
       whatsappNumber: "6287832219195",
       address: "Taman Alfa Indah Blok H, Jakarta Selatan",
       headline: "Ketenangan Hidup di Lokasi Emas. Bebas Banjir, Jauh di Bawah Harga Pasar.",
@@ -332,7 +332,7 @@
       longitude: "106.75084911701877",
       bot_name: "Alfin",
       salutation: "Kak",
-      knowledge_base: "Rumah di Taman Alfa Indah Blok H, Jakarta Selatan. Bebas banjir 100%, SHM, LT 102m2, LB 82m2. Harga 1.5 Milyar.",
+      knowledge_base: "Rumah di Taman Alfa Indah Blok H, Jakarta Selatan. Bebas banjir 100%, SHM, LT 102m2, LB 82m2. Harga 1.5 Milyar nego.",
       custom_rules: "DILARANG KERAS MENGGUNAKAN KATA: 'kamu', 'Anda', 'Bapak', 'Ibu'.",
       useSubGalleryPage: "false",
       galleryPageTitle: "Galeri Foto Ruangan",
@@ -420,6 +420,7 @@
     function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
     function handleFileSelect(e) { uploadFiles(e.target.files); }
 
+    // DENGAN BYPASS FORM-ENCODED UNTUK MENCEGAH KESALAHAN KONEKSI CORS VIA GAS
     async function uploadFiles(files) {
       if (!files || files.length === 0) return;
       const statusEl = document.getElementById('upload-status');
@@ -483,6 +484,7 @@
       }
     }
 
+    // FUNGSI FETCH UTAMA DENGAN FORM ENCODED BYPASS
     async function loadData() {
       let cfg = DEFAULT_CONFIG;
       try {
@@ -522,7 +524,7 @@
       const facsData = (cfg.facilities && cfg.facilities.length > 0) ? cfg.facilities : DEFAULT_CONFIG.facilities;
       facsData.forEach(fac => addFacilityRow(fac));
 
-      // Populate gallery
+      // Populate gallery (POPULATE DAFTAR FOTO)
       document.getElementById('gallery-dynamic-list').innerHTML = "";
       const galleryData = (cfg.gallery && cfg.gallery.length > 0) ? cfg.gallery : (DEFAULT_CONFIG.gallery || []);
       
@@ -610,6 +612,7 @@
       };
 
       try {
+        // FORM ENCODED BODY UNTUK BYPASS HINDARI CORS/CONNECTION ERROR DI BROWSER
         const reqBody = { action: "saveAdminConfig", payload: payload };
         const res = await fetch(GAS_WEBHOOK_URL, {
           method: 'POST',
