@@ -19,7 +19,7 @@
     .sortable-ghost {
       opacity: 0.4;
       transform: scale(0.95);
-      border: 2 border-dashed #f59e0b !important;
+      border: 2px dashed #f59e0b !important;
     }
     .sortable-drag {
       cursor: grabbing;
@@ -290,7 +290,7 @@
 
         <p id="upload-status" class="text-xs font-bold text-emerald-600 text-center bg-emerald-50 p-3 rounded-xl border border-emerald-200 hidden animate-pulse">⏳ Mengunggah foto ke Google Drive...</p>
 
-        <!-- SORTABLE GALLERY CONTAINER (GRID VISUAL CARD DENGAN DRAG & DROP) -->
+        <!-- SORTABLE GALLERY CONTAINER -->
         <div id="gallery-dynamic-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2"></div>
       </div>
 
@@ -601,7 +601,7 @@
       
       if (galleryData.length > 0) {
         galleryData.forEach(item => {
-          if (typeof item === 'object') addGalleryRow(item.url, item.category);
+          if (typeof item === 'object' && item !== null) addGalleryRow(item.url, item.category);
           else addGalleryRow(item, "Interior");
         });
       }
@@ -631,6 +631,7 @@
 
     document.addEventListener("DOMContentLoaded", loadData);
 
+    // GOLDEN BASE 4 FIXED SUBMIT HANDLER: BACA PRESISI DARI URUTAN KARTU TERATAS HINGGA TERBAWAH
     document.getElementById('admin-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       const btn = document.getElementById('btn-save');
@@ -638,11 +639,16 @@
       btn.disabled = true; btn.innerText = "⏳ MEMPROSES & MENYIMPAN...";
 
       const galleryList = [];
-      document.querySelectorAll('#gallery-dynamic-list .gal-card').forEach(row => {
+      const galleryCards = document.querySelectorAll('#gallery-dynamic-list .gal-card');
+      
+      galleryCards.forEach(row => {
         const urlInput = row.querySelector('.gal-url-input');
         const catInput = row.querySelector('.gal-cat-input');
         if (urlInput && urlInput.value.trim()) {
-          galleryList.push({ url: urlInput.value.trim(), category: catInput ? catInput.value : "Interior" });
+          galleryList.push({ 
+            url: urlInput.value.trim(), 
+            category: catInput ? catInput.value : "Interior" 
+          });
         }
       });
 
@@ -694,7 +700,7 @@
         });
         const data = await res.json();
         if (data.success) {
-          alert("🎉 BERHASIL! Landing page & Galeri sudah ter-update secara instan!");
+          alert("🎉 BERHASIL! Urutan foto & Landing Page berhasil disimpan sempurna!");
           if (payload.admin_password) currentAdminPassword = payload.admin_password;
         } else alert("Gagal menyimpan: " + (data.error || "Gagal update"));
       } catch (err) { alert("Kesalahan koneksi saat menyimpan."); }
