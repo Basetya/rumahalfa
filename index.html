@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- YOUTUBE IFRAME API -->
   <script src="https://www.youtube.com/iframe_api"></script>
 
   <script>
@@ -63,7 +62,6 @@
 </head>
 <body class="bg-[#fafafa] text-dark antialiased font-sans">
 
-  <!-- ELEMEN AUDIO BACKGROUND MUSIC -->
   <audio id="bg-music" loop>
     <source id="bgm-source" src="" type="audio/mpeg">
   </audio>
@@ -265,14 +263,12 @@
         </div>
         
         <div class="space-y-4">
-          <!-- INPUT DESTINASI -->
           <div>
             <label for="dest-input" class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">1. Ketik Destinasi Tujuan</label>
             <input type="text" id="dest-input" placeholder="Contoh: Menara BCA, Plaza Senayan, SCBD, Bandara..." class="w-full px-5 py-3.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-medium text-sm shadow-sm">
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
-            <!-- DROPDOWN PRESET SPEED -->
             <div class="md:col-span-6">
               <label for="speed-preset" class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">2. Pilih Waktu / Kondisi Jalan</label>
               <select id="speed-preset" onchange="syncPresetToCustom(this.value)" class="w-full px-3 py-3.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 font-medium text-xs shadow-sm cursor-pointer">
@@ -283,7 +279,6 @@
               </select>
             </div>
 
-            <!-- KEY-IN CUSTOM SPEED (MANUAL INPUT USER) -->
             <div class="md:col-span-3">
               <label for="custom-speed" class="block text-xs font-bold text-gold-600 uppercase tracking-wider mb-1">Key-In Speed</label>
               <div class="relative">
@@ -292,7 +287,6 @@
               </div>
             </div>
 
-            <!-- TOMBOL HITUNG -->
             <div class="md:col-span-3">
               <button type="button" onclick="calculateCommute()" id="btn-calc" class="w-full bg-dark hover:bg-black text-white px-4 py-3.5 rounded-xl font-bold tracking-wide transition-all duration-300 flex justify-center items-center gap-1.5 shadow-lg text-xs sm:text-sm">
                 <span>Hitung Ulang</span>
@@ -301,7 +295,6 @@
           </div>
         </div>
 
-        <!-- PANDUAN TEKS DATA TOMTOM & CNN -->
         <div class="mt-4 p-3.5 bg-gold-500/10 rounded-2xl border border-gold-500/20 text-gray-700 leading-relaxed space-y-1">
           <div class="flex items-center gap-1.5 font-bold text-gold-600 text-[11px]">
             <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
@@ -313,22 +306,17 @@
           </p>
 
           <ul class="list-disc list-inside space-y-0.5 text-[10.5px] text-gray-600 pl-1">
-            <li><b>Jam Sibuk Pagi (07.00–09.00):</b> Rata-rata <b>20 km/jam</b> (Berangkat kerja/sekolah).</li>
+            <li><b>Jam Sibuk Pagi (07.00–09.00):</b> Rata-rata <b>20 km/jam</b>.</li>
             <li><b>Jam Normal Siang (10.00–16.00):</b> Rata-rata <b>25 km/jam</b>.</li>
-            <li><b>Jam Pulang Kerja (17.00–20.00):</b> Rata-rata <b>18 km/jam</b> (Titik macet tertinggi).</li>
+            <li><b>Jam Pulang Kerja (17.00–20.00):</b> Rata-rata <b>18 km/jam</b>.</li>
             <li><b>Malam & Dini Hari (21.00–05.00):</b> Rata-rata <b>35 km/jam</b>.</li>
           </ul>
 
-          <div class="mt-2 pt-1.5 border-t border-gold-500/15 text-[10.5px] text-dark font-medium leading-normal">
-            💡 <b>Tips Macet Parah:</b> Jika rute Anda melewati jalur non-tol padat, gunakan kolom <b>Key-In Speed</b> dan ketik <b>12 – 15 km/jam</b> untuk simulasi kondisi padat merayap.
-          </div>
-
           <p class="text-[9.5px] text-gray-400 italic pt-0.5">
-            Sumber Data: TomTom Traffic Index Report & Statistik Kemacetan Jakarta (CNN Indonesia).
+            Sumber Data: TomTom Traffic Index Report & Statistik Kemacetan Jakarta.
           </p>
         </div>
 
-        <!-- RESULT CONTAINER -->
         <div id="route-result" class="hidden mt-6 bg-white p-5 sm:p-6 rounded-2xl border border-gold-500/30 shadow-md animate-fade-up">
           <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6">
             <div>
@@ -387,7 +375,8 @@
       <span id="audio-label">BGM On</span>
     </button>
 
-    <a href="#" id="floating-wa-link" target="_blank" class="glass hover:bg-[#25d366] hover:text-white text-[#25d366] px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-2 sm:gap-3 shadow-2xl transition-all group border-[#25d366]/30">
+    <!-- FLOATING WHATSAPP BUTTON DENGAN PRE-TEXT BERSIH -->
+    <a href="https://wa.me/6287832219195?text=Halo,%20saya%20tertarik%20dengan%20Rumah%20di%20Taman%20Alfa%20Indah" id="floating-wa-link" target="_blank" class="glass hover:bg-[#25d366] hover:text-white text-[#25d366] px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-full flex items-center gap-2 sm:gap-3 shadow-2xl transition-all group border-[#25d366]/30">
       <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current shrink-0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
       <span class="font-semibold text-xs sm:text-sm group-hover:text-white transition-colors">WhatsApp</span>
     </a>
@@ -401,9 +390,7 @@
     <span class="font-medium text-xs sm:text-sm tracking-wide">Tanya Alfin</span>
   </div>
 
-  <!-- CHAT WINDOW INTERAKTIF AI ALFIN -->
   <div id="ai-chat-window" class="hidden fixed bottom-16 right-3 sm:bottom-[90px] sm:right-6 z-[70] w-[calc(100vw-1.5rem)] sm:w-[380px] h-[75vh] max-h-[580px] bg-white rounded-2xl shadow-[0_15px_50px_rgba(0,0,0,0.3)] flex-col overflow-hidden border border-gray-200 origin-bottom-right transition-all">
-    
     <div class="bg-dark text-white p-3.5 sm:p-4 flex justify-between items-center shrink-0">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gold-500 flex items-center justify-center font-serif font-bold text-lg sm:text-xl text-dark">A</div>
@@ -438,34 +425,27 @@
       videoUrl: "https://www.youtube.com/embed/4sB6KoX98m0?enablejsapi=1&cc_load_policy=0",
       latitude: -6.224486290732541,
       longitude: 106.75084911701877,
-      whatsappTemplate: "Halo, saya tertarik dengan Rumah di Taman Alfa Indah (%SOURCE%). Saya terinspirasi dengan konsep renovasi modern minimalisnya. Apakah bisa dijadwalkan survey lokasi minggu ini?",
+      whatsappTemplate: "Halo, saya tertarik dengan Rumah di Taman Alfa Indah",
       headline: "Ketenangan Hidup di Lokasi Emas. Bebas Banjir, Jauh di Bawah Harga Pasar.",
-      story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi: Kalau strategis, pasti mahal. Kalau murah, mungkin banjir.\n\nDi Rumah Alfa Indah, Anda tidak perlu berkompromi. Bayangkan ketenangan pikiran yang Anda rasakan setiap musim hujan tiba, karena rumah ini terbukti 100% bebas banjir, bahkan saat banjir besar melanda Jakarta. Bayangkan kemudahan hidup saat Tol JORR, sekolah anak, hingga pusat perbelanjaan hanya berjarak beberapa menit dari pintu rumah Anda.\n\nDengan harga Rp 1.5 Milyar (di bawah harga pasaran saat ini), ini bukan sekadar tempat tinggal. Ini adalah aset perlindungan keluarga dan investasi cerdas yang sangat langka. Kesempatan ini tidak akan bertahan lama.",
+      story: "Mencari rumah di Jakarta seringkali memaksa kita berkompromi: Kalau strategis, pasti mahal. Kalau murah, mungkin banjir.\n\nDi Rumah Alfa Indah, Anda tidak perlu berkompromi.",
       inspirationTitle: "Miliki Kebebasan Mutlak untuk Membangun Rumah Impian Anda",
-      inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid (6x17) di Rumah Alfa Indah ini memberikan Anda keleluasaan untuk mendesain ruang hidup Anda sendiri sesuai impian Anda.\n\nTonton video ini : Lihat bagaimana bangunan ini memiliki potensi luar biasa untuk ditransformasikan menjadi karya arsitektur Modern Minimalis yang megah, bersih, dan berkelas dunia. Anda tidak sedang membeli rumah seken biasa—Anda sedang mengambil alih kendali penuh atas bagaimana masa depan kenyamanan keluarga Anda diwujudkan. Jangan beli selera orang lain, ciptakan kemewahan Anda sendiri di sini.",
-      // KUNCI: PASTI CANCEL AUTOPLAY PADA TIMELAPSE DEFAULT
+      inspirationStory: "Struktur bangunan yang kokoh dan tata letak tanah grid (6x17) di Rumah Alfa Indah ini memberikan Anda keleluasaan.",
       timelapseUrl: "https://www.youtube.com/embed/zDvGAE7vPWI?enablejsapi=1&mute=1&loop=1&playlist=zDvGAE7vPWI",
       galleryTitle: "Galeri Arsitektur",
-      gallerySubheadline: "Kabar baiknya, Anda tidak harus merombak semuanya dari nol. Struktur bangunan asli saat ini sudah sangat kokoh. Cukup dengan renovasi ringan seperti perbaikan lantai dan pengecatan ulang, rumah ini sudah siap bertransformasi menjadi hunian yang indah dan nyaman tanpa biaya besar. Jelajahi potensi tata letak ruang bagian dalam rumah melalui galeri foto di bawah ini:",
+      gallerySubheadline: "Jelajahi setiap sudut keindahan arsitektur dan fasilitas properti.",
       useSubGalleryPage: "false",
       bgmUrl: "assets/audio/bg-music.mp3",
       bgm_volume: 0.3,
       facilities: [
         "Zero Anxiety: 100% Bebas Banjir & Diapit 2 Pos Polisi (Aman 24 Jam)",
-        "Komersial Kompleks: HERO Supermarket, McD 24 Jam & Alfamart 24 Jam di Gerbang Utama",
-        "Olahraga & Lifestyle: Kolam Renang & Gym/Fitness Center Resmi di Dalam Kompleks",
-        "Pendidikan Lengkap: HighScope, SIT Citra Az-Zahra, SDK Petra Alpha & Kumon Dalam Kompleks",
-        "High Mobility: 3-5 Menit ke Gerbang Tol JORR Joglo & TransJakarta 8M",
-        "Healthcare & Banking: RSIA Mahati 24 Jam, Klinik, & 6 Bank Major di Jl. Joglo Raya"
+        "Komersial Kompleks: HERO Supermarket, McD 24 Jam & Alfamart 24 Jam di Gerbang Utama"
       ],
       specs: {
         "Legalitas": "SHM (Sertifikat Hak Milik) - Aman & Valid",
         "Luas Tanah": "102 m² (Dimensi Ideal 6x17)",
-        "Luas Bangunan": "82 m² (2 Lantai Kokoh Dinding Bata Merah Pejal)",
-        "Kamar Tidur": "3 + 1 (Cocok untuk keluarga berkembang)",
-        "Kamar Mandi": "2 + 1",
-        "Extra Space": "Gudang Penyimpanan Terpisah & Carport",
-        "Air & Listrik": "Air Jetpump Jernih (Jaringan PAM siap pasang) / Listrik 2200 VA"
+        "Luas Bangunan": "82 m² (2 Lantai Kokoh)",
+        "Kamar Tidur": "3 + 1",
+        "Kamar Mandi": "2 + 1"
       },
       gallery: []
     };
@@ -473,7 +453,6 @@
     let chatMemory = [];
     let isAudioPlaying = true; 
     let isVideoPlaying = false;
-    let ytPlayers = [];
     const audioEl = document.getElementById('bg-music');
 
     function toggleAudio(forcePause = false) {
@@ -498,19 +477,17 @@
       }
     }
 
-    // YOUTUBE MESSAGE EVENT LISTENER
     window.addEventListener('message', function(event) {
       if (!event.data) return;
       try {
         const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
         if (data.event === 'infoDelivery' && data.info) {
-          // infoState 1 = PLAYING, 2 = PAUSED, 0 = ENDED
           if (data.info.playerState === 1) {
             isVideoPlaying = true;
-            if (isAudioPlaying) toggleAudio(true); // OFF BGM saat Video YouTube Diputar
+            if (isAudioPlaying) toggleAudio(true);
           } else if (data.info.playerState === 2 || data.info.playerState === 0) {
             isVideoPlaying = false;
-            if (!isAudioPlaying) toggleAudio(false); // RESUME BGM
+            if (!isAudioPlaying) toggleAudio(false);
           }
         }
       } catch(e) {}
@@ -535,7 +512,6 @@
       setDynamicWelcomeMessage();
       calculateKPR();
 
-      // AUTO-PLAY BGM ON PERTAMA KALI KONTAN DENGAN KLIK/SCROLL
       audioEl.src = PROPERTY_CONFIG.bgmUrl || "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3";
       audioEl.volume = parseFloat(PROPERTY_CONFIG.bgm_volume) || 0.3;
 
@@ -617,7 +593,6 @@
       const timelapseIframe = document.getElementById('prop-timelapse-yt');
       if (config.timelapseUrl && config.timelapseUrl.trim().length > 5) {
         let cleanTimeUrl = config.timelapseUrl;
-        // PASTI HAPUS AUTOPLAY DAN GANTI MENJADI AUTOPLAY=0
         cleanTimeUrl = cleanTimeUrl.replace(/autoplay=1/g, 'autoplay=0');
         if (!cleanTimeUrl.includes('enablejsapi=1')) {
           cleanTimeUrl += (cleanTimeUrl.includes('?') ? '&' : '?') + 'enablejsapi=1';
@@ -629,7 +604,7 @@
       }
 
       document.getElementById('prop-maps').src = `https://maps.google.com/maps?q=${config.latitude || -6.2244},${config.longitude || 106.7508}&t=&z=15&ie=UTF-8&iwloc=&output=embed`;
-      document.getElementById('floating-wa-link').href = `https://wa.me/${config.whatsappNumber || '6287832219195'}?text=${encodeURIComponent((config.whatsappTemplate || 'Halo').replace("%PROPERTY_NAME%", config.title))}`;
+      document.getElementById('floating-wa-link').href = `https://wa.me/6287832219195?text=${encodeURIComponent("Halo, saya tertarik dengan Rumah di Taman Alfa Indah")}`;
 
       if (config.gallery && config.gallery.length > 0) {
         const firstImg = (typeof config.gallery[0] === 'object') ? config.gallery[0].url : config.gallery[0];
@@ -645,7 +620,6 @@
 
       const isSubPageActive = (config.useSubGalleryPage === "true" || config.useSubGalleryPage === true);
       const totalPhotos = config.gallery ? config.gallery.length : 0;
-      
       const photosToDisplay = isSubPageActive ? config.gallery.slice(0, 6) : (config.gallery || []);
 
       photosToDisplay.forEach((item, i) => {
@@ -743,7 +717,7 @@
       if (!dest) return alert("Ketik lokasi tujuan Anda.");
       
       const chosenSpeed = parseFloat(document.getElementById('custom-speed').value) || 20;
-      if (chosenSpeed <= 0) return alert("Masukkan angka kecepatan yang valid (lebih besar dari 0).");
+      if (chosenSpeed <= 0) return alert("Masukkan angka kecepatan yang valid.");
 
       const btn = document.getElementById('btn-calc');
       const origText = btn.innerText;
@@ -762,12 +736,11 @@
 
         const distanceKm = routeData.routes[0].distance / 1000;
         const km = distanceKm.toFixed(1);
-        
         const min = Math.round((distanceKm / chosenSpeed) * 60);
 
         document.getElementById('res-time').innerText = min < 60 ? `${min} Mnt` : `${Math.floor(min/60)} Jam ${min%60} Mnt`;
         document.getElementById('res-dist').innerText = `(${km} km)`;
-        document.getElementById('res-speed-desc').innerText = `*Dihitung berdasarkan kecepatan ${chosenSpeed} km/jam yang Anda tentukan.`;
+        document.getElementById('res-speed-desc').innerText = `*Dihitung berdasarkan kecepatan ${chosenSpeed} km/jam.`;
         document.getElementById('res-link').href = `https://www.google.com/maps/dir/?api=1&origin=${propLat},${propLon}&destination=${destLat},${destLon}`;
         document.getElementById('route-result').classList.remove('hidden');
       } catch (err) {
